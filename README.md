@@ -1,70 +1,192 @@
-# Getting Started with Create React App
+# Portfolio - Next.js 15
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, fully responsive portfolio website built with Next.js 15, TypeScript, and Tailwind CSS with dark mode support, image galleries, resume preview, and social sharing.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### Core Features
 
-### `npm start`
+- ⚡ **Next.js 15** with App Router
+- 🎨 **Tailwind CSS** for styling with custom color palette
+- 📘 **TypeScript** for type safety
+- 🧶 **Yarn 4** (Berry) as package manager
+- ♿ **Accessibility** features (WCAG 2.1 AA compliant)
+- 🎭 **Smooth animations** and transitions
+- 📱 **Fully responsive** design
+- 🌐 **SEO optimized** with meta tags
+- 🎯 **Performance optimized** with Next.js Image component
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### New Features ✨
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 🌓 **Dark/Light Mode Toggle** with localStorage persistence
+- 🖼️ **Image Gallery Modal** with keyboard navigation
+- 📄 **Resume Preview Modal** with PDF viewer
+- 📱 **Social Share Buttons** (Twitter, LinkedIn, Facebook, WhatsApp, Email, Copy Link)
+- 🎴 **Enhanced Portfolio Cards** with multiple screenshots
+- 📧 **Contact Form** with validation and dark mode support
 
-### `npm test`
+## 🎨 Color Scheme
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Light Mode:**
 
-### `npm run build`
+- Primary: Blue (600-700)
+- Secondary: Purple/Fuchsia (600-700)
+- Accent: Emerald/Green (600-700)
+- Background: White, Gray-50, Gray-100
+- Text: Gray-900, Gray-700, Gray-600
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Dark Mode:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Primary: Blue (500-400)
+- Secondary: Purple/Fuchsia (500-400)
+- Accent: Emerald/Green (500-400)
+- Background: Gray-900, Gray-800, Gray-950
+- Text: White, Gray-100, Gray-300
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📋 Prerequisites
 
-### `npm run eject`
+- Node.js 18.0 or higher
+- Yarn 4.0 or higher (recommended package manager)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🛠️ Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+git clone <your-repo-url>
+cd Portfolio
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Install dependencies:
 
-## Learn More
+```bash
+yarn install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Run the development server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn dev
+```
 
-### Code Splitting
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📁 Project Structure
 
-### Analyzing the Bundle Size
+```
+Portfolio/
+├── app/                      # Next.js app directory
+│   ├── api/                  # API routes
+│   │   └── contact/          # Contact form API
+│   ├── globals.css           # Global styles
+│   ├── layout.tsx            # Root layout
+│   └── page.tsx              # Home page
+├── components/               # React components
+│   ├── layout/               # Layout components
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   ├── sections/             # Page sections
+│   │   ├── HeroSection.tsx
+│   │   ├── PortfolioSection.tsx
+│   │   └── ContactSection.tsx
+│   └── ui/                   # Reusable UI components
+│       ├── Button.tsx
+│       ├── PortfolioCard.tsx
+│       ├── SectionHeading.tsx
+│       └── ScrollToTop.tsx
+├── lib/                      # Utility functions
+│   ├── utils.ts              # Helper functions
+│   └── constants.ts          # App constants
+├── types/                    # TypeScript type definitions
+│   └── index.ts
+├── public/                   # Static assets
+│   ├── images/               # Images & placeholders
+│   └── resume/                   # Resume files
+├── next.config.ts            # Next.js configuration
+├── tailwind.config.ts        # Tailwind CSS configuration
+├── tsconfig.json             # TypeScript configuration
+└── package.json              # Dependencies and scripts
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🎨 Customization
 
-### Making a Progressive Web App
+### Update Personal Information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. **Hero Section**: Edit components/sections/HeroSection.tsx
+2. **Portfolio Items**: Update the portfolioItems array in components/sections/PortfolioSection.tsx
+3. **Contact Info**: Modify components/sections/ContactSection.tsx
+4. **Social Links**: Update socialLinks in components/layout/Footer.tsx
 
-### Advanced Configuration
+### Customize Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Colors**: Edit tailwind.config.ts to change the color scheme
+- **Fonts**: Modify font imports in app/layout.tsx
+- **Animations**: Add custom animations in app/globals.css
 
-### Deployment
+### Add Images
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The project includes placeholder images by default. To add your own:
 
-### `npm run build` fails to minify
+1. **Profile Image**: Replace `/images/placeholder-profile.svg` with your photo (recommended: 800x800px)
+2. **Project Logos**: Replace `/images/placeholder-project.svg` or add individual project images
+3. **Update paths** in `components/sections/HeroSection.tsx` and `components/sections/PortfolioSection.tsx`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```typescript
+// Example: Update in PortfolioSection.tsx
+logo: '/images/your-project-logo.png';
+```
+
+All images automatically use placeholders if the file is missing, ensuring the site always works.
+
+## 🔧 Available Scripts
+
+- `yarn dev` - Start development server
+- `yarn build` - Build for production
+- `yarn start` - Start production server
+- `yarn lint` - Run ESLint
+- `yarn type-check` - Run TypeScript type checking
+- `yarn format` - Format code with Prettier
+
+## ♿ Accessibility Features
+
+- Semantic HTML elements
+- ARIA labels and roles
+- Keyboard navigation support
+- Focus management
+- Screen reader announcements
+- Skip to main content link
+- High contrast colors
+- Responsive text sizing
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import your repository on [Vercel](https://vercel.com)
+3. Vercel will automatically detect Next.js and deploy
+
+### Other Platforms
+
+Build the project:
+
+```bash
+yarn build
+```
+
+Then deploy the .next folder to your hosting provider.
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+## 👤 Author
+
+**Muhammad Usama Zuberi**
+
+- GitHub: [@usamazuberi](https://github.com/usamazuberi)
+
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
