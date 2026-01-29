@@ -12,9 +12,9 @@ const Header: React.FC = () => {
   const navLinks: NavLink[] = [
     { label: 'Home', href: '#hero', ariaLabel: 'Navigate to home section' },
     { label: 'Skills', href: '#skills', ariaLabel: 'Navigate to skills section' },
-    { label: 'Experience', href: '#experience', ariaLabel: 'Navigate to experience section' },
-    { label: 'Education', href: '#education', ariaLabel: 'Navigate to education section' },
+    { label: 'My Journey', href: '#timeline', ariaLabel: 'Navigate to timeline section' },
     { label: 'Portfolio', href: '#portfolio', ariaLabel: 'Navigate to portfolio section' },
+    { label: 'Testimonials', href: '#testimonials', ariaLabel: 'Navigate to testimonials section' },
     { label: 'Contact', href: '#contact', ariaLabel: 'Navigate to contact section' },
   ];
 

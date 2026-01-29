@@ -101,25 +101,44 @@ const HeroSection: React.FC = () => {
       role="region"
       aria-label="Hero section"
     >
-      {/* Mouse Follower */}
+      {/* Mouse Follower - Spotlight Effect */}
       {isMouseInside && (
         <>
-          {/* Main cursor glow */}
+          {/* Spotlight beam */}
           <div
-            className="pointer-events-none absolute z-30 h-64 w-64 rounded-full bg-gradient-to-r from-primary-400/20 to-secondary-400/20 blur-3xl transition-all duration-300 ease-out"
+            className="pointer-events-none absolute z-30 h-[600px] w-[600px] rounded-full opacity-0 transition-opacity duration-500"
+            style={{
+              left: `${mousePosition.x}px`,
+              top: `${mousePosition.y}px`,
+              transform: 'translate(-50%, -50%)',
+              background:
+                'radial-gradient(circle, rgba(var(--primary-rgb, 99, 102, 241), 0.15) 0%, rgba(var(--primary-rgb, 99, 102, 241), 0.08) 25%, rgba(var(--secondary-rgb, 168, 85, 247), 0.05) 50%, transparent 70%)',
+              opacity: 1,
+            }}
+          />
+          {/* Cursor trail particles */}
+          <div
+            className="pointer-events-none absolute z-30 h-3 w-3 rounded-full bg-primary-500/60 blur-sm transition-all duration-100"
             style={{
               left: `${mousePosition.x}px`,
               top: `${mousePosition.y}px`,
               transform: 'translate(-50%, -50%)',
             }}
           />
-          {/* Secondary smaller glow */}
           <div
-            className="pointer-events-none absolute z-30 h-32 w-32 rounded-full bg-gradient-to-r from-accent-400/30 to-primary-400/30 blur-2xl transition-all duration-200 ease-out"
+            className="pointer-events-none absolute z-30 h-2 w-2 rounded-full bg-secondary-500/50 blur-sm transition-all duration-200"
             style={{
               left: `${mousePosition.x}px`,
               top: `${mousePosition.y}px`,
-              transform: 'translate(-50%, -50%)',
+              transform: 'translate(-50%, -50%) scale(1.5)',
+            }}
+          />
+          <div
+            className="pointer-events-none absolute z-30 h-1.5 w-1.5 rounded-full bg-accent-500/40 blur-sm transition-all duration-300"
+            style={{
+              left: `${mousePosition.x}px`,
+              top: `${mousePosition.y}px`,
+              transform: 'translate(-50%, -50%) scale(2)',
             }}
           />
         </>
