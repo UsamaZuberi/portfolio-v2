@@ -125,7 +125,7 @@ const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-white px-3 py-16 dark:bg-gray-800 sm:px-4 sm:py-20 lg:px-8"
       role="region"
       aria-label="Contact section"
     >
@@ -145,7 +145,7 @@ const ContactSection: React.FC = () => {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Contact Info */}
           <div className="order-2 lg:order-1">
-            <div className="flex h-full min-h-full flex-col rounded-2xl bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-8 shadow-xl dark:from-gray-800 dark:via-gray-800 dark:to-gray-800">
+            <div className="flex h-full min-h-full flex-col rounded-2xl bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-6 shadow-xl dark:from-gray-800 dark:via-gray-800 dark:to-gray-800 sm:p-8">
               <div className="flex-1">
                 <div className="mb-8">
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-md dark:bg-gray-800">
@@ -153,29 +153,29 @@ const ContactSection: React.FC = () => {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
                       <span className="relative inline-flex h-3 w-3 rounded-full bg-primary-500"></span>
                     </span>
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-xs font-medium text-gray-700 dark:text-gray-300 sm:text-sm">
                       Available for Work
                     </span>
                   </div>
-                  <h3 className="mb-3 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-3xl font-bold text-transparent dark:from-primary-400 dark:to-secondary-400">
+                  <h3 className="mb-3 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-2xl font-bold text-transparent dark:from-primary-400 dark:to-secondary-400 sm:text-3xl">
                     Let&apos;s Connect
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 sm:text-base">
                     Ready to bring your ideas to life. Let&apos;s discuss how we can work together.
                   </p>
                 </div>
 
                 {/* Contact Methods */}
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   <a
                     href={`mailto:${contactData.email}`}
-                    className="group relative block overflow-hidden rounded-xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-gray-700/50"
+                    className="group relative block overflow-hidden rounded-xl bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-gray-700/50 sm:p-6"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 opacity-0 transition-opacity group-hover:opacity-10" />
-                    <div className="relative flex items-center gap-4">
-                      <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg">
+                    <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg sm:h-14 sm:w-14">
                         <svg
-                          className="h-7 w-7"
+                          className="h-6 w-6 sm:h-7 sm:w-7"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -189,15 +189,15 @@ const ContactSection: React.FC = () => {
                         </svg>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <h4 className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:text-sm">
                           Email Me
                         </h4>
-                        <p className="truncate text-base font-medium text-gray-900 dark:text-white">
+                        <p className="break-all text-sm font-medium text-gray-900 dark:text-white sm:truncate sm:text-base">
                           {contactData.email}
                         </p>
                       </div>
                       <svg
-                        className="h-6 w-6 flex-shrink-0 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-primary-600 dark:group-hover:text-primary-400"
+                        className="hidden h-6 w-6 flex-shrink-0 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 sm:block"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -212,8 +212,8 @@ const ContactSection: React.FC = () => {
                     </div>
                   </a>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-xl bg-white p-5 shadow-md dark:bg-gray-700/50">
+                  <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+                    <div className="rounded-xl bg-white p-4 shadow-md dark:bg-gray-700/50 sm:p-5">
                       <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-secondary-500 to-pink-500 text-white">
                         <svg
                           className="h-5 w-5"
@@ -235,10 +235,10 @@ const ContactSection: React.FC = () => {
                           />
                         </svg>
                       </div>
-                      <h4 className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                      <h4 className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:text-sm">
                         Location
                       </h4>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                      <p className="text-xs text-gray-700 dark:text-gray-300 sm:text-sm">
                         {contactData.location}
                       </p>
                       <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
@@ -246,7 +246,7 @@ const ContactSection: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="rounded-xl bg-white p-5 shadow-md dark:bg-gray-700/50">
+                    <div className="rounded-xl bg-white p-4 shadow-md dark:bg-gray-700/50 sm:p-5">
                       <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent-500 to-teal-500 text-white">
                         <svg
                           className="h-5 w-5"
@@ -262,10 +262,10 @@ const ContactSection: React.FC = () => {
                           />
                         </svg>
                       </div>
-                      <h4 className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                      <h4 className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 sm:text-sm">
                         Response
                       </h4>
-                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                      <p className="text-xs text-gray-700 dark:text-gray-300 sm:text-sm">
                         {contactData.responseTime}
                       </p>
                     </div>
@@ -274,18 +274,18 @@ const ContactSection: React.FC = () => {
               </div>
 
               {/* Social Links */}
-              <div className="mt-8 border-t border-gray-200 pt-6 dark:border-gray-700">
-                <h4 className="mb-4 text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <div className="mt-6 border-t border-gray-200 pt-4 dark:border-gray-700 sm:mt-8 sm:pt-6">
+                <h4 className="mb-3 text-xs font-semibold text-gray-700 dark:text-gray-300 sm:mb-4 sm:text-sm">
                   Follow me on social media
                 </h4>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {contactData.socialLinks.map((social) => (
                     <a
                       key={social.name}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-gray-700 shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-gray-900 hover:text-white hover:shadow-lg dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-gray-700 shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-gray-900 hover:text-white hover:shadow-lg dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 sm:h-11 sm:w-11"
                       aria-label={social.name}
                     >
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -317,14 +317,14 @@ const ContactSection: React.FC = () => {
           <div className="order-1 lg:order-2">
             <form
               onSubmit={handleSubmit}
-              className="flex h-full min-h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+              className="flex h-full min-h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800 sm:p-8"
               noValidate
             >
-              <h3 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
+              <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white sm:mb-6 sm:text-2xl">
                 Send a Message
               </h3>
 
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {/* Honeypot field - hidden from users, catches bots */}
                 <input
                   type="text"
