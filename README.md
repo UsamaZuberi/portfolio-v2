@@ -1,4 +1,4 @@
-# Portfolio - Next.js 15
+# portfolio-v2 - Next.js 15
 
 A modern, fully responsive portfolio website built with Next.js 15, TypeScript, and Tailwind CSS with dark mode support, image galleries, resume preview, and social sharing.
 
@@ -54,7 +54,7 @@ A modern, fully responsive portfolio website built with Next.js 15, TypeScript, 
 
 ```bash
 git clone <your-repo-url>
-cd Portfolio
+cd portfolio-v2
 ```
 
 2. Install dependencies:
@@ -74,7 +74,7 @@ yarn dev
 ## 📁 Project Structure
 
 ```
-Portfolio/
+portfolio-v2/
 ├── app/                      # Next.js app directory
 │   ├── api/                  # API routes
 │   │   └── contact/          # Contact form API

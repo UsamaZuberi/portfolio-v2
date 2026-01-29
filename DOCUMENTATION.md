@@ -9,7 +9,7 @@ This is a modern, fully documented portfolio website built with **Next.js 15**, 
 ## 📁 Project Structure
 
 ```
-portfolio/
+portfolio-v2/
 ├── app/                          # Next.js app directory
 │   ├── globals.css              # Global styles and animations
 │   ├── layout.tsx               # Root layout component

@@ -262,20 +262,45 @@ export const portfolioData = {
   projects: [
     {
       id: '1',
-      title: 'Pixtool',
-      description:
-        'A SaaS web app for video editing, sharing & stage simulation with advanced features.',
+      title: 'Natours',
+      description: 'A website for fictional tour company Natours.',
       longDescription:
-        'A comprehensive SaaS platform for video editing, sharing, and stage simulation. Features include real-time collaboration, advanced editing tools, and cloud storage integration.',
-      startYear: 2023,
-      endYear: 2024,
-      images: ['/images/Pixtool.png'],
-      usedSkills: ['React', 'Video Processing', 'SaaS', 'Node.js', 'Firebase', 'Video.js'],
-      isFeatured: true,
-      link: 'https://pixtool-66579.firebaseapp.com/home',
+        'A fictional travel agency landing page built to practice advanced CSS, Sass structure, animations, and responsive design techniques. It focuses on creating visually appealing layouts without relying on Flexbox or Grid.',
+      startYear: 2021,
+      endYear: 2022,
+      images: ['/images/Natours.png'],
+      usedSkills: ['SCSS', 'HTML', 'JavaScript', 'Web Design'],
+      isFeatured: false,
+      link: 'https://usamazuberi.github.io/Natours',
     },
     {
       id: '2',
+      title: 'Trillo',
+      description: 'A website for fictional all in one tour company Trillo.',
+      longDescription:
+        'An all-in-one hotel booking web app designed to master modern Flexbox layouts while keeping the interface responsive and maintainable. The project emphasizes arranging elements harmoniously using advanced CSS concepts.',
+      startYear: 2021,
+      endYear: 2022,
+      images: ['/images/Trillo.png'],
+      usedSkills: ['SCSS', 'HTML', 'JavaScript', 'Flexbox', 'Web Design'],
+      isFeatured: false,
+      link: 'https://usamazuberi.github.io/Trillo',
+    },
+    {
+      id: '3',
+      title: 'Nexter',
+      description: 'A website for fictional real state company Nexter',
+      longDescription:
+        'A real-estate company website created as the final project to learn complex layouts with CSS Grid and animations. It helps developers better understand grid principles and modern web layout techniques.',
+      startYear: 2021,
+      endYear: 2022,
+      images: ['/images/Nexter.png'],
+      usedSkills: ['SCSS', 'HTML', 'JavaScript', 'Grid Layout', 'Web Design'],
+      isFeatured: false,
+      link: 'https://usamazuberi.github.io/Nexter',
+    },
+    {
+      id: '4',
       title: 'Eberhard Capital',
       description:
         'Official website of Eberhard Capital with modern design and investment portfolio.',
@@ -289,21 +314,7 @@ export const portfolioData = {
       link: 'http://eberhardcapital.com/',
     },
     {
-      id: '3',
-      title: '7 Star Training',
-      description:
-        'A SaaS web app for apprenticeship trainings with comprehensive course management.',
-      longDescription:
-        'Educational platform for managing apprenticeship programs with course scheduling, progress tracking, and certification management.',
-      startYear: 2022,
-      endYear: 2023,
-      images: ['/images/SevenStarTraining.png'],
-      usedSkills: ['React', 'Node.js', 'MongoDB', 'Express', 'SaaS', 'Education'],
-      isFeatured: true,
-      link: 'https://star-309014.ew.r.appspot.com/',
-    },
-    {
-      id: '4',
+      id: '5',
       title: 'EHJ & SJ Consultancy',
       description: 'Official website of EHJ & SJ Consultancy providing professional services.',
       longDescription:
@@ -315,8 +326,9 @@ export const portfolioData = {
       isFeatured: false,
       link: 'https://ehjsjconsultancy.com/',
     },
+
     {
-      id: '5',
+      id: '6',
       title: 'Novospace',
       description:
         'A SaaS web app for hardware & product configurations with advanced customization.',
@@ -328,6 +340,48 @@ export const portfolioData = {
       usedSkills: ['React', 'Redux', 'Node.js', 'PostgreSQL', 'SaaS'],
       isFeatured: false,
       link: 'https://novo-back.herokuapp.com/',
+    },
+
+    {
+      id: '7',
+      title: 'Cylinder',
+      description: 'Web application to calculate and visualize residential hot water demand.',
+      longDescription:
+        'A web-based engineering tool that calculates residential hot water requirements by analyzing household usage patterns, system efficiency, storage capacity, and heat loss. Designed to help municipalities and system planners accurately size hot water infrastructure.',
+      startYear: 2021,
+      endYear: 2022,
+      images: ['/images/Cylinder.png'],
+      usedSkills: ['SCSS', 'HTML', 'JavaScript', 'Grid Layout', 'Web Design'],
+      isFeatured: false,
+      link: 'https://cylinder-41ed8.firebaseapp.com/',
+    },
+    {
+      id: '8',
+      title: 'Pixtool',
+      description:
+        'A SaaS web app for video editing, sharing & stage simulation with advanced features.',
+      longDescription:
+        'A comprehensive SaaS platform for video editing, sharing, and stage simulation. Features include real-time collaboration, advanced editing tools, and cloud storage integration.',
+      startYear: 2023,
+      endYear: 2024,
+      images: ['/images/Pixtool.png'],
+      usedSkills: ['React', 'Video Processing', 'SaaS', 'Node.js', 'Firebase', 'Video.js'],
+      isFeatured: true,
+      link: 'https://pixtool-66579.firebaseapp.com/home',
+    },
+    {
+      id: '9',
+      title: '7 Star Training',
+      description:
+        'A SaaS web app for apprenticeship trainings with comprehensive course management.',
+      longDescription:
+        'Educational platform for managing apprenticeship programs with course scheduling, progress tracking, and certification management.',
+      startYear: 2022,
+      endYear: 2023,
+      images: ['/images/SevenStarTraining.png'],
+      usedSkills: ['React', 'Node.js', 'MongoDB', 'Express', 'SaaS', 'Education'],
+      isFeatured: true,
+      link: 'https://star-309014.ew.r.appspot.com/',
     },
   ],
 
@@ -480,6 +534,39 @@ export const portfolioData = {
       rating: 5,
       gender: 'male',
       testimonial: 'He is very dedicated and hard working.',
+    },
+    {
+      id: 8,
+      name: 'Taha Haq',
+      role: 'Product Manager',
+      company: 'Hashcore',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      gender: 'male',
+      testimonial:
+        'Usama has worked at Hashcore for over three years. During this time, he has proven to be an invaluable asset to our product development process. He is a skilled developer who consistently turns product requirements into great user experiences. He is reliable, meets every deadline, and is a true professional.',
+    },
+    {
+      id: 9,
+      name: 'Maaz Jawaid',
+      role: 'Operations Manager',
+      company: 'Hashcore',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      gender: 'male',
+      testimonial:
+        "Usama joined Hashcore as our first frontend developer. Despite tight deadlines, his ownership and problem-solving skills set a high bar for the product. Beyond his technical talent, he is the 'gel' of our team, someone everyone loves working with. Usama, it's been a pleasure, and I look forward to working with you again.",
+    },
+    {
+      id: 10,
+      name: 'Abdul Mannan',
+      role: 'Blockchain Engineer',
+      company: 'Hashcore',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      gender: 'male',
+      testimonial:
+        "I highly recommend Usama Zuberi. I've worked with him on the same team, and he's an excellent Senior Software Engineer, especially on frontend work. He completes tasks quickly, delivers high-quality results, and often goes beyond what's expected. Usama is reliable, easy to work with, communicates clearly, and is a real team player. Any team would be lucky to have him.",
     },
   ],
 };
