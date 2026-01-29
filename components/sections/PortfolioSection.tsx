@@ -20,12 +20,14 @@
 
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ImageGalleryModal from '@/components/ui/ImageGalleryModal';
 import ProjectCard from '@/components/ui/ProjectCard';
+import DecorativeBackground from '@/components/ui/DecorativeBackground';
 import { portfolioData } from '@/data';
 import { useScrollToSection } from '@/lib/hooks/useInteractions';
+import { useProjectImages } from '@/lib/hooks/useProjectImages';
 import { ProjectItem } from '@/types';
 
 const PortfolioSection: React.FC = () => {
@@ -34,9 +36,28 @@ const PortfolioSection: React.FC = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const scrollToSection = useScrollToSection();
 
+  // Fetch images from Vercel Blob
+  const { images: blobImages, loading: blobLoading } = useProjectImages();
+
+  // Use blob images as primary source, fallback to data.js only if blob not available
+  const projectsWithBlobImages = useMemo(() => {
+    return portfolioData.projects
+      .slice() // Create new array to avoid mutation
+      .reverse() // Show most recent projects first
+      .map((project) => {
+        const blobProjectImages = blobImages[project.slug];
+        // Prioritize blob images - only use data.js images if no blob images exist
+        return {
+          ...project,
+          images:
+            blobProjectImages && blobProjectImages.length > 0 ? blobProjectImages : project.images,
+        };
+      });
+  }, [blobImages]);
+
   // Filter projects into featured and complete list
-  const featuredProjects = portfolioData.projects.filter((p) => p.isFeatured);
-  const allProjects = portfolioData.projects;
+  const featuredProjects = projectsWithBlobImages.filter((p) => p.isFeatured);
+  const allProjects = projectsWithBlobImages;
 
   /**
    * Handler: Open gallery modal with selected project
@@ -72,11 +93,7 @@ const PortfolioSection: React.FC = () => {
       aria-label="Portfolio section"
     >
       {/* Decorative Background Elements */}
-      <div className="absolute inset-0 -z-10 opacity-40">
-        <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-primary-300/20 to-transparent blur-3xl" />
-        <div className="absolute -left-20 bottom-1/4 h-80 w-80 rounded-full bg-gradient-to-tr from-secondary-300/20 to-transparent blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-gradient-to-t from-accent-300/20 to-transparent blur-3xl" />
-      </div>
+      <DecorativeBackground variant="default" opacity={40} />
       <div className="container mx-auto max-w-7xl">
         <SectionHeading
           title="Key Recent Projects"

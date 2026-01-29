@@ -63,13 +63,29 @@ cd portfolio-v2
 yarn install
 ```
 
-3. Run the development server:
+3. Set up environment variables:
+
+Create a `.env.local` file in the root directory:
+
+```bash
+# Vercel Blob Storage (for project images)
+portfolio_v2_images_READ_WRITE_TOKEN=your-vercel-blob-token
+```
+
+To get your Vercel Blob token:
+
+- Go to your Vercel dashboard
+- Navigate to Storage → Blob
+- Create a new blob store named `portfolio-v2-images`
+- Copy the token and add it to `.env.local`
+
+4. Run the development server:
 
 ```bash
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📁 Project Structure
 
@@ -113,9 +129,39 @@ portfolio-v2/
 ### Update Personal Information
 
 1. **Hero Section**: Edit components/sections/HeroSection.tsx
-2. **Portfolio Items**: Update the portfolioItems array in components/sections/PortfolioSection.tsx
-3. **Contact Info**: Modify components/sections/ContactSection.tsx
-4. **Social Links**: Update socialLinks in components/layout/Footer.tsx
+2. **Portfolio Items**: Update the projects array in data.js
+3. **Contact Info**: Modify the contact object in data.js
+4. **Social Links**: Update socialLinks in the contact section of data.js
+
+### Add Project Images to Vercel Blob
+
+The portfolio uses Vercel Blob storage for project screenshots. To add images:
+
+1. **Via Vercel Dashboard**:
+2. **Via Vercel Dashboard**:
+   - Go to Storage → Blob → portfolio-v2-images
+   - Upload images with naming convention: `{project-slug}-{number}.ext`
+   - Examples: `7-star-training-1.png`, `pixtool-1.png`, `ehj-and-sj-consultancy-1.png`
+   - The slug must match the `slug` field in [data.js](data.js)
+
+3. **Via Vercel CLI**:
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Login to Vercel
+vercel login
+
+# Upload images with proper naming
+vercel blob upload ./7-star-training-1.png --token=your-token
+vercel blob upload ./pixtool-1.png --token=your-token
+```
+
+4. **Automatic Integration**:
+   - Images are automatically fetched from Vercel Blob
+   - Falls back to local images from [data.js](data.js) if blob is not configured
+   - See [BLOB_SETUP.md](BLOB_SETUP.md) for detailed documentation
 
 ### Customize Styling
 

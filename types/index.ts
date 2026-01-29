@@ -199,6 +199,7 @@ export interface LearningItem {
 
 export interface ProjectItem {
   id: string;
+  slug: string;
   title: string;
   description: string;
   longDescription: string;

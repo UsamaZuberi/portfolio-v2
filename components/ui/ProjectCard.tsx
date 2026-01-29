@@ -27,7 +27,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { memo } from 'react';
 import { ProjectItem } from '@/types';
 import { TRANSITIONS } from '@/lib/constants';
 
@@ -195,4 +195,4 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
-export default ProjectCard;
+export default memo(ProjectCard);

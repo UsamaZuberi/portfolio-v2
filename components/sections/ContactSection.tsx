@@ -28,6 +28,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
+import DecorativeBackground from '@/components/ui/DecorativeBackground';
 import { portfolioData } from '@/data';
 import type { ContactFormData, ContactFormErrors } from '@/types';
 
@@ -130,11 +131,7 @@ const ContactSection: React.FC = () => {
       aria-label="Contact section"
     >
       {/* Decorative Background Elements */}
-      <div className="absolute inset-0 -z-10 opacity-35">
-        <div className="absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-primary-300/40 to-transparent blur-3xl" />
-        <div className="absolute -right-32 bottom-1/3 h-96 w-96 rounded-full bg-gradient-to-bl from-secondary-300/40 to-transparent blur-3xl" />
-        <div className="absolute -bottom-20 left-1/2 h-80 w-80 rounded-full bg-gradient-to-t from-accent-300/30 to-transparent blur-3xl" />
-      </div>
+      <DecorativeBackground variant="minimal" opacity={35} />
       <div className="container relative z-10 mx-auto max-w-6xl">
         <SectionHeading
           title="Let's Work Together"

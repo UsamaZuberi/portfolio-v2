@@ -16,7 +16,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { memo } from 'react';
 import { TestimonialItem } from '@/types';
 import { TRANSITIONS } from '@/lib/constants';
 
@@ -136,4 +136,4 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index = 
   );
 };
 
-export default TestimonialCard;
+export default memo(TestimonialCard);

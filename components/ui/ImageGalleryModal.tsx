@@ -19,10 +19,29 @@ const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
   projectTitle = 'Project Gallery',
 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     setCurrentIndex(initialIndex);
+    setImageLoaded(false);
   }, [initialIndex]);
+
+  // Preload adjacent images for faster navigation
+  useEffect(() => {
+    if (!isOpen || images.length <= 1) return;
+
+    const preloadImage = (src: string) => {
+      const img = new window.Image();
+      img.src = src;
+    };
+
+    // Preload next and previous images
+    const nextIndex = (currentIndex + 1) % images.length;
+    const prevIndex = (currentIndex - 1 + images.length) % images.length;
+
+    preloadImage(images[nextIndex]);
+    preloadImage(images[prevIndex]);
+  }, [currentIndex, images, isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -43,10 +62,12 @@ const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
   }, [isOpen, onClose]);
 
   const handleNext = () => {
+    setImageLoaded(false);
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
   const handlePrev = () => {
+    setImageLoaded(false);
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
@@ -95,14 +116,46 @@ const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
       {/* Image Container */}
       <div className="relative mx-4 w-full max-w-7xl" onClick={(e) => e.stopPropagation()}>
         <div className="relative aspect-video overflow-hidden rounded-2xl bg-gray-900 shadow-2xl ring-1 ring-white/10">
+          {/* Loading Spinner */}
+          {!imageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+              <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+            </div>
+          )}
+
           <Image
             src={images[currentIndex]}
             alt={`${projectTitle} - Screenshot ${currentIndex + 1}`}
             fill
-            className="object-contain transition-opacity duration-300"
+            className={`object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             sizes="90vw"
             priority
+            onLoad={() => setImageLoaded(true)}
           />
+
+          {/* Hidden preload images for next/prev */}
+          {images.length > 1 && (
+            <>
+              <div className="hidden">
+                <Image
+                  src={images[(currentIndex + 1) % images.length]}
+                  alt="Preload next"
+                  width={1}
+                  height={1}
+                  priority
+                />
+              </div>
+              <div className="hidden">
+                <Image
+                  src={images[(currentIndex - 1 + images.length) % images.length]}
+                  alt="Preload previous"
+                  width={1}
+                  height={1}
+                  priority
+                />
+              </div>
+            </>
+          )}
         </div>
 
         {/* Navigation Arrows */}
