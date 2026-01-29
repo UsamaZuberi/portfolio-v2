@@ -10,7 +10,7 @@
  * Features:
  * - Lazy image loading with placeholder styling
  * - Smooth hover animations (image zoom, overlay reveal)
- * - Skill badges with \"+ more\" indicator for long lists
+ * - Skill badges with "+ more" indicator for long lists
  * - Gallery trigger button for screenshot viewing
  * - Fully responsive and mobile-friendly
  * - Complete ARIA labels for accessibility
@@ -39,7 +39,7 @@ interface ProjectCardProps {
   project: ProjectItem;
   /** Whether this is a featured project (affects size and styling) */
   isFeatured?: boolean;
-  /** Callback function triggered when user clicks \"View Gallery\" button */
+  /** Callback function triggered when user clicks "View Gallery" button */
   onViewGallery: (project: ProjectItem) => void;
   /** Index position for calculating animation delay */
   index?: number;
@@ -55,36 +55,70 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   // while regular projects use staggered timing (0.4s base + incremental 0.05s)
   const cardAnimation = `fadeInUp 0.6s ease-out ${isFeatured ? index * 0.1 : 0.4 + (index % 12) * 0.05}s both`;
 
+  const heightClass = isFeatured ? 'h-56' : 'h-40';
+  const badgeBottomSpacing = isFeatured ? 'bottom-4 right-4' : 'bottom-3 right-3';
+  const badgeGap = isFeatured ? 'gap-2' : 'gap-1.5';
+  const badgeSize = isFeatured ? 'h-3.5 w-3.5' : 'h-3 w-3';
+  const badgeTextSize = isFeatured ? 'text-xs' : 'text-xs';
+  const yearBadgeSpacing = isFeatured ? 'right-4 top-4' : 'right-2 top-2';
+  const yearBadgePadding = isFeatured ? 'px-3 py-1 text-sm' : 'px-2 py-0.5 text-xs';
+  const contentPadding = isFeatured ? 'p-6' : 'p-4';
+  const titleSize = isFeatured ? 'mb-2 text-xl' : 'mb-1 text-base';
+  const descSize = isFeatured ? 'mb-4 text-sm' : 'mb-3 text-xs';
+  const skillPadding = isFeatured ? 'px-3 py-1' : 'px-2 py-0.5';
+  const skillGap = isFeatured ? 'gap-2' : 'gap-1.5';
+  const skillDisplayCount = isFeatured ? 4 : 3;
+
   return (
     <div
-      className={`group relative overflow-hidden ${isFeatured ? 'rounded-2xl bg-white shadow-lg' : 'rounded-xl bg-white shadow-md'} ${TRANSITIONS.SLOW} hover:shadow-2xl dark:bg-gray-800`}
-      style={{ animation: cardAnimation }}
+      className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-shadow duration-300 hover:shadow-2xl dark:bg-gray-800"
+      style={{
+        animation: cardAnimation,
+      }}
       role="article"
       aria-label={`${project.title} project`}
     >
-      {/* Image Container - Clickable to open gallery */}
+      {/* Image Container - Now shows project title instead */}
       <div
         onClick={() => onViewGallery(project)}
-        className={`relative ${isFeatured ? 'h-56' : 'h-40'} cursor-pointer overflow-hidden bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-gray-700 dark:to-gray-600`}
+        className={
+          'relative ' +
+          heightClass +
+          ' flex cursor-pointer items-center justify-center overflow-hidden bg-gradient-to-br from-primary-600 via-secondary-600 to-accent-600 dark:from-primary-700 dark:via-secondary-700 dark:to-accent-700'
+        }
       >
-        <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/20" />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 opacity-0 transition-all duration-300 group-hover:bg-black group-hover:opacity-20" />
 
-        <div className="flex h-full items-center justify-center">
-          <img
-            src={project.images[0]}
-            alt={project.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy"
-          />
+        {/* Shine effect */}
+        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white to-transparent opacity-20 transition-transform duration-700 group-hover:translate-x-full"></div>
+
+        {/* Project Title as visual element */}
+        <div className="z-5 relative px-6 text-center">
+          <h2
+            className={
+              isFeatured
+                ? 'text-4xl font-bold text-white dark:text-white'
+                : 'text-2xl font-bold text-white dark:text-white'
+            }
+          >
+            {project.title}
+          </h2>
         </div>
 
-        {/* Image Count Badge - Clean and aligned */}
-        {project.images && project.images.length > 1 && (
+        {/* Gallery Badge - Shows available images in gallery */}
+        {project.images && project.images.length > 0 && (
           <div
-            className={`absolute ${isFeatured ? 'bottom-4 right-4' : 'bottom-3 right-3'} flex items-center ${isFeatured ? 'gap-2' : 'gap-1.5'} rounded-lg bg-white/95 ${isFeatured ? 'px-3 py-2' : 'px-2.5 py-1.5'} border border-primary-200 shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-primary-800 dark:bg-gray-900/95`}
+            className={
+              'absolute z-20 ' +
+              badgeBottomSpacing +
+              ' flex items-center' +
+              badgeGap +
+              ' rounded-lg border-2 border-primary-300 bg-white px-2 py-1 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-primary-600 dark:bg-gray-900'
+            }
           >
             <svg
-              className={`${isFeatured ? 'h-4 w-4' : 'h-3.5 w-3.5'} text-primary-600 dark:text-primary-400`}
+              className={badgeSize + ' text-primary-600 dark:text-primary-400'}
               fill="none"
               stroke="currentColor"
               strokeWidth={2}
@@ -96,51 +130,76 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span
-              className={`${isFeatured ? 'text-sm' : 'text-xs'} font-semibold text-gray-900 dark:text-gray-100`}
-            >
+            <span className={badgeTextSize + ' font-semibold text-gray-900 dark:text-gray-100'}>
               {project.images.length}
             </span>
           </div>
         )}
 
-        {/* Year Badge */}
+        {/* Year Badge with gradient */}
         <div
-          className={`absolute right-${isFeatured ? '4' : '2'} top-${isFeatured ? '4' : '2'} rounded-lg ${isFeatured ? 'bg-white dark:bg-gray-800' : 'bg-white/90 dark:bg-gray-800/90'} px-${isFeatured ? '3' : '2'} py-${isFeatured ? '1' : '1'} text-${isFeatured ? 'sm' : 'xs'} font-semibold text-primary-600 shadow-lg dark:text-primary-400`}
+          className={
+            'absolute z-10 ' +
+            yearBadgeSpacing +
+            ' rounded-lg bg-gradient-to-r from-primary-500 to-secondary-500' +
+            yearBadgePadding +
+            ' font-semibold text-white shadow-lg'
+          }
         >
           {project.startYear} - {project.endYear}
         </div>
       </div>
 
       {/* Content */}
-      <div className={isFeatured ? 'p-6' : 'p-4'}>
+      <div className={contentPadding}>
         <h3
-          className={`mb-${isFeatured ? '2' : '1'} ${isFeatured ? 'text-xl' : 'text-base'} font-bold text-gray-900 ${TRANSITIONS.BASE} group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400`}
+          className={
+            titleSize +
+            ' font-bold text-gray-900' +
+            TRANSITIONS.BASE +
+            ' group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400'
+          }
         >
           {project.title}
         </h3>
 
-        <p
-          className={`mb-${isFeatured ? '4' : '3'} ${isFeatured ? 'text-sm' : 'text-xs'} leading-relaxed text-gray-600 dark:text-gray-400`}
-        >
+        <p className={descSize + ' leading-relaxed text-gray-600 dark:text-gray-400'}>
           {project.description}
         </p>
 
-        {/* Skills */}
-        <div className={`flex flex-wrap gap-${isFeatured ? '2' : '1.5'}`}>
-          {project.usedSkills.slice(0, isFeatured ? 4 : 3).map((skill, i) => (
+        {/* Skills with gradients */}
+        <div className={'flex flex-wrap ' + skillGap}>
+          {project.usedSkills.slice(0, skillDisplayCount).map((skill, i) => {
+            const colors = [
+              'from-primary-100 to-primary-50 text-primary-700 dark:from-primary-800 dark:to-primary-900 dark:text-primary-300',
+              'from-secondary-100 to-secondary-50 text-secondary-700 dark:from-secondary-800 dark:to-secondary-900 dark:text-secondary-300',
+              'from-accent-100 to-accent-50 text-accent-700 dark:from-accent-800 dark:to-accent-900 dark:text-accent-300',
+              'from-blue-100 to-blue-50 text-blue-700 dark:from-blue-800 dark:to-blue-900 dark:text-blue-300',
+            ];
+            return (
+              <span
+                key={i}
+                className={
+                  'rounded-full bg-gradient-to-r ' +
+                  colors[i % colors.length] +
+                  ' ' +
+                  skillPadding +
+                  ' text-xs font-medium ring-1 ring-transparent transition-all hover:scale-105'
+                }
+              >
+                {skill}
+              </span>
+            );
+          })}
+          {project.usedSkills.length > skillDisplayCount && (
             <span
-              key={i}
-              className={`rounded-full bg-primary-100 px-${isFeatured ? '3' : '2'} py-${isFeatured ? '1' : '0.5'} text-${isFeatured ? 'xs' : 'xs'} font-medium text-primary-700 dark:bg-primary-900/30 dark:text-primary-300`}
+              className={
+                'rounded-full bg-gradient-to-r from-gray-100 to-gray-50 ' +
+                skillPadding +
+                ' text-xs font-medium text-gray-700 ring-1 ring-gray-200 transition-all hover:scale-105 dark:from-gray-700 dark:to-gray-600 dark:text-gray-300 dark:ring-gray-600'
+              }
             >
-              {skill}
-            </span>
-          ))}
-          {project.usedSkills.length > (isFeatured ? 4 : 3) && (
-            <span
-              className={`rounded-full bg-gray-100 px-${isFeatured ? '3' : '2'} py-${isFeatured ? '1' : '0.5'} text-${isFeatured ? 'xs' : 'xs'} font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300`}
-            >
-              +{project.usedSkills.length - (isFeatured ? 4 : 3)}
+              +{project.usedSkills.length - skillDisplayCount}
             </span>
           )}
         </div>

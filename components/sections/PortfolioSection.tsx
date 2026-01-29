@@ -82,7 +82,8 @@ const PortfolioSection: React.FC = () => {
         <div className="mb-20">
           <div className="mb-8 flex items-center gap-3">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Featured Projects</h2>
-            <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-semibold text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary-100 to-pink-100 px-3 py-1 text-sm font-semibold text-primary-700 ring-2 ring-primary-200/50 dark:from-primary-900/40 dark:to-pink-900/40 dark:text-primary-300 dark:ring-primary-700/50">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-gradient-to-r from-primary-500 to-pink-500" />
               Highlighted Work
             </span>
           </div>
@@ -104,7 +105,8 @@ const PortfolioSection: React.FC = () => {
         <div>
           <div className="mb-8 flex items-center gap-3">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">All Projects</h2>
-            <span className="inline-flex items-center rounded-full bg-secondary-100 px-3 py-1 text-sm font-semibold text-secondary-700 dark:bg-secondary-900/30 dark:text-secondary-300">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-secondary-100 to-accent-100 px-3 py-1 text-sm font-semibold text-secondary-700 ring-2 ring-secondary-200/50 dark:from-secondary-900/40 dark:to-accent-900/40 dark:text-secondary-300 dark:ring-secondary-700/50">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-gradient-to-r from-secondary-500 to-accent-500" />
               {allProjects.length} Projects
             </span>
           </div>
@@ -122,18 +124,41 @@ const PortfolioSection: React.FC = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 rounded-2xl bg-gradient-to-r from-primary-500 to-secondary-500 p-12 text-center shadow-2xl">
-          <h3 className="mb-4 text-3xl font-bold text-white">Interested in working together?</h3>
-          <p className="mb-8 text-lg text-white/90">
-            I&apos;m always open to exciting projects and collaborations.
-          </p>
-          <button
-            onClick={handleContactClick}
-            className="rounded-lg bg-white px-8 py-3 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            aria-label="Get in touch"
-          >
-            Get in Touch
-          </button>
+        <div className="relative mt-16 overflow-hidden rounded-3xl bg-gradient-to-r from-accent-600 via-primary-600 to-secondary-600 p-12 shadow-2xl">
+          {/* Animated background blobs */}
+          <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+
+          <div className="relative z-10">
+            <h3 className="mb-4 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-3xl font-bold text-transparent">
+              Interested in working together?
+            </h3>
+            <p className="mb-8 text-lg text-white/90">
+              I&apos;m always open to exciting projects and collaborations.
+            </p>
+            <button
+              onClick={handleContactClick}
+              className="group relative overflow-hidden rounded-xl bg-white px-8 py-3 font-semibold text-primary-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl"
+              aria-label="Get in touch"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Get in Touch
+                <svg
+                  className="h-5 w-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 

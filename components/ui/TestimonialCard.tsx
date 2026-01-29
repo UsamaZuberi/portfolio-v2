@@ -66,7 +66,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index = 
       </div>
 
       {/* Testimonial Text */}
-      <p className="mb-6 flex-1 leading-relaxed text-gray-700 dark:text-gray-300">"{quote}"</p>
+      <p className="mb-6 flex-1 leading-relaxed text-gray-700 dark:text-gray-300">
+        &quot;{quote}&quot;
+      </p>
 
       {/* Author Info */}
       <div className="flex items-center gap-4">

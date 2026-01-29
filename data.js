@@ -268,9 +268,7 @@ export const portfolioData = {
         'A comprehensive SaaS platform for video editing, sharing, and stage simulation. Features include real-time collaboration, advanced editing tools, and cloud storage integration.',
       startYear: 2023,
       endYear: 2024,
-      images: [
-        '/images/Pixtool.png',
-      ],
+      images: ['/images/Pixtool.png'],
       usedSkills: ['React', 'Video Processing', 'SaaS', 'Node.js', 'Firebase', 'Video.js'],
       isFeatured: true,
       link: 'https://pixtool-66579.firebaseapp.com/home',
@@ -284,9 +282,7 @@ export const portfolioData = {
         'Professional corporate website featuring investment portfolio management, financial analytics, and client resources.',
       startYear: 2023,
       endYear: 2023,
-      images: [
-        '/images/EberhardCapital.png',
-      ],
+      images: ['/images/EberhardCapital.png'],
       usedSkills: ['React', 'TypeScript', 'Tailwind CSS', 'Web Design'],
       isFeatured: false,
       link: 'http://eberhardcapital.com/',
@@ -302,6 +298,8 @@ export const portfolioData = {
       endYear: 2023,
       images: [
         '/images/SevenStarTraining.png',
+        '/images/SevenStarTraining.png',
+        '/images/SevenStarTraining.png',
       ],
       usedSkills: ['React', 'Node.js', 'MongoDB', 'Express', 'SaaS', 'Education'],
       isFeatured: true,
@@ -315,9 +313,7 @@ export const portfolioData = {
         'Corporate website for consultancy services with service offerings, case studies, and client testimonials.',
       startYear: 2022,
       endYear: 2022,
-      images: [
-        '/images/EHJAndSJConsultancy.png',
-      ],
+      images: ['/images/EHJAndSJConsultancy.png'],
       usedSkills: ['React', 'Next.js', 'CSS', 'Web Design', 'Corporate'],
       isFeatured: false,
       link: 'https://ehjsjconsultancy.com/',
@@ -331,9 +327,7 @@ export const portfolioData = {
         'Enterprise-level configuration management system for hardware and product customization with real-time updates and advanced analytics.',
       startYear: 2021,
       endYear: 2022,
-      images: [
-        '/images/Novospace.png',
-      ],
+      images: ['/images/Novospace.png'],
       usedSkills: ['React', 'Redux', 'Node.js', 'PostgreSQL', 'SaaS'],
       isFeatured: false,
       link: 'https://novo-back.herokuapp.com/',
@@ -452,7 +446,7 @@ export const portfolioData = {
       image: '/images/placeholder-profile.svg',
       rating: 5,
       testimonial:
-        "Usama transformed our outdated web presence into a modern, responsive platform that has significantly improved user engagement. His problem-solving skills and dedication to quality are exceptional.",
+        'Usama transformed our outdated web presence into a modern, responsive platform that has significantly improved user engagement. His problem-solving skills and dedication to quality are exceptional.',
     },
     {
       id: 5,

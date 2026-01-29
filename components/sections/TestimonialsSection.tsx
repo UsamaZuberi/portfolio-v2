@@ -33,7 +33,7 @@ const TestimonialsSection: React.FC = () => {
         />
 
         {/* Stats Banner */}
-        <div className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mb-20 mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-xl bg-white p-6 text-center shadow-md dark:bg-gray-800">
             <div className="mb-2 text-4xl font-bold text-primary-600 dark:text-primary-400">
               100%
