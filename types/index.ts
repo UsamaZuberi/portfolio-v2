@@ -1,3 +1,21 @@
+/**
+ * TypeScript Type Definitions for Portfolio Application
+ *
+ * Contains all interface and type definitions used throughout the portfolio.
+ * Organized by domain:
+ * - UI Component Props
+ * - Data Models (portfolio items, skills, experience, etc.)
+ * - Application Configuration
+ * - State Management Types
+ *
+ * This file serves as the single source of truth for data structure validation
+ * and provides full IDE autocomplete across the application.
+ */
+
+/**
+ * Props interface for the Button component
+ * Defines all customizable button properties
+ */
 export interface ButtonProps {
   text: string;
   type?: 'button' | 'submit' | 'reset';
@@ -107,4 +125,130 @@ export interface PaginatedResponse<T> {
 export interface LoadingState {
   isLoading: boolean;
   error: string | null;
+}
+
+/**
+ * Portfolio Data Types
+ * These types match the data.js structure
+ */
+
+export interface HeroData {
+  name: string;
+  nameWords: string[];
+  designation: string;
+  summary: string;
+  yearsOfExperience: number;
+  projectsCompleted: number;
+  clientSatisfactionRate: number;
+  resumeLink: string;
+  profileImage: string;
+  technicalSkills: string[];
+  availabilityStatus: string;
+}
+
+export interface SkillCategory {
+  title: string;
+  skills: string[];
+  colorScheme: 'primary' | 'secondary' | 'accent';
+  gradientFrom: string;
+  gradientTo: string;
+}
+
+export interface SkillHighlight {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface SkillsData {
+  categories: SkillCategory[];
+  highlights: SkillHighlight[];
+}
+
+export interface CareerProgression {
+  title: string;
+  startDate: string;
+  endDate: string;
+}
+
+export interface ExperienceItem {
+  company: string;
+  location: string;
+  currentlyWorking: boolean;
+  startDate: string;
+  careerProgression: CareerProgression[];
+  keyAchievements: string[];
+  techStack: string[];
+}
+
+export interface EducationItem {
+  title: string;
+  major: string;
+  institutionName: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  status: 'in-progress' | 'completed' | 'dropped' | 'freeze';
+  summary: string[];
+}
+
+export interface LearningItem {
+  title: string;
+  description: string;
+}
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  startYear: number;
+  endYear: number;
+  images: string[];
+  usedSkills: string[];
+  isFeatured: boolean;
+  link: string;
+}
+
+export interface ContactData {
+  email: string;
+  location: string;
+  responseTime: string;
+  socialLinks: Array<{
+    name: string;
+    url: string;
+    icon: string;
+  }>;
+}
+
+export interface FormField {
+  name: string;
+  label: string;
+  type: string;
+  placeholder: string;
+  required: boolean;
+  validation?: {
+    minLength?: number;
+    pattern?: RegExp;
+    errorMessage: string;
+  };
+}
+
+export interface ContactFormConfig {
+  fields: FormField[];
+  submitButton: {
+    text: string;
+    loadingText: string;
+  };
+}
+
+export interface PortfolioDataStructure {
+  hero: HeroData;
+  skills: SkillsData;
+  experience: ExperienceItem[];
+  education: EducationItem[];
+  continuousLearning: LearningItem[];
+  projects: ProjectItem[];
+  contact: ContactData;
+  contactForm: ContactFormConfig;
 }

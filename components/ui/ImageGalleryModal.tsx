@@ -54,33 +54,52 @@ const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+      className="animate-fadeIn fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
       onClick={onClose}
     >
-      {/* Close Button */}
-      <button
-        onClick={onClose}
-        className="absolute right-4 top-4 z-10 rounded-lg p-2 text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-white"
-        aria-label="Close gallery"
-      >
-        <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
+      {/* Header with Title and Close */}
+      <div className="absolute left-0 right-0 top-0 z-20 bg-gradient-to-b from-black/80 to-transparent p-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="rounded-lg bg-primary-600/20 p-2 backdrop-blur-sm">
+              <svg className="h-6 w-6 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-white">{projectTitle}</h2>
+              <p className="text-sm text-gray-400">Gallery Preview</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded-lg bg-white/10 p-2.5 text-white backdrop-blur-sm transition-all hover:rotate-90 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            aria-label="Close gallery"
+          >
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
 
       {/* Image Container */}
-      <div className="relative mx-4 w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
-        <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-900">
+      <div className="relative mx-4 w-full max-w-7xl" onClick={(e) => e.stopPropagation()}>
+        <div className="relative aspect-video overflow-hidden rounded-2xl bg-gray-900 shadow-2xl ring-1 ring-white/10">
           <Image
             src={images[currentIndex]}
             alt={`${projectTitle} - Screenshot ${currentIndex + 1}`}
             fill
-            className="object-contain"
+            className="object-contain transition-opacity duration-300"
             sizes="90vw"
             priority
           />
@@ -91,39 +110,47 @@ const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
           <>
             <button
               onClick={handlePrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
+              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-4 text-white shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-primary-500"
               aria-label="Previous image"
             >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={3}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-4 text-white shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-primary-500"
               aria-label="Next image"
             >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={3}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </>
         )}
 
-        {/* Counter */}
+        {/* Counter & Thumbnails Bar */}
         {images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-sm text-white backdrop-blur-sm">
-            {currentIndex + 1} / {images.length}
+          <div className="absolute -bottom-24 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3">
+            <div className="rounded-full bg-black/80 px-5 py-2.5 ring-1 ring-white/10 backdrop-blur-md">
+              <span className="font-mono text-sm font-semibold text-white">
+                {currentIndex + 1}
+                <span className="mx-1.5 text-gray-500">/</span>
+                {images.length}
+              </span>
+            </div>
           </div>
         )}
       </div>

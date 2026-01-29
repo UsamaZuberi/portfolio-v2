@@ -1,80 +1,37 @@
+/**
+ * ExperienceSection Component
+ *
+ * Displays professional work experience in a timeline format.
+ * Shows:
+ * - Career progression within companies
+ * - Key achievements and responsibilities
+ * - Technologies used
+ * - Company logos and locations
+ *
+ * Features:
+ * - Vertical timeline design (desktop) / Stacked cards (mobile)
+ * - Gradient timeline connector
+ * - Animated entrance of experience cards
+ * - Responsive layout with accessibility support
+ * - Expandable sections for more details
+ *
+ * @component
+ * @returns {React.ReactElement} Timeline of professional experience
+ */
+
 'use client';
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
-
-interface Experience {
-  company: string;
-  location: string;
-  positions: {
-    title: string;
-    period: string;
-  }[];
-  responsibilities: string[];
-  technologies: string[];
-  period: string;
-  current?: boolean;
-}
+import { portfolioData } from '@/data';
 
 const ExperienceSection: React.FC = () => {
-  const experiences: Experience[] = [
-    {
-      company: 'Hashcore',
-      location: 'Karachi, Pakistan',
-      positions: [
-        { title: 'Sr. Software Engineer', period: 'Oct 2023 – Present' },
-        { title: 'Software Engineer', period: 'Jun 2023 – Oct 2023' },
-        { title: 'Frontend Developer', period: 'Apr 2023 – Jun 2023' },
-      ],
-      responsibilities: [
-        'Leading frontend development for Ethereum and Solana based Web3 protocols using Next.js and TypeScript',
-        'Integrating smart contracts and managing complex state for DeFi platforms including lending and DEX aggregators',
-        'Engineered high-performance data-fetching layers using The Graph indexers (GraphQL) and REST APIs to ensure sub-second UI updates',
-        'Mentoring junior developers and conducting code reviews to maintain high code quality standards',
-      ],
-      technologies: ['Next.js', 'TypeScript', 'Ethers.js', 'Solana Web3.js', 'GraphQL', 'Redux'],
-      period: 'Apr 2023 – Present',
-      current: true,
-    },
-    {
-      company: '8th Loop',
-      location: 'Karachi, Pakistan',
-      positions: [
-        { title: 'Frontend Developer - II', period: 'Jul 2022 – Jun 2023' },
-        { title: 'Jr. Software Engineer', period: 'Feb 2022 – Jul 2022' },
-        { title: 'Trainee React JS Developer', period: 'Jul 2021 – Feb 2022' },
-      ],
-      responsibilities: [
-        'Advanced to Frontend Developer II to lead frontend logic for complex client-facing SaaS products',
-        'Implemented modular component architectures and optimized application state management for reliability',
-        'Collaborated with cross-functional teams to deliver high-quality features on tight deadlines',
-        'Reduced application load time by 40% through code splitting and lazy loading implementations',
-      ],
-      technologies: ['React.js', 'Vue.js', 'TypeScript', 'REST APIs', 'Redux', 'SCSS'],
-      period: 'Jul 2021 – Jun 2023',
-    },
-    {
-      company: 'SoftThree',
-      location: 'Karachi, Pakistan',
-      positions: [
-        { title: 'Jr. Software Engineer', period: 'Jan 2021 – Jul 2021' },
-        { title: 'Software Engineering Intern', period: 'Oct 2020 – Jan 2021' },
-      ],
-      responsibilities: [
-        'Engineered frontend structures for SaaS platforms and apprenticeship modules using React.js and Angular',
-        'Earned a promotion to Jr. Software Engineer within 4 months of initial internship',
-        'Developed reusable component libraries that improved development efficiency by 30%',
-        'Participated in agile development processes and daily standups',
-      ],
-      technologies: ['React.js', 'Angular', 'JavaScript', 'Bootstrap', 'REST APIs'],
-      period: 'Oct 2020 – Jul 2021',
-    },
-  ];
+  const experiences = portfolioData.experience;
 
   return (
     <section
       id="experience"
-      className="bg-gradient-to-br from-gray-50 to-white px-4 py-20 sm:px-6 lg:px-8 dark:from-gray-900 dark:to-gray-800"
+      className="bg-gradient-to-br from-gray-50 to-white px-4 py-20 dark:from-gray-900 dark:to-gray-800 sm:px-6 lg:px-8"
       role="region"
       aria-label="Experience section"
     >
@@ -95,7 +52,7 @@ const ExperienceSection: React.FC = () => {
             {experiences.map((experience, index) => (
               <div key={index} className="relative pl-0 md:pl-12">
                 {/* Timeline Dot */}
-                <div className="absolute -left-2 top-0 hidden h-4 w-4 rounded-full border-4 border-white bg-primary-500 shadow-lg md:block dark:border-gray-900" />
+                <div className="absolute -left-2 top-0 hidden h-4 w-4 rounded-full border-4 border-white bg-primary-500 shadow-lg dark:border-gray-900 md:block" />
 
                 {/* Card */}
                 <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
@@ -127,12 +84,12 @@ const ExperienceSection: React.FC = () => {
                               clipRule="evenodd"
                             />
                           </svg>
-                          {experience.period}
+                          {experience.startDate}
                         </span>
                       </div>
                     </div>
 
-                    {experience.current && (
+                    {experience.currentlyWorking && (
                       <span className="inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 px-4 py-1.5 text-sm font-semibold text-white shadow-lg">
                         <span className="relative flex h-2 w-2">
                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
@@ -149,7 +106,7 @@ const ExperienceSection: React.FC = () => {
                       Career Progression
                     </h4>
                     <div className="space-y-2">
-                      {experience.positions.map((position, posIndex) => (
+                      {experience.careerProgression.map((position, posIndex) => (
                         <div
                           key={posIndex}
                           className="flex items-center justify-between rounded-lg bg-gradient-to-r from-primary-50 to-transparent p-3 dark:from-primary-900/20"
@@ -158,7 +115,7 @@ const ExperienceSection: React.FC = () => {
                             {position.title}
                           </span>
                           <span className="text-sm text-gray-600 dark:text-gray-400">
-                            {position.period}
+                            {position.startDate} – {position.endDate}
                           </span>
                         </div>
                       ))}
@@ -171,13 +128,13 @@ const ExperienceSection: React.FC = () => {
                       Key Achievements
                     </h4>
                     <ul className="space-y-2.5">
-                      {experience.responsibilities.map((responsibility, respIndex) => (
+                      {experience.keyAchievements.map((achievement, respIndex) => (
                         <li
                           key={respIndex}
                           className="flex items-start gap-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300"
                         >
                           <span className="mt-1 flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary-500" />
-                          {responsibility}
+                          {achievement}
                         </li>
                       ))}
                     </ul>
@@ -189,7 +146,7 @@ const ExperienceSection: React.FC = () => {
                       Tech Stack
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {experience.technologies.map((tech, techIndex) => (
+                      {experience.techStack.map((tech, techIndex) => (
                         <span
                           key={techIndex}
                           className="rounded-full bg-gradient-to-r from-primary-500/10 to-secondary-500/10 px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-300"

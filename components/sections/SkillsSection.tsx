@@ -1,8 +1,31 @@
+/**
+ * SkillsSection Component
+ *
+ * Displays technical skills organized in multiple ways:
+ * - Skill Categories: Core technologies, Web3 tools, and supporting tools
+ * - Skill Highlights: Featured expertise areas with descriptions and icons
+ * - Responsive grid layout that adapts to screen size
+ *
+ * Features:
+ * - Color-coded skill categories (primary, secondary, accent)
+ * - Animated gradient backgrounds on hover
+ * - Icon-based highlights for key expertise
+ * - Responsive design (1 col mobile → 3 cols desktop)
+ * - Full accessibility with semantic HTML
+ *
+ * @component
+ * @returns {React.ReactElement} Skills section with categories and highlights
+ */
+
 'use client';
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
+import { portfolioData } from '@/data';
 
+/**
+ * Type for skill category with styling properties
+ */
 interface SkillCategory {
   title: string;
   skills: string[];
@@ -12,62 +35,7 @@ interface SkillCategory {
 }
 
 const SkillsSection: React.FC = () => {
-  const skillCategories: SkillCategory[] = [
-    {
-      title: 'Core Technologies',
-      skills: [
-        'JavaScript (ES6+)',
-        'TypeScript',
-        'React.js',
-        'Next.js',
-        'Vue.js',
-        'Nuxt.js',
-        'Node.js',
-        'Redux',
-        'Tailwind CSS',
-        'SCSS',
-        'HTML/CSS',
-        'Bootstrap',
-      ],
-      colorScheme: 'primary',
-      gradientFrom: 'from-primary-500',
-      gradientTo: 'to-secondary-500',
-    },
-    {
-      title: 'Web3 Expertise',
-      skills: [
-        'Ethers.js',
-        'Solana Web3.js',
-        'The Graph (GraphQL)',
-        'Smart Contracts',
-        'DeFi Protocols',
-        'Wallet Integration',
-      ],
-      colorScheme: 'secondary',
-      gradientFrom: 'from-secondary-500',
-      gradientTo: 'to-accent-500',
-    },
-    {
-      title: 'Tools & Others',
-      skills: [
-        'Git',
-        'REST APIs',
-        'Apollo Client',
-        'Python',
-        'SQL',
-        'GSAP',
-        'Three.js',
-        'Gulp',
-        'Adobe Photoshop',
-        'Adobe Illustrator',
-        'Figma',
-        'Canvas',
-      ],
-      colorScheme: 'accent',
-      gradientFrom: 'from-accent-500',
-      gradientTo: 'to-primary-500',
-    },
-  ];
+  const skillCategories = portfolioData.skills.categories as SkillCategory[];
 
   const highlights = [
     {
@@ -149,7 +117,7 @@ const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white px-4 py-20 sm:px-6 lg:px-8 dark:from-gray-800 dark:to-gray-900"
+      className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white px-4 py-20 dark:from-gray-800 dark:to-gray-900 sm:px-6 lg:px-8"
       role="region"
       aria-label="Skills section"
     >

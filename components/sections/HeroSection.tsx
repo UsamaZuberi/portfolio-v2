@@ -1,18 +1,46 @@
+/**
+ * HeroSection Component
+ *
+ * Main landing section of the portfolio. Features:
+ * - Animated greeting with name display (letter-by-letter animation)
+ * - Dynamic stats (experience years, projects completed, satisfaction rate)
+ * - Call-to-action buttons (Resume preview, View portfolio)
+ * - Tech stack display with hover effects
+ * - Responsive profile image with animated backgrounds
+ * - Interactive mouse-following glow effect
+ * - Smooth staggered animations on page load
+ * - Resume preview modal integration
+ *
+ * @component
+ * @returns {React.ReactElement} Full-height hero section with intro and CTA
+ */
+
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import ResumePreviewModal from '@/components/ui/ResumePreviewModal';
+import { portfolioData } from '@/data';
 
 const HeroSection: React.FC = () => {
   const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMouseInside, setIsMouseInside] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const resumeUrl = '/resume/Muhammad_Usama_Zuberi_Resume.pdf';
 
+  const heroData = portfolioData.hero;
+  const resumeUrl = heroData.resumeLink;
+
+  /**
+   * Effect: Track mouse position for interactive glow effect
+   *
+   * Updates the position of mouse-following gradient elements in real-time.
+   * Only active when mouse is inside the section to improve performance.
+   * Properly cleans up event listeners on unmount.
+   */
   useEffect(() => {
+    // Update mouse position relative to section bounds
     const handleMouseMove = (e: MouseEvent) => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
@@ -23,7 +51,9 @@ const HeroSection: React.FC = () => {
       }
     };
 
+    // Enable glow effect when mouse enters section
     const handleMouseEnter = () => setIsMouseInside(true);
+    // Disable glow effect when mouse leaves section
     const handleMouseLeave = () => setIsMouseInside(false);
 
     const section = sectionRef.current;
@@ -33,6 +63,7 @@ const HeroSection: React.FC = () => {
       section.addEventListener('mouseleave', handleMouseLeave);
     }
 
+    // Cleanup: Remove event listeners to prevent memory leaks
     return () => {
       if (section) {
         section.removeEventListener('mousemove', handleMouseMove);
@@ -42,24 +73,25 @@ const HeroSection: React.FC = () => {
     };
   }, []);
 
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = resumeUrl;
-    link.download = 'Muhammad_Usama_Zuberi_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownloadResume = () => {
+  //   const link = document.createElement('a');
+  //   link.href = resumeUrl;
+  //   link.download = 'Muhammad_Usama_Zuberi_Resume.pdf';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
+  /**
+   * Handler: Scroll to portfolio section with smooth animation
+   * Finds the portfolio element and uses native scrollIntoView API
+   */
   const scrollToPortfolio = () => {
     const element = document.querySelector('#portfolio');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  // Split name into words and letters for animation
-  const nameWords = ['Muhammad', 'Usama', 'Zuberi'];
 
   return (
     <section
@@ -114,7 +146,7 @@ const HeroSection: React.FC = () => {
                 <span className="relative inline-flex h-3 w-3 rounded-full bg-primary-500"></span>
               </span>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Available for new opportunities
+                {heroData.availabilityStatus}
               </span>
             </div>
 
@@ -131,7 +163,7 @@ const HeroSection: React.FC = () => {
               className="group flex flex-wrap gap-4 font-heading text-4xl font-bold sm:text-5xl lg:text-6xl"
               style={{ animation: 'fadeInUp 0.6s ease-out 0.2s both' }}
             >
-              {nameWords.map((word, wordIndex) => (
+              {heroData.nameWords.map((word, wordIndex) => (
                 <span key={wordIndex} className="inline-flex">
                   {word.split('').map((letter, letterIndex) => (
                     <span
@@ -151,7 +183,7 @@ const HeroSection: React.FC = () => {
               style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}
             >
               <h2 className="text-2xl font-semibold text-secondary-600 dark:text-secondary-400 sm:text-3xl">
-                Front-end Web Developer
+                {heroData.designation}
               </h2>
             </div>
 
@@ -160,9 +192,7 @@ const HeroSection: React.FC = () => {
               className="max-w-xl text-lg leading-relaxed text-gray-600 dark:text-gray-300"
               style={{ animation: 'fadeInUp 0.6s ease-out 0.4s both' }}
             >
-              I design beautiful, engaging user experiences and intuitive user interfaces for the
-              web. I pride myself on reliable communication and being an easy to work with, friendly
-              person who delivers high-quality solutions.
+              {heroData.summary}
             </p>
 
             {/* Stats Row */}
@@ -187,7 +217,9 @@ const HeroSection: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white">5+ Years</p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {heroData.yearsOfExperience}+ Years
+                  </p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Experience</p>
                 </div>
               </div>
@@ -210,7 +242,7 @@ const HeroSection: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                    10+ Projects
+                    {heroData.projectsCompleted}+ Projects
                   </p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Completed</p>
                 </div>
@@ -233,7 +265,9 @@ const HeroSection: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white">100%</p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                    {heroData.clientSatisfactionRate}%
+                  </p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Satisfaction</p>
                 </div>
               </div>

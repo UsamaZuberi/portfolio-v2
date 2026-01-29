@@ -1,50 +1,46 @@
+/**
+ * EducationSection Component
+ * 
+ * Displays educational background and continuous learning activities.
+ * Organized into two main parts:
+ * 
+ * 1. Education: Formal qualifications (degrees, institutions)
+ *    - Title and major/field of study
+ *    - Institution name
+ *    - Graduation/completion summary
+ *    - Status badge (completed/in progress)
+ * 
+ * 2. Continuous Learning: Ongoing professional development
+ *    - Courses and certifications
+ *    - Learning platforms and providers
+ *    - Completion status
+ * 
+ * Features:
+ * - Card-based layout with hover effects
+ * - Animated decorative elements
+ * - Responsive design (1 col mobile → 2 cols tablet/desktop)
+ * - Status badges for education state
+ * - Gradient styling with accessibility
+n * - Full semantic HTML and ARIA labels
+ * 
+ * @component
+ * @returns {React.ReactElement} Education and learning section with cards
+ */
+
 'use client';
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
-
-interface Education {
-  degree: string;
-  field: string;
-  institution: string;
-  location: string;
-  period: string;
-  highlights?: string[];
-  gpa?: string;
-}
+import { portfolioData } from '@/data';
 
 const EducationSection: React.FC = () => {
-  const education: Education[] = [
-    {
-      degree: 'Master of Science',
-      field: 'Computer Science and IT',
-      institution: 'NED University of Engineering and Technology',
-      location: 'Karachi, Pakistan',
-      period: 'Oct 2023 – Dec 2025',
-      highlights: [
-        'Specialized in Advanced Algorithms and Data Structures',
-        'Research focus on Web3 technologies and distributed systems',
-        'Machine learning applications in modern web development',
-      ],
-    },
-    {
-      degree: 'Bachelor of Science',
-      field: 'Software Engineering',
-      institution: 'University of Karachi',
-      location: 'Karachi, Pakistan',
-      period: 'Jan 2017 – Feb 2021',
-      highlights: [
-        'Comprehensive study of software development lifecycle',
-        'Specialized in web technologies and modern frameworks',
-        'Strong foundation in data structures and algorithms',
-      ],
-    },
-  ];
+  const education = portfolioData.education;
+  const continuousLearning = portfolioData.continuousLearning;
 
   return (
     <section
       id="education"
-      className="bg-white px-4 py-20 sm:px-6 lg:px-8 dark:bg-gray-900"
+      className="bg-white px-4 py-20 dark:bg-gray-900 sm:px-6 lg:px-8"
       role="region"
       aria-label="Education section"
     >
@@ -73,20 +69,29 @@ const EducationSection: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                      {edu.degree}
-                    </h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{edu.title}</h3>
                     <p className="text-sm font-medium text-primary-600 dark:text-primary-400">
-                      {edu.field}
+                      {edu.major}
                     </p>
                   </div>
                 </div>
+
+                {/* Status Badge */}
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                    edu.status === 'completed'
+                      ? 'bg-secondary-100 text-secondary-700 dark:bg-secondary-900/30 dark:text-secondary-400'
+                      : 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
+                  }`}
+                >
+                  {edu.status === 'completed' ? 'Completed' : 'In Progress'}
+                </span>
               </div>
 
               {/* Institution */}
               <div className="relative mb-6">
                 <h4 className="mb-1 text-lg font-semibold text-gray-800 dark:text-gray-200">
-                  {edu.institution}
+                  {edu.institutionName}
                 </h4>
                 <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
                   <span className="flex items-center gap-1.5">
@@ -107,16 +112,26 @@ const EducationSection: React.FC = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    {edu.period}
+                    {edu.startDate} – {edu.endDate}
                   </span>
+                  {/* CGPA - Clean inline design with graduation cap icon */}
+                  {edu.gpa && (
+                    <span className="flex items-center gap-1.5 font-medium text-primary-600 dark:text-primary-400">
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.27L3.81 12 12 7.73 20.19 12 12 16.27z" />
+                        <path d="M12 17l-7-3.82v5.07c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5v-5.07L12 17z" />
+                      </svg>
+                      CGPA {edu.gpa}/{edu.gpaScale}
+                    </span>
+                  )}
                 </div>
               </div>
 
               {/* Highlights */}
-              {edu.highlights && (
+              {edu.summary && (
                 <div className="relative">
                   <ul className="space-y-2.5">
-                    {edu.highlights.map((highlight, hIndex) => (
+                    {edu.summary.map((highlight, hIndex) => (
                       <li
                         key={hIndex}
                         className="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300"
@@ -150,15 +165,24 @@ const EducationSection: React.FC = () => {
                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
               </svg>
             </div>
-            <div className="flex-1 text-center md:text-left">
+            <div>
               <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
                 Continuous Learning
               </h3>
               <p className="text-gray-700 dark:text-gray-300">
-                Committed to staying current with the latest technologies through online courses,
-                certifications, and hands-on projects. Currently exploring advanced Web3
-                development, serverless architectures, and AI integration in web applications.
+                Committed to staying current with latest technologies through ongoing professional
+                development.
               </p>
+              <div className="mt-4 space-y-3">
+                {continuousLearning.map((item, index) => (
+                  <div key={index} className="rounded-lg bg-primary-50 p-3 dark:bg-primary-900/20">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">{item.title}</h4>
+                    <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
