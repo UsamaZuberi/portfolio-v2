@@ -97,7 +97,7 @@ const HeroSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-secondary-50 px-4 pb-16 pt-20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 sm:px-6 lg:px-8"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-secondary-50 px-4 pb-24 pt-20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 sm:px-6 sm:pb-32 lg:px-8 lg:pb-40"
       role="region"
       aria-label="Hero section"
     >
@@ -435,30 +435,30 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <button
-          onClick={() => scrollToSection('skills')}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce rounded-full bg-white p-3 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:hover:bg-gray-700"
-          aria-label="Scroll down to portfolio section"
-          style={{ animation: 'fadeInUp 1s ease-out 1.2s both' }}
-        >
-          <svg
-            className="h-6 w-6 text-primary-600 dark:text-primary-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </button>
       </div>
+
+      {/* Scroll Indicator */}
+      <button
+        onClick={() => scrollToSection('skills')}
+        className="absolute bottom-8 left-0 right-0 mx-auto w-fit animate-bounce rounded-full bg-white p-3 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:hover:bg-gray-700 sm:bottom-12"
+        aria-label="Scroll down to skills section"
+        style={{ animation: 'fadeInUp 1s ease-out 1.2s both' }}
+      >
+        <svg
+          className="h-6 w-6 text-primary-600 dark:text-primary-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
+      </button>
 
       {/* Resume Preview Modal */}
       <ResumePreviewModal
