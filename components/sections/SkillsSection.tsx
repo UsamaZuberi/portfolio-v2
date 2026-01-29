@@ -117,7 +117,7 @@ const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white px-4 py-20 dark:from-gray-800 dark:to-gray-900 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
       role="region"
       aria-label="Skills section"
     >

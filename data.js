@@ -269,10 +269,7 @@ export const portfolioData = {
       startYear: 2023,
       endYear: 2024,
       images: [
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
+        '/images/Pixtool.png',
       ],
       usedSkills: ['React', 'Video Processing', 'SaaS', 'Node.js', 'Firebase', 'Video.js'],
       isFeatured: true,
@@ -288,9 +285,7 @@ export const portfolioData = {
       startYear: 2023,
       endYear: 2023,
       images: [
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
+        '/images/EberhardCapital.png',
       ],
       usedSkills: ['React', 'TypeScript', 'Tailwind CSS', 'Web Design'],
       isFeatured: false,
@@ -306,11 +301,7 @@ export const portfolioData = {
       startYear: 2022,
       endYear: 2023,
       images: [
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
+        '/images/SevenStarTraining.png',
       ],
       usedSkills: ['React', 'Node.js', 'MongoDB', 'Express', 'SaaS', 'Education'],
       isFeatured: true,
@@ -325,9 +316,7 @@ export const portfolioData = {
       startYear: 2022,
       endYear: 2022,
       images: [
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
+        '/images/EHJAndSJConsultancy.png',
       ],
       usedSkills: ['React', 'Next.js', 'CSS', 'Web Design', 'Corporate'],
       isFeatured: false,
@@ -343,10 +332,7 @@ export const portfolioData = {
       startYear: 2021,
       endYear: 2022,
       images: [
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
-        '/images/placeholder-project.svg',
+        '/images/Novospace.png',
       ],
       usedSkills: ['React', 'Redux', 'Node.js', 'PostgreSQL', 'SaaS'],
       isFeatured: false,
@@ -376,9 +362,9 @@ export const portfolioData = {
         icon: 'twitter',
       },
       {
-        name: 'Portfolio',
-        url: 'https://usama-zuberi.com',
-        icon: 'globe',
+        name: 'WhatsApp',
+        url: 'https://wa.me/923332169871',
+        icon: 'whatsapp',
       },
     ],
   },
@@ -425,6 +411,70 @@ export const portfolioData = {
       loadingText: 'Sending...',
     },
   },
+
+  // ==================== TESTIMONIALS SECTION ====================
+  testimonials: [
+    {
+      id: 1,
+      name: 'Sarah Johnson',
+      role: 'Product Manager',
+      company: 'TechCorp Solutions',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      testimonial:
+        'Working with Usama was an absolute pleasure. His attention to detail and ability to translate complex requirements into elegant solutions is outstanding. The project was delivered ahead of schedule and exceeded our expectations.',
+    },
+    {
+      id: 2,
+      name: 'Michael Chen',
+      role: 'CTO',
+      company: 'StartupHub',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      testimonial:
+        'Usama is a rare find - a developer who combines technical excellence with great communication skills. He helped us build a scalable platform that has been running flawlessly for over a year. Highly recommended!',
+    },
+    {
+      id: 3,
+      name: 'Emily Rodriguez',
+      role: 'Senior Developer',
+      company: 'Digital Innovations',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      testimonial:
+        'I had the privilege of collaborating with Usama on multiple projects. His expertise in React and Next.js is impressive, and his code quality is always top-notch. A true professional!',
+    },
+    {
+      id: 4,
+      name: 'David Thompson',
+      role: 'Founder & CEO',
+      company: 'GrowthLabs',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      testimonial:
+        "Usama transformed our outdated web presence into a modern, responsive platform that has significantly improved user engagement. His problem-solving skills and dedication to quality are exceptional.",
+    },
+    {
+      id: 5,
+      name: 'Aisha Malik',
+      role: 'UI/UX Designer',
+      company: 'Creative Studio',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      testimonial:
+        'As a designer, working with Usama was seamless. He brought my designs to life with pixel-perfect precision and even suggested improvements that enhanced the user experience. Looking forward to future collaborations!',
+    },
+    {
+      id: 6,
+      name: 'James Wilson',
+      role: 'Project Lead',
+      company: 'Enterprise Systems Inc.',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      testimonial:
+        'Usama consistently delivered high-quality work under tight deadlines. His ability to quickly understand business requirements and implement robust solutions made him an invaluable team member.',
+    },
+  ],
 };
 
 export default portfolioData;

@@ -67,7 +67,7 @@ const PortfolioSection: React.FC = () => {
   return (
     <section
       id="portfolio"
-      className="bg-gradient-to-br from-gray-50 to-white px-4 py-20 dark:from-gray-900 dark:to-gray-800 sm:px-6 lg:px-8"
+      className="bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
       role="region"
       aria-label="Portfolio section"
     >

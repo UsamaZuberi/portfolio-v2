@@ -350,7 +350,7 @@ const HeroSection: React.FC = () => {
                 <div className="animate-spin-slow absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-50"></div>
 
                 <Image
-                  src="/images/placeholder-profile.svg"
+                  src={heroData.profileImage}
                   alt="Muhammad Usama Zuberi - Front-end Web Developer"
                   fill
                   priority

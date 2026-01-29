@@ -251,4 +251,37 @@ export interface PortfolioDataStructure {
   projects: ProjectItem[];
   contact: ContactData;
   contactForm: ContactFormConfig;
+  testimonials: TestimonialItem[];
+}
+
+/**
+ * Testimonial Item Interface
+ * Represents a client or colleague testimonial/review
+ */
+export interface TestimonialItem {
+  id: number;
+  name: string;
+  role: string;
+  company: string;
+  image: string;
+  rating: number;
+  testimonial: string;
+}
+
+/**
+ * Timeline Item Interface
+ * Unified type for timeline display combining education and experience
+ */
+export interface TimelineItem {
+  id: string;
+  type: 'education' | 'experience';
+  title: string;
+  subtitle: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  status?: 'completed' | 'in-progress' | 'current';
+  description?: string[];
+  icon?: string;
+  category?: string;
 }
