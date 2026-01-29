@@ -28,13 +28,13 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({ showAfter = 250 }) => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 rounded-full bg-primary-600 p-4 text-white shadow-lg transition-all duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-500 dark:hover:bg-primary-600 dark:focus:ring-primary-800 ${
+      className={`group fixed bottom-8 right-8 z-50 rounded-full bg-gradient-to-br from-primary-600 to-secondary-600 p-4 text-white shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:from-primary-700 hover:to-secondary-700 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-primary-300 dark:from-primary-500 dark:to-secondary-500 dark:hover:from-primary-600 dark:hover:to-secondary-600 dark:focus:ring-primary-800 ${
         isVisible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-10 opacity-0'
       }`}
       aria-label="Scroll to top"
     >
       <svg
-        className="h-6 w-6"
+        className="h-6 w-6 transition-transform group-hover:scale-110"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

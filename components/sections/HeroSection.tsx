@@ -83,11 +83,11 @@ const HeroSection: React.FC = () => {
   // };
 
   /**
-   * Handler: Scroll to portfolio section with smooth animation
-   * Finds the portfolio element and uses native scrollIntoView API
+   * Handler: Scroll to skills section with smooth animation
+   * Finds the skills element and uses native scrollIntoView API
    */
   const scrollToPortfolio = () => {
-    const element = document.querySelector('#portfolio');
+    const element = document.querySelector('#skills');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
