@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { SocialLink, NavLink } from '@/types';
+import GitHubRepoWidget from '@/components/ui/GitHubRepoWidget';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -134,8 +135,13 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
-          <p>&copy; {currentYear} Muhammad Usama Zuberi. All rights reserved.</p>
+        <div className="mt-8 border-t border-gray-800 pt-6">
+          <div className="mb-4 flex justify-center">
+            <GitHubRepoWidget />
+          </div>
+          <div className="text-center text-sm text-gray-500">
+            <p>&copy; {currentYear} Muhammad Usama Zuberi. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>

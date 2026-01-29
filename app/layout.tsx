@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import FloatingGitHubBadge from '@/components/ui/FloatingGitHubBadge';
 import './globals.css';
 
 const inter = Inter({
@@ -79,6 +80,7 @@ export default function RootLayout({
 
           <Footer />
           <ScrollToTop />
+          <FloatingGitHubBadge />
         </ThemeProvider>
       </body>
     </html>

@@ -229,7 +229,7 @@ export const portfolioData = {
       startDate: 'Jan 2017',
       endDate: 'Feb 2021',
       status: 'completed',
-      gpa: '3.6',
+      gpa: '3.23',
       gpaScale: '4.0',
       summary: [
         // 'Comprehensive study of software development lifecycle',
@@ -297,11 +297,7 @@ export const portfolioData = {
         'Educational platform for managing apprenticeship programs with course scheduling, progress tracking, and certification management.',
       startYear: 2022,
       endYear: 2023,
-      images: [
-        '/images/SevenStarTraining.png',
-        '/images/SevenStarTraining.png',
-        '/images/SevenStarTraining.png',
-      ],
+      images: ['/images/SevenStarTraining.png'],
       usedSkills: ['React', 'Node.js', 'MongoDB', 'Express', 'SaaS', 'Education'],
       isFeatured: true,
       link: 'https://star-309014.ew.r.appspot.com/',
