@@ -306,16 +306,16 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Action Buttons with enhanced styling */}
+            {/* Action Buttons with uniform design */}
             <div
-              className="flex flex-col gap-3 sm:flex-row sm:gap-4"
+              className="flex flex-col gap-3 sm:flex-row sm:gap-3"
               style={{ animation: 'fadeInUp 0.6s ease-out 0.6s both' }}
             >
               <button
                 onClick={() => setIsResumePreviewOpen(true)}
-                className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-600 px-6 py-3 font-bold text-white shadow-xl ring-2 ring-primary-300/50 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:ring-primary-400/60"
+                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
               >
-                <span className="relative z-10 flex items-center justify-center gap-2 text-sm transition-transform group-hover:scale-105">
+                <span className="relative z-10 flex items-center justify-center gap-2 text-sm">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -332,14 +332,13 @@ const HeroSection: React.FC = () => {
                   </svg>
                   Preview Resume
                 </span>
-                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary-700 to-secondary-700 opacity-0 transition-opacity group-hover:opacity-100" />
               </button>
 
               <button
                 onClick={() => scrollToSection('portfolio')}
-                className="group relative overflow-hidden rounded-xl border-2 border-gray-300 bg-gradient-to-br from-white to-gray-50 px-6 py-3 font-bold text-gray-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-primary-500 hover:shadow-2xl dark:border-gray-600 dark:from-gray-800 dark:to-gray-700 dark:text-gray-200 dark:hover:border-primary-500"
+                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-secondary-600 to-secondary-700 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-secondary-700 hover:to-secondary-800 hover:shadow-xl"
               >
-                <span className="relative z-10 flex items-center justify-center gap-2 text-sm transition-transform group-hover:scale-105">
+                <span className="relative z-10 flex items-center justify-center gap-2 text-sm">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -350,7 +349,23 @@ const HeroSection: React.FC = () => {
                   </svg>
                   View Portfolio
                 </span>
-                <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary-50 to-secondary-50 opacity-0 transition-opacity group-hover:opacity-100 dark:from-primary-900/20 dark:to-secondary-900/20" />
+              </button>
+
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-accent-600 to-accent-700 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-accent-700 hover:to-accent-800 hover:shadow-xl"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2 text-sm">
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Hire Me
+                </span>
               </button>
             </div>
 
