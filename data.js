@@ -17,7 +17,7 @@ export const portfolioData = {
     projectsCompleted: 25,
     clientSatisfactionRate: 100,
     resumeLink: '/resume/Muhammad_Usama_Zuberi_Resume.pdf',
-    profileImage: '/images/profile.png',
+    profileImage: '/images/profile.jpeg',
     technicalSkills: [
       'JavaScript',
       'TypeScript',
