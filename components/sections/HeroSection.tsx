@@ -405,7 +405,7 @@ const HeroSection: React.FC = () => {
               {/* Profile Image with enhanced effects */}
               <div className="hover:shadow-3xl group relative aspect-square overflow-hidden rounded-full border-8 border-white bg-gradient-to-br from-primary-100 to-secondary-100 shadow-2xl transition-all duration-500 hover:scale-105 dark:border-gray-700 dark:from-primary-900/20 dark:to-secondary-900/20">
                 {/* Animated gradient ring */}
-                <div className="animate-spin-slow absolute -inset-4 rounded-full bg-gradient-to-r from-primary-500 via-accent-500 via-secondary-500 to-primary-500 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-70"></div>
+                <div className="animate-spin-slow absolute -inset-4 rounded-full bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-70"></div>
 
                 <Image
                   src={heroData.profileImage}
