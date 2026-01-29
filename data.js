@@ -350,7 +350,7 @@ export const portfolioData = {
         'A web-based engineering tool that calculates residential hot water requirements by analyzing household usage patterns, system efficiency, storage capacity, and heat loss. Designed to help municipalities and system planners accurately size hot water infrastructure.',
       startYear: 2021,
       endYear: 2022,
-      images: ['/images/Cylinder.png'],
+      images: ['/images/placeholder-project.svg'],
       usedSkills: ['SCSS', 'HTML', 'JavaScript', 'Grid Layout', 'Web Design'],
       isFeatured: false,
       link: 'https://cylinder-41ed8.firebaseapp.com/',
