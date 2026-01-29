@@ -114,7 +114,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               badgeBottomSpacing +
               ' flex items-center' +
               badgeGap +
-              ' rounded-lg border-2 border-primary-300 bg-white px-2 py-1 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-primary-600 dark:bg-gray-900'
+              ' border-1 rounded-lg border-primary-300 bg-white px-2 py-1 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-primary-600 dark:bg-gray-900'
             }
           >
             <svg
@@ -130,24 +130,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span className={badgeTextSize + ' font-semibold text-gray-900 dark:text-gray-100'}>
+            <span
+              className={badgeTextSize + ' m ml-1 font-semibold text-gray-900 dark:text-gray-100'}
+            >
               {project.images.length}
             </span>
           </div>
         )}
-
-        {/* Year Badge with gradient */}
-        <div
-          className={
-            'absolute z-10 ' +
-            yearBadgeSpacing +
-            ' rounded-lg bg-gradient-to-r from-primary-500 to-secondary-500' +
-            yearBadgePadding +
-            ' font-semibold text-white shadow-lg'
-          }
-        >
-          {project.startYear} - {project.endYear}
-        </div>
       </div>
 
       {/* Content */}

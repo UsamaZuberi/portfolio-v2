@@ -127,11 +127,17 @@ const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
       role="region"
       aria-label="Contact section"
     >
-      <div className="container mx-auto max-w-6xl">
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 -z-10 opacity-35">
+        <div className="absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-primary-300/40 to-transparent blur-3xl" />
+        <div className="absolute -right-32 bottom-1/3 h-96 w-96 rounded-full bg-gradient-to-bl from-secondary-300/40 to-transparent blur-3xl" />
+        <div className="absolute -bottom-20 left-1/2 h-80 w-80 rounded-full bg-gradient-to-t from-accent-300/30 to-transparent blur-3xl" />
+      </div>
+      <div className="container relative z-10 mx-auto max-w-6xl">
         <SectionHeading
           title="Let's Work Together"
           subtitle="Have a project in mind? Let's create something amazing together"

@@ -111,9 +111,14 @@ const ExperienceSection: React.FC = () => {
                           key={posIndex}
                           className="flex items-center justify-between rounded-lg bg-gradient-to-r from-primary-50 to-transparent p-3 dark:from-primary-900/20"
                         >
-                          <span className="font-semibold text-gray-900 dark:text-white">
-                            {position.title}
-                          </span>
+                          <div className="flex items-center gap-3">
+                            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-600 text-xs font-bold text-white">
+                              {posIndex + 1}
+                            </span>
+                            <span className="font-semibold text-gray-900 dark:text-white">
+                              {position.title}
+                            </span>
+                          </div>
                           <span className="text-sm text-gray-600 dark:text-gray-400">
                             {position.startDate} – {position.endDate}
                           </span>

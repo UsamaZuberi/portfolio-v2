@@ -67,10 +67,16 @@ const PortfolioSection: React.FC = () => {
   return (
     <section
       id="portfolio"
-      className="bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
       role="region"
       aria-label="Portfolio section"
     >
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 -z-10 opacity-40">
+        <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-gradient-to-bl from-primary-300/20 to-transparent blur-3xl" />
+        <div className="absolute -left-20 bottom-1/4 h-80 w-80 rounded-full bg-gradient-to-tr from-secondary-300/20 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-gradient-to-t from-accent-300/20 to-transparent blur-3xl" />
+      </div>
       <div className="container mx-auto max-w-7xl">
         <SectionHeading
           title="Key Recent Projects"
