@@ -4,9 +4,9 @@
  * Provides contact information and a form for visitors to reach out.
  *
  * Features:
- * - Contact form with client-side validation
+ * - Contact form with Formspree integration
  * - Input fields: Full Name, Email, Message
- * - Error handling and user feedback
+ * - Client-side and server-side validation
  * - Success/error messages after submission
  * - Contact information (email, location, response time)
  * - Social media links
@@ -24,7 +24,8 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { portfolioData } from '@/data';
@@ -33,6 +34,9 @@ import type { ContactFormData, ContactFormErrors } from '@/types';
 const ContactSection: React.FC = () => {
   const contactData = portfolioData.contact;
 
+  // Formspree hook
+  const [formspreeState, handleFormspreeSubmit] = useForm('xojwjzvz');
+
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
     email: '',
@@ -40,8 +44,24 @@ const ContactSection: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<ContactFormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [honeypot, setHoneypot] = useState('');
+
+  // Reset form after successful submission
+  useEffect(() => {
+    if (formspreeState.succeeded) {
+      setFormData({ fullName: '', email: '', message: '' });
+      setErrors({});
+
+      // Announce success to screen readers
+      const announcement = document.createElement('div');
+      announcement.setAttribute('role', 'status');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.className = 'sr-only';
+      announcement.textContent = 'Message sent successfully!';
+      document.body.appendChild(announcement);
+      setTimeout(() => document.body.removeChild(announcement), 1000);
+    }
+  }, [formspreeState.succeeded]);
 
   const validateForm = (): boolean => {
     const newErrors: ContactFormErrors = {};
@@ -82,8 +102,14 @@ const ContactSection: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Honeypot check - if filled, it's a bot
+    if (honeypot) {
+      console.warn('Spam detected via honeypot field');
+      return;
+    }
 
     if (!validateForm()) {
       // Focus on first error field
@@ -92,36 +118,8 @@ const ContactSection: React.FC = () => {
       return;
     }
 
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      // Simulate form submission delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Log the form data (for demonstration)
-      console.log('Contact form submission:', formData);
-
-      setSubmitStatus('success');
-      setFormData({ fullName: '', email: '', message: '' });
-
-      // Announce success to screen readers
-      const announcement = document.createElement('div');
-      announcement.setAttribute('role', 'status');
-      announcement.setAttribute('aria-live', 'polite');
-      announcement.className = 'sr-only';
-      announcement.textContent = 'Message sent successfully!';
-      document.body.appendChild(announcement);
-      setTimeout(() => document.body.removeChild(announcement), 1000);
-
-      // Clear success message after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Submit to Formspree
+    await handleFormspreeSubmit(e);
   };
 
   return (
@@ -327,6 +325,18 @@ const ContactSection: React.FC = () => {
               </h3>
 
               <div className="space-y-5">
+                {/* Honeypot field - hidden from users, catches bots */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 {/* Full Name */}
                 <div>
                   <label
@@ -344,11 +354,12 @@ const ContactSection: React.FC = () => {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
+                    disabled={formspreeState.submitting}
                     className={`w-full rounded-lg border ${
                       errors.fullName
                         ? 'border-red-500 dark:border-red-400'
                         : 'border-gray-300 dark:border-gray-600'
-                    } bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:focus:ring-primary-400`}
+                    } bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:focus:ring-primary-400`}
                     placeholder="John Doe"
                     aria-required="true"
                     aria-invalid={!!errors.fullName}
@@ -363,6 +374,11 @@ const ContactSection: React.FC = () => {
                       {errors.fullName}
                     </p>
                   )}
+                  <ValidationError
+                    prefix="Full Name"
+                    field="fullName"
+                    errors={formspreeState.errors}
+                  />
                 </div>
 
                 {/* Email */}
@@ -382,11 +398,12 @@ const ContactSection: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    disabled={formspreeState.submitting}
                     className={`w-full rounded-lg border ${
                       errors.email
                         ? 'border-red-500 dark:border-red-400'
                         : 'border-gray-300 dark:border-gray-600'
-                    } bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:focus:ring-primary-400`}
+                    } bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:focus:ring-primary-400`}
                     placeholder="john@example.com"
                     aria-required="true"
                     aria-invalid={!!errors.email}
@@ -401,6 +418,7 @@ const ContactSection: React.FC = () => {
                       {errors.email}
                     </p>
                   )}
+                  <ValidationError prefix="Email" field="email" errors={formspreeState.errors} />
                 </div>
 
                 {/* Message */}
@@ -420,11 +438,12 @@ const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
+                    disabled={formspreeState.submitting}
                     className={`resize-vertical w-full rounded-lg border ${
                       errors.message
                         ? 'border-red-500 dark:border-red-400'
                         : 'border-gray-300 dark:border-gray-600'
-                    } bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:focus:ring-primary-400`}
+                    } bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:focus:ring-primary-400`}
                     placeholder="Tell me about your project..."
                     aria-required="true"
                     aria-invalid={!!errors.message}
@@ -439,22 +458,27 @@ const ContactSection: React.FC = () => {
                       {errors.message}
                     </p>
                   )}
+                  <ValidationError
+                    prefix="Message"
+                    field="message"
+                    errors={formspreeState.errors}
+                  />
                 </div>
 
                 {/* Submit Button */}
                 <div>
                   <Button
                     type="submit"
-                    text={isSubmitting ? 'Sending...' : 'Send Message'}
+                    text={formspreeState.submitting ? 'Sending...' : 'Send Message'}
                     variant="primary"
                     size="lg"
-                    disabled={isSubmitting}
+                    disabled={formspreeState.submitting}
                     className="w-full"
-                    ariaLabel={isSubmitting ? 'Sending message' : 'Send message'}
+                    ariaLabel={formspreeState.submitting ? 'Sending message' : 'Send message'}
                   />
 
                   {/* Status Messages */}
-                  {submitStatus === 'success' && (
+                  {formspreeState.succeeded && (
                     <p
                       className="mt-3 flex items-center gap-2 text-green-600 dark:text-green-400"
                       role="status"
@@ -470,22 +494,26 @@ const ContactSection: React.FC = () => {
                       Message sent successfully! I&apos;ll get back to you soon.
                     </p>
                   )}
-                  {submitStatus === 'error' && (
-                    <p
-                      className="mt-3 flex items-center gap-2 text-red-600 dark:text-red-400"
-                      role="alert"
-                      aria-live="assertive"
-                    >
-                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Failed to send message. Please try again or email me directly.
-                    </p>
-                  )}
+                  {formspreeState.errors &&
+                    Object.keys(formspreeState.errors).length > 0 &&
+                    !errors.fullName &&
+                    !errors.email &&
+                    !errors.message && (
+                      <p
+                        className="mt-3 flex items-center gap-2 text-red-600 dark:text-red-400"
+                        role="alert"
+                        aria-live="assertive"
+                      >
+                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        Failed to send message. Please try again or email me directly.
+                      </p>
+                    )}
                 </div>
               </div>
             </form>
