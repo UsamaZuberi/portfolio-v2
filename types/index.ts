@@ -266,22 +266,5 @@ export interface TestimonialItem {
   image: string;
   rating: number;
   testimonial: string;
-}
-
-/**
- * Timeline Item Interface
- * Unified type for timeline display combining education and experience
- */
-export interface TimelineItem {
-  id: string;
-  type: 'education' | 'experience';
-  title: string;
-  subtitle: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  status?: 'completed' | 'in-progress' | 'current';
-  description?: string[];
-  icon?: string;
-  category?: string;
+  gender?: 'male' | 'female';
 }

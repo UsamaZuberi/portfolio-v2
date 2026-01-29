@@ -1,7 +1,5 @@
 import HeroSection from '@/components/sections/HeroSection';
 import SkillsSection from '@/components/sections/SkillsSection';
-import ExperienceSection from '@/components/sections/ExperienceSection';
-import EducationSection from '@/components/sections/EducationSection';
 import InteractiveTimeline from '@/components/sections/InteractiveTimeline';
 import PortfolioSection from '@/components/sections/PortfolioSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';

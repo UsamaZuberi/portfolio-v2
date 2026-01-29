@@ -4,7 +4,7 @@
  * Displays individual testimonial with author details, rating, and quote.
  * Features:
  * - Star rating display (1-5 stars)
- * - Profile image with fallback to initials
+ * - Gender-based avatar icons (male/female) or initials fallback
  * - Company and role information
  * - Quotation marks styling
  * - Hover animations
@@ -26,7 +26,7 @@ interface TestimonialCardProps {
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index = 0 }) => {
-  const { name, role, company, image, rating, testimonial: quote } = testimonial;
+  const { name, role, company, image, rating, testimonial: quote, gender } = testimonial;
 
   // Generate initials as fallback
   const initials = name
@@ -38,6 +38,41 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index = 
 
   // Animation delay
   const cardAnimation = `fadeInUp 0.6s ease-out ${0.1 * index}s both`;
+
+  // Avatar icons based on gender
+  const MaleAvatar = () => (
+    <svg
+      className="h-full w-full p-3 text-white"
+      fill="currentColor"
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Male icon - businessman silhouette */}
+      <circle cx="16" cy="9" r="5" />
+      {/* Shoulders and torso - broader/rectangular */}
+      <path d="M16 16c-5 0-9 2.5-9 7v5c0 1 1 2 2 2h14c1 0 2-1 2-2v-5c0-4.5-4-7-9-7z" />
+      {/* Tie detail */}
+      <path d="M16 15l-1.5 8h3l-1.5-8z" opacity="0.5" />
+    </svg>
+  );
+
+  const FemaleAvatar = () => (
+    <svg
+      className="h-full w-full p-3 text-white"
+      fill="currentColor"
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Female icon - woman with long hair silhouette */}
+      <circle cx="16" cy="9" r="5" />
+      {/* Hair/head outline */}
+      <ellipse cx="16" cy="9" rx="6" ry="7" opacity="0.3" />
+      {/* Dress/skirt silhouette - A-line shape */}
+      <path d="M16 16c-2 0-4 0.5-5 1.5c-1 1-2 2.5-2 4.5v6c0 1 0.5 2 1.5 2h11c1 0 1.5-1 1.5-2v-6c0-2-1-3.5-2-4.5c-1-1-3-1.5-5-1.5z" />
+      {/* Dress flare */}
+      <path d="M10 23l-1.5 7h15l-1.5-7z" opacity="0.4" />
+    </svg>
+  );
 
   return (
     <div
@@ -72,18 +107,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index = 
 
       {/* Author Info */}
       <div className="flex items-center gap-4">
-        {/* Profile Image/Initials */}
+        {/* Profile Image/Avatar Icon */}
         <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-primary-400 to-secondary-400">
-          {image && image !== '/images/testimonials/placeholder.jpg' ? (
-            <img
-              src={image}
-              alt={name}
-              className="h-full w-full object-cover"
-              onError={(e) => {
-                // Fallback to initials if image fails to load
-                e.currentTarget.style.display = 'none';
-              }}
-            />
+          {gender === 'male' ? (
+            <MaleAvatar />
+          ) : gender === 'female' ? (
+            <FemaleAvatar />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-lg font-bold text-white">
               {initials}

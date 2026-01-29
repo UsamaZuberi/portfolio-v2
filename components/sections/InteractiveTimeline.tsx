@@ -19,7 +19,6 @@
 
 import React, { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { TimelineItem } from '@/types';
 import { TRANSITIONS } from '@/lib/constants';
 import portfolioData from '@/data';
 

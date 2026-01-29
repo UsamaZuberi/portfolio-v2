@@ -21,7 +21,16 @@ import TestimonialCard from '@/components/ui/TestimonialCard';
 import portfolioData from '@/data';
 
 const TestimonialsSection: React.FC = () => {
-  const testimonials = portfolioData.testimonials;
+  const testimonials = portfolioData.testimonials as Array<{
+    id: number;
+    name: string;
+    role: string;
+    company: string;
+    image: string;
+    rating: number;
+    testimonial: string;
+    gender?: 'male' | 'female';
+  }>;
 
   return (
     <section
@@ -42,7 +51,7 @@ const TestimonialsSection: React.FC = () => {
         />
 
         {/* Stats Banner */}
-        <div className="mb-20 mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {/* <div className="mb-20 mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-xl bg-white p-6 text-center shadow-md dark:bg-gray-800">
             <div className="mb-2 text-4xl font-bold text-primary-600 dark:text-primary-400">
               100%
@@ -64,10 +73,10 @@ const TestimonialsSection: React.FC = () => {
             </div>
             <p className="text-gray-600 dark:text-gray-400">Average Rating</p>
           </div>
-        </div>
+        </div> */}
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
           ))}

@@ -86,8 +86,8 @@ const HeroSection: React.FC = () => {
    * Handler: Scroll to skills section with smooth animation
    * Finds the skills element and uses native scrollIntoView API
    */
-  const scrollToPortfolio = () => {
-    const element = document.querySelector('#skills');
+  const scrollToSection = (sectionId: string) => {
+    const element = document.querySelector(`#${sectionId}`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -336,7 +336,7 @@ const HeroSection: React.FC = () => {
               </button>
 
               <button
-                onClick={scrollToPortfolio}
+                onClick={() => scrollToSection('portfolio')}
                 className="group relative overflow-hidden rounded-xl border-2 border-gray-300 bg-gradient-to-br from-white to-gray-50 px-6 py-3 font-bold text-gray-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-primary-500 hover:shadow-2xl dark:border-gray-600 dark:from-gray-800 dark:to-gray-700 dark:text-gray-200 dark:hover:border-primary-500"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2 text-sm transition-transform group-hover:scale-105">
@@ -363,25 +363,23 @@ const HeroSection: React.FC = () => {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
-                {['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'].map(
-                  (tech, index) => (
-                    <span
-                      key={tech}
-                      className="dark:via-gray-750 group relative overflow-hidden rounded-lg border-2 border-gray-200 bg-gradient-to-br from-white via-gray-50 to-white px-3 py-2 text-xs font-semibold text-gray-700 shadow-md ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-primary-400 hover:shadow-xl hover:ring-primary-200 dark:border-gray-600 dark:from-gray-800 dark:to-gray-800 dark:text-gray-200 dark:ring-gray-700 dark:hover:border-primary-500 dark:hover:ring-primary-700"
-                      style={{
-                        animation: `fadeInScale 0.4s ease-out ${0.8 + index * 0.1}s both`,
-                      }}
-                    >
-                      <span className="relative z-10 transition-all group-hover:scale-105">
-                        {tech}
-                      </span>
-                      {/* Gradient overlay on hover */}
-                      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      {/* Shine effect */}
-                      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full dark:via-white/10" />
+                {heroData.technicalSkills.map((tech, index) => (
+                  <span
+                    key={tech}
+                    className="dark:via-gray-750 group relative overflow-hidden rounded-lg border-2 border-gray-200 bg-gradient-to-br from-white via-gray-50 to-white px-3 py-2 text-xs font-semibold text-gray-700 shadow-md ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:border-primary-400 hover:shadow-xl hover:ring-primary-200 dark:border-gray-600 dark:from-gray-800 dark:to-gray-800 dark:text-gray-200 dark:ring-gray-700 dark:hover:border-primary-500 dark:hover:ring-primary-700"
+                    style={{
+                      animation: `fadeInScale 0.4s ease-out ${0.8 + index * 0.1}s both`,
+                    }}
+                  >
+                    <span className="relative z-10 transition-all group-hover:scale-105">
+                      {tech}
                     </span>
-                  )
-                )}
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full dark:via-white/10" />
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -425,7 +423,7 @@ const HeroSection: React.FC = () => {
 
         {/* Scroll Indicator */}
         <button
-          onClick={scrollToPortfolio}
+          onClick={() => scrollToSection('skills')}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce rounded-full bg-white p-3 shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:hover:bg-gray-700"
           aria-label="Scroll down to portfolio section"
           style={{ animation: 'fadeInUp 1s ease-out 1.2s both' }}

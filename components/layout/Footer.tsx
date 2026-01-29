@@ -1,9 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
-import type { SocialLink } from '@/types';
+import type { SocialLink, NavLink } from '@/types';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+
+  const navLinks: NavLink[] = [
+    { label: 'Home', href: '#hero', ariaLabel: 'Navigate to home section' },
+    { label: 'Skills', href: '#skills', ariaLabel: 'Navigate to skills section' },
+    { label: 'My Journey', href: '#timeline', ariaLabel: 'Navigate to timeline section' },
+    { label: 'Portfolio', href: '#portfolio', ariaLabel: 'Navigate to portfolio section' },
+    { label: 'Testimonials', href: '#testimonials', ariaLabel: 'Navigate to testimonials section' },
+    { label: 'Contact', href: '#contact', ariaLabel: 'Navigate to contact section' },
+  ];
 
   const socialLinks: SocialLink[] = [
     {
@@ -104,13 +113,14 @@ const Footer: React.FC = () => {
           <div className="space-y-4 md:text-right">
             <h4 className="text-sm font-semibold text-gray-300">Navigation</h4>
             <div className="flex flex-wrap gap-x-4 gap-y-2 md:justify-end">
-              {['Home', 'Portfolio', 'Skills', 'Experience', 'Contact'].map((link) => (
+              {navLinks.map((link) => (
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
+                  key={link.href}
+                  href={link.href}
                   className="text-sm text-gray-400 transition-colors hover:text-primary-400"
+                  aria-label={link.ariaLabel}
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
             </div>
