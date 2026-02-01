@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import FloatingGitHubBadge from '@/components/ui/FloatingGitHubBadge';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const inter = Inter({
@@ -67,6 +68,8 @@ export default function RootLayout({
         <ThemeProvider>
           {/* Vercel Speed Insights */}
           <SpeedInsights />
+          {/* Vercel Analytics */}
+          <Analytics />
 
           {/* Skip to main content link for accessibility */}
           <a
