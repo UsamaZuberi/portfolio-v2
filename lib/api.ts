@@ -2,7 +2,7 @@
  * API utility functions for making HTTP requests
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+import { API_CONFIG } from '@/lib/config';
 
 interface ApiResponse<T> {
   data?: T;
@@ -10,12 +10,38 @@ interface ApiResponse<T> {
   message?: string;
 }
 
+const buildUrl = (endpoint: string) => {
+  if (endpoint.startsWith('http://') || endpoint.startsWith('https://')) {
+    return endpoint;
+  }
+  const base = API_CONFIG.baseUrl.endsWith('/')
+    ? API_CONFIG.baseUrl.slice(0, -1)
+    : API_CONFIG.baseUrl;
+  const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  return `${base}${path}`;
+};
+
+const fetchWithTimeout = async (url: string, options?: RequestInit) => {
+  if (options?.signal) {
+    return fetch(url, options);
+  }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeout);
+
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timeoutId);
+  }
+};
+
 /**
  * Generic fetch wrapper with error handling
  */
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<ApiResponse<T>> {
   try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    const response = await fetchWithTimeout(buildUrl(endpoint), {
       headers: {
         'Content-Type': 'application/json',
         ...options?.headers,
@@ -34,7 +60,12 @@ async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<Api
     return { data };
   } catch (error) {
     return {
-      error: error instanceof Error ? error.message : 'An unexpected error occurred',
+      error:
+        error instanceof Error
+          ? error.name === 'AbortError'
+            ? 'Request timed out'
+            : error.message
+          : 'An unexpected error occurred',
     };
   }
 }
