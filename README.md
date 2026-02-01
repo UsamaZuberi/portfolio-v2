@@ -1,51 +1,20 @@
 # portfolio-v2 - Next.js 15
 
-A modern, fully responsive portfolio website built with Next.js 15, TypeScript, and Tailwind CSS with dark mode support, image galleries, resume preview, and social sharing.
+A modern, fully responsive portfolio website built with Next.js 15, TypeScript, and Tailwind CSS.
 
 ## 🚀 Features
 
-### Core Features
-
 - ⚡ **Next.js 15** with App Router
-- 🎨 **Tailwind CSS** for styling with custom color palette
+- 🎨 **Tailwind CSS** styling with dark mode
 - 📘 **TypeScript** for type safety
-- 🧶 **Yarn 4** (Berry) as package manager
-- ♿ **Accessibility** features (WCAG 2.1 AA compliant)
-- 🎭 **Smooth animations** and transitions
-- 📱 **Fully responsive** design
-- 🌐 **SEO optimized** with meta tags
-- 🎯 **Performance optimized** with Next.js Image component
-
-### New Features ✨
-
-- 🌓 **Dark/Light Mode Toggle** with localStorage persistence
-- 🖼️ **Image Gallery Modal** with keyboard navigation
-- 📄 **Resume Preview Modal** with PDF viewer
-- 📱 **Social Share Buttons** (Twitter, LinkedIn, Facebook, WhatsApp, Email, Copy Link)
-- 🎴 **Enhanced Portfolio Cards** with multiple screenshots
-- 📧 **Contact Form** with validation and dark mode support
-
-## 🎨 Color Scheme
-
-**Light Mode:**
-
-- Primary: Blue (600-700)
-- Secondary: Purple/Fuchsia (600-700)
-- Accent: Emerald/Green (600-700)
-- Background: White, Gray-50, Gray-100
-- Text: Gray-900, Gray-700, Gray-600
-
-**Dark Mode:**
-
-- Primary: Blue (500-400)
-- Secondary: Purple/Fuchsia (500-400)
-- Accent: Emerald/Green (500-400)
-- Background: Gray-900, Gray-800, Gray-950
-- Text: White, Gray-100, Gray-300
+- 🧭 **Reusable UI** components and sections
+- 🖼️ **Project galleries** with modal viewer
+- 📄 **Resume preview** modal
+- 📱 **Social share** and contact form
 
 ## 📋 Prerequisites
 
-- Node.js 18.0 or higher
+- Node.js 20.16 or higher
 - Yarn 4.0 or higher (recommended package manager)
 
 ## 🛠️ Installation
@@ -70,6 +39,9 @@ Create a `.env.local` file in the root directory:
 ```bash
 # Vercel Blob Storage (for project images)
 portfolio_v2_images_READ_WRITE_TOKEN=your-vercel-blob-token
+
+# Optional: use a custom API base URL (defaults to /api)
+# NEXT_PUBLIC_API_URL=https://your-api.example.com
 ```
 
 To get your Vercel Blob token:
@@ -138,13 +110,12 @@ portfolio-v2/
 The portfolio uses Vercel Blob storage for project screenshots. To add images:
 
 1. **Via Vercel Dashboard**:
-2. **Via Vercel Dashboard**:
    - Go to Storage → Blob → portfolio-v2-images
    - Upload images with naming convention: `{project-slug}-{number}.ext`
    - Examples: `7-star-training-1.png`, `pixtool-1.png`, `ehj-and-sj-consultancy-1.png`
    - The slug must match the `slug` field in [data.js](data.js)
 
-3. **Via Vercel CLI**:
+2. **Via Vercel CLI**:
 
 ```bash
 # Install Vercel CLI
@@ -158,10 +129,10 @@ vercel blob upload ./7-star-training-1.png --token=your-token
 vercel blob upload ./pixtool-1.png --token=your-token
 ```
 
-4. **Automatic Integration**:
+3. **Automatic Integration**:
    - Images are automatically fetched from Vercel Blob
    - Falls back to local images from [data.js](data.js) if blob is not configured
-   - See [BLOB_SETUP.md](BLOB_SETUP.md) for detailed documentation
+   - See [BLOB_SETUP.md](BLOB_SETUP.md) or [BLOB_QUICK_START.md](BLOB_QUICK_START.md)
 
 ### Customize Styling
 
@@ -169,20 +140,11 @@ vercel blob upload ./pixtool-1.png --token=your-token
 - **Fonts**: Modify font imports in app/layout.tsx
 - **Animations**: Add custom animations in app/globals.css
 
-### Add Images
+### Local Images (Optional)
 
-The project includes placeholder images by default. To add your own:
-
-1. **Profile Image**: Replace `/images/placeholder-profile.svg` with your photo (recommended: 800x800px)
-2. **Project Logos**: Replace `/images/placeholder-project.svg` or add individual project images
-3. **Update paths** in `components/sections/HeroSection.tsx` and `components/sections/PortfolioSection.tsx`
-
-```typescript
-// Example: Update in PortfolioSection.tsx
-logo: '/images/your-project-logo.png';
-```
-
-All images automatically use placeholders if the file is missing, ensuring the site always works.
+- Profile image: replace `/images/placeholder-profile.svg`
+- Project logos: replace `/images/placeholder-project.svg` or add new files
+- Update paths in `components/sections/HeroSection.tsx` and `components/sections/PortfolioSection.tsx`
 
 ## 🔧 Available Scripts
 
@@ -192,17 +154,6 @@ All images automatically use placeholders if the file is missing, ensuring the s
 - `yarn lint` - Run ESLint
 - `yarn type-check` - Run TypeScript type checking
 - `yarn format` - Format code with Prettier
-
-## ♿ Accessibility Features
-
-- Semantic HTML elements
-- ARIA labels and roles
-- Keyboard navigation support
-- Focus management
-- Screen reader announcements
-- Skip to main content link
-- High contrast colors
-- Responsive text sizing
 
 ## 🌐 Deployment
 
@@ -231,8 +182,3 @@ This project is licensed under the MIT License.
 **Muhammad Usama Zuberi**
 
 - GitHub: [@usamazuberi](https://github.com/usamazuberi)
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)

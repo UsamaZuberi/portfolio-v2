@@ -49,8 +49,7 @@ The system will:
 
 1. Go to Storage → Blob → portfolio-v2-images
 2. Click **Upload**
-3. Create folders matching your project IDs
-4. Upload images to respective folders
+3. Upload images using the `{project-slug}-{number}.ext` naming convention
 
 ### Method 2: Vercel CLI
 
@@ -73,7 +72,7 @@ vercel blob upload ./screenshot.png --token=$portfolio_v2_images_READ_WRITE_TOKE
 ```javascript
 import { put } from '@vercel/blob';
 
-const blob = await put('pixtool/screenshot1.png', file, {
+const blob = await put('pixtool-1.png', file, {
   access: 'public',
   token: process.env.portfolio_v2_images_READ_WRITE_TOKEN,
 });
@@ -104,21 +103,15 @@ function MyComponent() {
 
 If blob images aren't available (no token or no images uploaded), the portfolio falls back to the `images` array defined in `data.js`.
 
-## Project ID Mapping
+## Naming Convention
 
-Make sure your blob folder names match the project IDs in `data.js`:
+Images are matched to projects by filename:
 
-| Project Title        | Project ID (Folder Name) |
-| -------------------- | ------------------------ |
-| Pixtool              | `pixtool`                |
-| Natours              | `natours`                |
-| Trillo               | `trillo`                 |
-| Nexter               | `nexter`                 |
-| Eberhard Capital     | `eberhard-capital`       |
-| EHJ & SJ Consultancy | `ehj-sj-consultancy`     |
-| Novospace            | `novospace`              |
-| Cylinder             | `cylinder`               |
-| 7 Star Training      | `7-star-training`        |
+```
+{project-slug}-{number}.{extension}
+```
+
+Example: `pixtool-1.png`
 
 ## Architecture
 
@@ -158,7 +151,7 @@ Make sure your blob folder names match the project IDs in `data.js`:
 ### Images Not Loading
 
 1. **Check Token**: Ensure `portfolio_v2_images_READ_WRITE_TOKEN` is set correctly
-2. **Check Folder Names**: Must match project IDs exactly (case-sensitive)
+2. **Check Naming**: Filenames must match `{project-slug}-{number}` exactly
 3. **Check API Response**: Visit `/api/projects/images` to see what's returned
 4. **Check Console**: Look for errors in browser DevTools
 
@@ -179,8 +172,8 @@ Make sure your blob folder names match the project IDs in `data.js`:
 
 1. **Image Formats**: Use WebP or PNG for screenshots
 2. **Image Sizes**: Keep under 500KB per image for fast loading
-3. **Naming**: Use descriptive names: `home-page.png`, `dashboard.png`
-4. **Folders**: Always use lowercase project IDs as folder names
+3. **Naming**: Use `{project-slug}-{number}.ext` (example: `pixtool-1.png`)
+4. **Slugs**: Use lowercase slugs that match `data.js`
 5. **Alt Text**: Automatically generated as `{Project Title} - Screenshot {index}`
 
 ## Cost Considerations
