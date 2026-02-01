@@ -10,10 +10,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProjectImages } from '@/lib/blob';
 
-export async function GET(request: NextRequest, { params }: { params: { projectId: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ projectId: string }> }
+) {
   try {
     // Note: Despite the route param name, we treat this as a slug
-    const slug = params.projectId;
+    const { projectId } = await params;
+    const slug = projectId;
 
     if (!slug) {
       return NextResponse.json({ error: 'Project slug is required' }, { status: 400 });
