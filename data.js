@@ -4,6 +4,9 @@
  * Following best practices: centralized data management, easy updates, and type-safe structure
  */
 
+import { link } from 'fs';
+import { start } from 'repl';
+
 export const portfolioData = {
   // ==================== HERO SECTION ====================
   hero: {
@@ -260,6 +263,7 @@ export const portfolioData = {
 
   // ==================== PROJECTS SECTION ====================
   projects: [
+    // SoftThree Projects
     {
       id: '1',
       slug: 'natours',
@@ -313,7 +317,7 @@ export const portfolioData = {
       startYear: 2020,
       endYear: 2020,
       images: ['/images/placeholder-project.svg'],
-      usedSkills: ['React', 'TypeScript', 'Tailwind CSS', 'Web Design'],
+      usedSkills: ['React.js', 'TypeScript', 'Tailwind CSS', 'Web Design'],
       isFeatured: false,
       link: 'http://eberhardcapital.com/',
     },
@@ -327,11 +331,10 @@ export const portfolioData = {
       startYear: 2021,
       endYear: 2021,
       images: ['/images/placeholder-project.svg'],
-      usedSkills: ['React', 'Next.js', 'CSS', 'Web Design', 'Corporate'],
+      usedSkills: ['React.js', 'Next.js', 'CSS', 'Web Design', 'Corporate'],
       isFeatured: false,
       link: 'https://ehjsjconsultancy.com/',
     },
-
     {
       id: '6',
       slug: 'novospace',
@@ -343,11 +346,10 @@ export const portfolioData = {
       startYear: 2021,
       endYear: 2021,
       images: ['/images/placeholder-project.svg'],
-      usedSkills: ['React', 'Redux', 'Node.js', 'PostgreSQL', 'SaaS'],
+      usedSkills: ['React.js', 'Redux', 'Node.js', 'PostgreSQL', 'SaaS'],
       isFeatured: false,
       link: 'https://novo-back.herokuapp.com/',
     },
-
     {
       id: '7',
       slug: 'cylinder',
@@ -373,8 +375,8 @@ export const portfolioData = {
       startYear: 2021,
       endYear: 2021,
       images: ['/images/placeholder-project.svg'],
-      usedSkills: ['React', 'Video Processing', 'SaaS', 'Node.js', 'Firebase', 'Video.js'],
-      isFeatured: true,
+      usedSkills: ['React.js', 'Video Processing', 'SaaS', 'Node.js', 'Firebase', 'Video.js'],
+      isFeatured: false,
       link: 'https://pixtool-66579.firebaseapp.com/home',
     },
     {
@@ -388,8 +390,8 @@ export const portfolioData = {
       startYear: 2021,
       endYear: 2021,
       images: ['/images/placeholder-project.svg'],
-      usedSkills: ['React', 'Node.js', 'MongoDB', 'Express', 'SaaS', 'Education'],
-      isFeatured: true,
+      usedSkills: ['React.js', 'Node.js', 'MongoDB', 'Express', 'SaaS', 'Education'],
+      isFeatured: false,
       link: 'https://star-309014.ew.r.appspot.com/',
     },
     {
@@ -403,9 +405,341 @@ export const portfolioData = {
       startYear: 2022,
       endYear: 2023,
       images: ['/images/placeholder-project.svg'],
-      usedSkills: ['React', 'GraphQL', 'The Graph', 'Uniswap V3 SDK', 'Web3', 'DeFi'],
+      usedSkills: ['React.js', 'GraphQL', 'The Graph', 'Uniswap V3 SDK', 'Web3', 'DeFi'],
       isFeatured: true,
       link: 'https://goldpesa-v1.netlify.app/',
+    },
+    {
+      id: '11',
+      slug: 'todo-app',
+      title: 'Cloud Task Manager (Todo App)',
+      description: 'A real-time, authenticated CRUD application for personal task management.',
+      longDescription:
+        'Developed a full-stack Task Management system featuring secure user authentication and persistent cloud storage. The application implements a complete CRUD (Create, Read, Update, Delete) cycle, allowing users to manage personalized task lists with real-time data synchronization across devices via Firebase Firestore.',
+      startYear: 2023,
+      endYear: 2023,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'React.js',
+        'Firebase Authentication',
+        'Cloud Firestore',
+        'SCSS / Sass',
+        'Context API',
+        'Responsive Design',
+      ],
+      isFeatured: false,
+      link: 'https://todo-app-v100.netlify.app/',
+    },
+    // Va8ive Digital / 8th Loop Projects
+    {
+      id: '12',
+      slug: 'mattress-review',
+      title: 'Mattress Review',
+      description: 'A data-driven comparison engine and review platform for the sleep industry.',
+      longDescription:
+        'Developed a comprehensive comparison platform for mattress brands. Built custom rating components and data visualization tables to help users compare specs across dozens of international sleep brands.',
+      startYear: 2021,
+      endYear: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Nuxt 2',
+        'Vue.js',
+        'Content Architecture',
+        'Data Comparison',
+        'SEO',
+        'Affiliate Marketing',
+      ],
+      isFeatured: false,
+      link: 'https://mattressreview.com/',
+    },
+    {
+      id: '13',
+      slug: 'vape-and-pods',
+      title: 'Vape & Pods',
+      description:
+        'A specialized digital publication focusing on the vaping industry and product analysis.',
+      longDescription:
+        'Architected a content-first website for high-volume blog publishing. Implemented advanced category filtering and brand-specific product showcases to enhance user discovery.',
+      startDate: 2021,
+      endDate: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Nuxt 2',
+        'Vue.js',
+        'Content Strategy',
+        'Responsive Design',
+        'SEO',
+        'Affiliate Marketing',
+      ],
+      isFeatured: false,
+      link: 'https://vapeandpods.com/',
+    },
+    {
+      id: '14',
+      slug: 'the-vitamin-plus',
+      title: 'The Vitamin Plus',
+      description:
+        'An educational health portal focused on supplement analysis and nutritional advice.',
+      longDescription:
+        'Developed a niche health and wellness blog platform emphasizing supplement reviews and nutritional guidance. Integrated SEO best practices to drive organic traffic and implemented affiliate marketing strategies for monetization.',
+      startYear: 2021,
+      endYear: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Nuxt 2',
+        'Vue.js',
+        'Content Strategy',
+        'Responsive Design',
+        'SEO',
+        'Affiliate Marketing',
+      ],
+      isFeatured: false,
+      link: 'https://thevitaminplus.com/',
+    },
+    {
+      id: '15',
+      slug: 'opio-glow-studio',
+      title: 'Shop Glow Studio / OpioGlow',
+      description: 'A premium E-commerce destination for cosmetics and skincare essentials.',
+      longDescription:
+        'Engineered a high-conversion E-commerce storefront for beauty products. Focused on visual storytelling, seamless cart transitions, and mobile-first navigation for a luxury shopping experience.',
+      startYear: 2021,
+      endYear: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: ['Nuxt 2', 'Vue.js', 'Responsive Design', 'SEO', 'E-commerce'],
+      isFeatured: false,
+      link: 'https://opioglow.com/',
+    },
+    {
+      id: '16',
+      slug: 'just-parenting-advice',
+      title: 'Just Parenting Advice',
+      description:
+        'A resource-rich community platform providing expert guidance for child development and parenting.',
+      startYear: 2021,
+      endYear: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Nuxt 2',
+        'Vue.js',
+        'Content Strategy',
+        'Responsive Design',
+        'SEO',
+        'Affiliate Marketing',
+      ],
+      isFeatured: false,
+      link: 'https://justparentingadvice.com/',
+    },
+    {
+      id: '17',
+      slug: 'go-nutritious',
+      title: 'Go Nutritious',
+      description:
+        'A nutrition-focused web publication advocating for healthy lifestyles through expert-led content.',
+      startYear: 2021,
+      endYear: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Nuxt 2',
+        'Vue.js',
+        'Content Strategy',
+        'Responsive Design',
+        'SEO',
+        'Affiliate Marketing',
+      ],
+      isFeatured: false,
+      link: 'https://gonutritious.com/',
+    },
+    {
+      id: '18',
+      slug: 'jockhabits',
+      title: 'Jockhabits',
+      description:
+        'A performance-focused sports lifestyle publication reviewing athletic gear and brand-name footwear.',
+      longDescription:
+        'Created a high-engagement blog platform for sports enthusiasts. Integrated product review schemas and dynamic brand comparisons to assist users in selecting athletic equipment.',
+      startYear: 2021,
+      endYear: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Nuxt 2',
+        'Vue.js',
+        'Content Strategy',
+        'Responsive Design',
+        'SEO',
+        'Affiliate Marketing',
+      ],
+      isFeatured: false,
+      link: 'https://jockhabits.com/',
+    },
+    {
+      id: '19',
+      slug: 'shaping-nutrition',
+      title: 'Shaping Nutrition',
+      description:
+        'A nutrition-focused web publication advocating for healthy lifestyles through expert-led content.',
+      startYear: 2021,
+      endYear: 2021,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Nuxt 2',
+        'Vue.js',
+        'Content Strategy',
+        'Responsive Design',
+        'SEO',
+        'Affiliate Marketing',
+      ],
+      isFeatured: false,
+      link: 'https://shapingnutrition.com/',
+    },
+    {
+      id: '20',
+      slug: 'supersavermama',
+      title: 'Super Saver Mama',
+      description:
+        'A high-traffic global affiliate marketing platform and coupon aggregator serving multiple regions.',
+      longDescription:
+        'As a core Frontend Developer, I contributed to the evolution of this flagship affiliate platform. I focused on building highly performant, SEO-optimized landing pages and complex coupon filtering systems. The project involved managing dynamic data across multiple locales (US, AU, CA), ensuring sub-second load times to maintain high search engine rankings and user conversion rates.',
+      startYear: 2021,
+      endYear: 2023,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'PHP',
+        'Laravel',
+        'SCSS / Sass',
+        'JavaScript',
+        'Performance Optimization',
+        'SEO Optimization',
+      ],
+      isFeatured: true,
+      link: 'https://supersavermama.com/us-en/',
+    },
+    {
+      id: '21',
+      slug: 'barterrup',
+      title: 'Barterrup',
+      description:
+        'A community-driven social initiative platform promoting sustainable living through a digitized barter system.',
+      longDescription:
+        'Developed a social-first platform designed to reduce environmental waste by facilitating the exchange of goods and services. The system features multiple interaction models including direct bartering, a "Giveaway" option for NGO donations, and an "I-need" category for community support requests. Integrated secure social authentication (Google/Facebook) to build a trusted community of users.',
+      startYear: 2022,
+      endYear: 2023,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Vue.js v2',
+        'Nuxt.js v2',
+        'Vuex',
+        'AWS Cognito',
+        'AWS S3',
+        'AWS Lambda',
+        'AWS EC2',
+        'AWS SNS',
+        'Redis',
+        'SCSS / Sass',
+        'Javascript',
+      ],
+      isFeatured: false,
+      link: 'https://barterrup.com',
+    },
+    {
+      id: '22',
+      slug: 'brijjd',
+      title: 'Brijjd',
+      description:
+        'A specialized social network dedicated to democratizing access to scientific research and bridging the gap between academia and the public.',
+      longDescription:
+        'Engineered a community-focused social platform designed for "Open Science" communication. Developed features that allow researchers to translate complex academic insights into accessible content for a broader audience. The platform prioritizes high-performance content delivery and real-time engagement tools to foster connection between scientific communities and the general public without traditional paywalls or gatekeepers.',
+      startYear: 2022,
+      endYear: 2023,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'Vue.js v2',
+        'Nuxt.js v2',
+        'Vuex',
+        'AWS Cognito',
+        'AWS S3',
+        'AWS Lambda',
+        'AWS EC2',
+        'AWS SNS',
+        'Redis',
+        'SCSS / Sass',
+        'Javascript',
+      ],
+      isFeatured: false,
+      link: 'https://brijjd.com',
+    },
+    {
+      id: '23',
+      slug: 'catalyst-computers',
+      title: 'Catalyst Computers',
+      description:
+        'A comprehensive digital presence for a leading Sydney-based Managed IT Services Provider (MSP).',
+      longDescription:
+        'Architected and developed the digital platform for Catalyst Computers, focusing on a service-oriented UI that highlights their complex IT offerings. Integrated lead generation workflows, Office 365 migration service portals, and custom service-area mapping to support their operations across Sydney. The platform is optimized for high conversion rates and technical SEO to maintain a competitive edge in the Australian MSP market.',
+      startYear: 2024,
+      endYear: 2025,
+      // Use your Vercel Blob URLs here
+      images: [
+        'https://[your-id].public.blob.vercel-storage.com/catalyst-hero.png',
+        'https://[your-id].public.blob.vercel-storage.com/catalyst-services.png',
+      ],
+      usedSkills: ['Wordpress', 'Elementor', 'HTML', 'CSS / Sass', 'SEO Optimization'],
+      isFeatured: true,
+      link: 'https://catalystcomputers.com.au/',
+    },
+    // Hashcore Projects
+    {
+      id: '19',
+      slug: 'zeroliquid',
+      title: 'ZeroLiquid.xyz',
+      description:
+        'A revolutionary DeFi lending protocol offering self-repaying, liquidation-free loans backed by LSDs.',
+      longDescription:
+        'Architected the frontend for the ZeroLiquid ecosystem, focusing on a secure and intuitive interface for automated debt-repayment systems. Integrated Ethereum-based smart contracts to allow users to borrow against Liquid Staking Derivatives (LSDs) without the risk of liquidation. Developed real-time health factor monitors, yield-tracking dashboards, and complex transaction state management to ensure a seamless Web3 user experience.',
+      startYear: 2023,
+      endYear: 2025,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'React.js',
+        'JavaScript',
+        'TypeScript',
+        'Ethers.js / Wagmi',
+        'Web3Modal',
+        'Wallet Integration',
+        'GraphQL / The Graph',
+        'Smart Contract Integration',
+      ],
+      isFeatured: true,
+      link: 'https://zeroliquid.xyz/',
+    },
+    {
+      id: '25',
+      slug: 'pumpkin',
+      title: 'Pumpkin.fun',
+      description:
+        'A high-performance Solana-based fair launch platform for community-driven meme tokens.',
+      longDescription:
+        'Developed the frontend for a decentralized token launchpad on the Solana blockchain. Engineered a "fair launch" mechanism that utilizes bonding curves to determine token pricing and liquidity pool graduation. Integrated real-time transaction streaming via Solana Web3.js and optimized the UI for sub-second trade execution, ensuring a seamless experience for high-frequency traders in the meme coin ecosystem.',
+      startYear: 2025,
+      endYear: 2026,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'React.js',
+        'Next.js',
+        'JavaScript',
+        'TypeScript',
+        'Tailwind CSS',
+        'Socket.io',
+        'Ethers.js',
+        'Solana Web3.js',
+        '@solana/wallet-adapter',
+        'Real-time Data Streaming',
+        'Wallet Integration',
+        'GraphQL / The Graph',
+        'Smart Contract Integration',
+      ],
+      isFeatured: true,
+      link: 'https://pumpkin.fun',
     },
   ],
 
