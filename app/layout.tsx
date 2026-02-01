@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import FloatingGitHubBadge from '@/components/ui/FloatingGitHubBadge';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
 const inter = Inter({
@@ -64,6 +65,9 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
       <body className="bg-white font-sans text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-gray-100">
         <ThemeProvider>
+          {/* Vercel Speed Insights */}
+          <SpeedInsights />
+
           {/* Skip to main content link for accessibility */}
           <a
             href="#main-content"
