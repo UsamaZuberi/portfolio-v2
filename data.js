@@ -4,9 +4,6 @@
  * Following best practices: centralized data management, easy updates, and type-safe structure
  */
 
-import { link } from 'fs';
-import { start } from 'repl';
-
 export const portfolioData = {
   // ==================== HERO SECTION ====================
   hero: {
