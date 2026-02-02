@@ -406,30 +406,9 @@ export const portfolioData = {
       isFeatured: true,
       link: 'https://goldpesa-v1.netlify.app/',
     },
-    {
-      id: '11',
-      slug: 'todo-app',
-      title: 'Cloud Task Manager (Todo App)',
-      description: 'A real-time, authenticated CRUD application for personal task management.',
-      longDescription:
-        'Developed a full-stack Task Management system featuring secure user authentication and persistent cloud storage. The application implements a complete CRUD (Create, Read, Update, Delete) cycle, allowing users to manage personalized task lists with real-time data synchronization across devices via Firebase Firestore.',
-      startYear: 2023,
-      endYear: 2023,
-      images: ['/images/placeholder-project.svg'],
-      usedSkills: [
-        'React.js',
-        'Firebase Authentication',
-        'Cloud Firestore',
-        'SCSS / Sass',
-        'Context API',
-        'Responsive Design',
-      ],
-      isFeatured: false,
-      link: 'https://todo-app-v100.netlify.app/',
-    },
     // Va8ive Digital / 8th Loop Projects
     {
-      id: '12',
+      id: '11',
       slug: 'mattress-review',
       title: 'Mattress Review',
       description: 'A data-driven comparison engine and review platform for the sleep industry.',
@@ -450,7 +429,7 @@ export const portfolioData = {
       link: 'https://mattressreview.com/',
     },
     {
-      id: '13',
+      id: '12',
       slug: 'vape-and-pods',
       title: 'Vape & Pods',
       description:
@@ -472,7 +451,7 @@ export const portfolioData = {
       link: 'https://vapeandpods.com/',
     },
     {
-      id: '14',
+      id: '13',
       slug: 'the-vitamin-plus',
       title: 'The Vitamin Plus',
       description:
@@ -494,7 +473,7 @@ export const portfolioData = {
       link: 'https://thevitaminplus.com/',
     },
     {
-      id: '15',
+      id: '14',
       slug: 'opio-glow-studio',
       title: 'Shop Glow Studio / OpioGlow',
       description: 'A premium E-commerce destination for cosmetics and skincare essentials.',
@@ -508,7 +487,7 @@ export const portfolioData = {
       link: 'https://opioglow.com/',
     },
     {
-      id: '16',
+      id: '15',
       slug: 'just-parenting-advice',
       title: 'Just Parenting Advice',
       description:
@@ -528,7 +507,7 @@ export const portfolioData = {
       link: 'https://justparentingadvice.com/',
     },
     {
-      id: '17',
+      id: '16',
       slug: 'go-nutritious',
       title: 'Go Nutritious',
       description:
@@ -548,7 +527,7 @@ export const portfolioData = {
       link: 'https://gonutritious.com/',
     },
     {
-      id: '18',
+      id: '17',
       slug: 'jockhabits',
       title: 'Jockhabits',
       description:
@@ -570,7 +549,7 @@ export const portfolioData = {
       link: 'https://jockhabits.com/',
     },
     {
-      id: '19',
+      id: '18',
       slug: 'shaping-nutrition',
       title: 'Shaping Nutrition',
       description:
@@ -590,7 +569,7 @@ export const portfolioData = {
       link: 'https://shapingnutrition.com/',
     },
     {
-      id: '20',
+      id: '19',
       slug: 'supersavermama',
       title: 'Super Saver Mama',
       description:
@@ -612,7 +591,7 @@ export const portfolioData = {
       link: 'https://supersavermama.com/us-en/',
     },
     {
-      id: '21',
+      id: '20',
       slug: 'barterrup',
       title: 'Barterrup',
       description:
@@ -639,7 +618,7 @@ export const portfolioData = {
       link: 'https://barterrup.com',
     },
     {
-      id: '22',
+      id: '21',
       slug: 'brijjd',
       title: 'Brijjd',
       description:
@@ -666,7 +645,7 @@ export const portfolioData = {
       link: 'https://brijjd.com',
     },
     {
-      id: '23',
+      id: '22',
       slug: 'catalyst-computers',
       title: 'Catalyst Computers',
       description:
@@ -686,7 +665,28 @@ export const portfolioData = {
     },
     // Hashcore Projects
     {
-      id: '19',
+      id: '23',
+      slug: 'todo-app',
+      title: 'Cloud Task Manager (Todo App)',
+      description: 'A real-time, authenticated CRUD application for personal task management.',
+      longDescription:
+        'Developed a full-stack Task Management system featuring secure user authentication and persistent cloud storage. The application implements a complete CRUD (Create, Read, Update, Delete) cycle, allowing users to manage personalized task lists with real-time data synchronization across devices via Firebase Firestore.',
+      startYear: 2023,
+      endYear: 2023,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'React.js',
+        'Firebase Authentication',
+        'Cloud Firestore',
+        'SCSS / Sass',
+        'Context API',
+        'Responsive Design',
+      ],
+      isFeatured: false,
+      link: 'https://todo-app-v100.netlify.app/',
+    },
+    {
+      id: '24',
       slug: 'zeroliquid',
       title: 'ZeroLiquid.xyz',
       description:
