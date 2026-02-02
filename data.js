@@ -436,8 +436,8 @@ export const portfolioData = {
         'A specialized digital publication focusing on the vaping industry and product analysis.',
       longDescription:
         'Architected a content-first website for high-volume blog publishing. Implemented advanced category filtering and brand-specific product showcases to enhance user discovery.',
-      startDate: 2021,
-      endDate: 2021,
+      startYear: 2021,
+      endYear: 2021,
       images: ['/images/placeholder-project.svg'],
       usedSkills: [
         'Nuxt 2',
