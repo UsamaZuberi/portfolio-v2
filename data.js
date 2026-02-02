@@ -768,6 +768,11 @@ export const portfolioData = {
         icon: 'x',
       },
       {
+        name: 'YouTube',
+        url: 'https://www.youtube.com/@UsamaZuberi',
+        icon: 'youtube',
+      },
+      {
         name: 'WhatsApp',
         url: 'https://wa.me/923332169871',
         icon: 'whatsapp',
