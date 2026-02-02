@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://usamazuberi.com/sitemap.xml
+Sitemap: https://usamazuberi.vercel.app/sitemap.xml

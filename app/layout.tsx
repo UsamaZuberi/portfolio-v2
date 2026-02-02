@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import FloatingGitHubBadge from '@/components/ui/FloatingGitHubBadge';
+import StructuredData from '@/components/seo/StructuredData';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
@@ -22,33 +23,59 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Muhammad Usama Zuberi - Front-end Web Developer',
+  metadataBase: new URL('https://usamazuberi.vercel.app'),
+  title: {
+    default: 'Muhammad Usama Zuberi | Senior Front-end Web Developer | React & Next.js Expert',
+    template: '%s | Muhammad Usama Zuberi',
+  },
   description:
-    'Portfolio of Muhammad Usama Zuberi, a passionate Front-end Web Developer specializing in React, Next.js, TypeScript, and modern web technologies.',
-  keywords: ['Web Developer', 'Front-end Developer', 'React', 'Next.js', 'TypeScript', 'Portfolio'],
-  authors: [{ name: 'Muhammad Usama Zuberi' }],
+    'Senior Front-end Web Developer specializing in React, Next.js, TypeScript, and Web3. 5+ years building scalable web applications and DeFi platforms. Available for hire in Karachi, Pakistan.',
+  applicationName: 'Muhammad Usama Zuberi Portfolio',
+  authors: [{ name: 'Muhammad Usama Zuberi', url: 'https://usamazuberi.vercel.app' }],
   creator: 'Muhammad Usama Zuberi',
+  publisher: 'Muhammad Usama Zuberi',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: '/uz-logo.png',
     shortcut: '/uz-logo.png',
     apple: '/uz-logo.png',
   },
+  manifest: '/manifest.json',
   openGraph: {
-    type: 'website',
+    type: 'profile',
     locale: 'en_US',
-    url: 'https://usamazuberi.com',
-    title: 'Muhammad Usama Zuberi - Front-end Web Developer',
+    url: 'https://usamazuberi.vercel.app',
+    title: 'Muhammad Usama Zuberi | Senior Front-end Web Developer',
     description:
-      'Portfolio of Muhammad Usama Zuberi, showcasing modern web development projects and expertise.',
+      'Senior Front-end Developer with 5+ years of experience in React, Next.js, TypeScript, and Web3 technologies. Building scalable web applications and DeFi platforms.',
     siteName: 'Muhammad Usama Zuberi Portfolio',
+    images: [
+      {
+        url: '/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Muhammad Usama Zuberi - Senior Front-end Web Developer',
+      },
+      {
+        url: '/uz-logo.png',
+        width: 512,
+        height: 512,
+        alt: 'UZ Logo',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Muhammad Usama Zuberi - Front-end Web Developer',
+    title: 'Muhammad Usama Zuberi | Senior Front-end Web Developer',
     description:
-      'Portfolio of Muhammad Usama Zuberi, showcasing modern web development projects and expertise.',
+      'Senior Front-end Developer specializing in React, Next.js, TypeScript, and Web3. Building scalable web applications and DeFi platforms.',
     site: '@usamazuberi',
     creator: '@usamazuberi',
+    images: ['/images/og-image.png'],
   },
   robots: {
     index: true,
@@ -61,6 +88,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: 'https://usamazuberi.vercel.app',
+  },
+  category: 'technology',
+  classification: 'Web Development Portfolio',
 };
 
 export default function RootLayout({
@@ -70,6 +102,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body className="bg-white font-sans text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-gray-100">
         <ThemeProvider>
           {/* Vercel Speed Insights */}
