@@ -103,7 +103,7 @@ const ContactSection: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Honeypot check - if filled, it's a bot
@@ -119,8 +119,8 @@ const ContactSection: React.FC = () => {
       return;
     }
 
-    // Submit to Formspree
-    await handleFormspreeSubmit(e);
+    // Submit to Formspree - the hook handles async submission internally
+    handleFormspreeSubmit(e);
   };
 
   return (
