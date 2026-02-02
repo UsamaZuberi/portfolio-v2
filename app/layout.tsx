@@ -28,6 +28,11 @@ export const metadata: Metadata = {
   keywords: ['Web Developer', 'Front-end Developer', 'React', 'Next.js', 'TypeScript', 'Portfolio'],
   authors: [{ name: 'Muhammad Usama Zuberi' }],
   creator: 'Muhammad Usama Zuberi',
+  icons: {
+    icon: '/uz-logo.png',
+    shortcut: '/uz-logo.png',
+    apple: '/uz-logo.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -42,6 +47,8 @@ export const metadata: Metadata = {
     title: 'Muhammad Usama Zuberi - Front-end Web Developer',
     description:
       'Portfolio of Muhammad Usama Zuberi, showcasing modern web development projects and expertise.',
+    site: '@usamazuberi',
+    creator: '@usamazuberi',
   },
   robots: {
     index: true,

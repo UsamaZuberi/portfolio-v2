@@ -754,18 +754,18 @@ export const portfolioData = {
     socialLinks: [
       {
         name: 'GitHub',
-        url: 'https://github.com/usama-zuberi',
+        url: 'https://github.com/usamazuberi',
         icon: 'github',
       },
       {
         name: 'LinkedIn',
-        url: 'https://linkedin.com/in/usama-zuberi',
+        url: 'https://linkedin.com/in/usamazuberi',
         icon: 'linkedin',
       },
       {
-        name: 'Twitter',
-        url: 'https://twitter.com/usama_zuberi',
-        icon: 'twitter',
+        name: 'X',
+        url: 'https://x.com/usamazuberi',
+        icon: 'x',
       },
       {
         name: 'WhatsApp',

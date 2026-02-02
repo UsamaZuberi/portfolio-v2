@@ -7,10 +7,11 @@ export const SITE_CONFIG = {
   title: 'Muhammad Usama Zuberi - Front-end Web Developer',
   description:
     'Portfolio of Muhammad Usama Zuberi, a passionate Front-end Web Developer specializing in React, Next.js, TypeScript, and modern web technologies.',
-  url: 'https://usamazuberi.com',
+  url: 'https://usamazuberi.vercel.app',
   email: 'usama.zuberi1010@gmail.com',
   github: 'https://github.com/usamazuberi',
   linkedin: 'https://linkedin.com/in/usamazuberi',
+  x: 'https://x.com/usamazuberi',
 } as const;
 
 export const NAVIGATION_LINKS = [
