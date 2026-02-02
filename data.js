@@ -492,6 +492,8 @@ export const portfolioData = {
       title: 'Just Parenting Advice',
       description:
         'A resource-rich community platform providing expert guidance for child development and parenting.',
+      longDescription:
+        'Developed a comprehensive resource portal designed to organize complex child development data into an intuitive, accessible interface. I focused on building a scalable category system and optimizing the platform for high-performance SEO, ensuring that expert parenting advice remains accessible and fast-loading for a global audience.',
       startYear: 2021,
       endYear: 2021,
       images: ['/images/placeholder-project.svg'],
@@ -512,6 +514,8 @@ export const portfolioData = {
       title: 'Go Nutritious',
       description:
         'A nutrition-focused web publication advocating for healthy lifestyles through expert-led content.',
+      longDescription:
+        "Architected a high-traffic wellness publication platform with a focus on 'Core Web Vitals.' I engineered a modular component system for nutritional data and optimized the critical rendering path to ensure that image-heavy guides load instantly, providing a seamless user experience across all devices.",
       startYear: 2021,
       endYear: 2021,
       images: ['/images/placeholder-project.svg'],
@@ -554,6 +558,8 @@ export const portfolioData = {
       title: 'Shaping Nutrition',
       description:
         'A nutrition-focused web publication advocating for healthy lifestyles through expert-led content.',
+      longDescription:
+        'Engineered a modern digital presence for Shaping Nutrition, bridging the gap between scientific research and dietary action. I implemented a clean, data-driven UI and optimized the lead-generation funnel, focusing on modular code that allows for rapid content updates while maintaining high performance and strict brand consistency.',
       startYear: 2021,
       endYear: 2021,
       images: ['/images/placeholder-project.svg'],

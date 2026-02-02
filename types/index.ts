@@ -202,9 +202,11 @@ export interface ProjectItem {
   slug: string;
   title: string;
   description: string;
-  longDescription: string;
-  startYear: number;
-  endYear: number;
+  longDescription?: string;
+  startYear?: number;
+  endYear?: number;
+  startDate?: number;
+  endDate?: number;
   images: string[];
   usedSkills: string[];
   isFeatured: boolean;
