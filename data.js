@@ -669,7 +669,7 @@ export const portfolioData = {
       isFeatured: true,
       link: 'https://catalystcomputers.com.au/',
     },
-    // Hashcore Projects
+    // Personal Projects List # 1
     {
       id: '23',
       slug: 'todo-app',
@@ -691,6 +691,7 @@ export const portfolioData = {
       isFeatured: false,
       link: 'https://todo-app-v100.netlify.app/',
     },
+    // Hashcore Projects
     {
       id: '24',
       slug: 'zeroliquid',
@@ -743,6 +744,37 @@ export const portfolioData = {
       ],
       isFeatured: true,
       link: 'https://pumpkin.fun',
+    },
+    // Personal Projects List # 2
+    {
+      id: '26',
+      slug: 'docuswap',
+      title: 'DocuSwap',
+      description:
+        'A high-performance, privacy-first client-side file conversion utility built for developers and public both.',
+      longDescription:
+        'Engineered a sophisticated client-side conversion utility that uses Web Workers and the Canvas API to perform heavy-duty file transformations entirely in the browser. By offloading processing to background threads, the application maintains a smooth UI even during complex batch operations like HEIC-to-WebP conversion or large CSV-to-JSON parsing. The project emphasizes data sovereignty, ensuring sensitive user files never touch a server, while providing advanced developer utilities like JSON-to-TypeScript interface generation and HTML-to-JSX transformation.',
+      startYear: 2026,
+      endYear: 2026,
+      images: ['/images/placeholder-project.svg'],
+      usedSkills: [
+        'React.js',
+        'Next.js',
+        'TypeScript',
+        'Tailwind CSS',
+        'Web Workers',
+        'Framer Motion',
+        'Canvas API',
+        'PWA / Service Worker',
+        'JSZip',
+        'PapaParse',
+        'XML-js',
+        'heic2any',
+        'pdf-lib',
+        'Client-Side Architecture',
+      ],
+      isFeatured: true,
+      link: 'https://docuswap-v1.vercel.app',
     },
   ],
 
