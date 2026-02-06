@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next';
-import { portfolioData } from '@/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://usamazuberi.vercel.app';

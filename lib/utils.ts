@@ -48,6 +48,42 @@ export const getImageWithFallback = (
 };
 
 /**
+ * Supported image extensions for the app
+ *
+ * Used to validate and filter image URLs coming from external sources
+ * such as Vercel Blob storage.
+ */
+export const SUPPORTED_IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'webp']);
+
+/**
+ * Extract the image extension from a URL or path
+ *
+ * Handles query strings and hash fragments, and normalizes to lowercase.
+ * Returns null if no extension is found.
+ *
+ * @param {string} value - URL or path
+ * @returns {string|null} Image extension (e.g., 'png', 'jpeg', 'webp') or null
+ */
+export const getImageExtension = (value: string): string | null => {
+  if (!value) return null;
+  const cleanValue = value.split('?')[0].split('#')[0];
+  const filename = cleanValue.split('/').pop() || cleanValue;
+  const ext = filename.includes('.') ? filename.split('.').pop() : '';
+  return ext ? ext.toLowerCase() : null;
+};
+
+/**
+ * Check if a URL/path points to a supported image format
+ *
+ * @param {string} value - URL or path
+ * @returns {boolean} True if supported (png, jpg, jpeg, webp)
+ */
+export const isSupportedImageFormat = (value: string): boolean => {
+  const ext = getImageExtension(value);
+  return !!ext && SUPPORTED_IMAGE_EXTENSIONS.has(ext);
+};
+
+/**
  * Format bytes into human-readable file size string
  *
  * Converts raw byte values to readable format (Bytes, KB, MB, GB, TB).

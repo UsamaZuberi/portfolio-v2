@@ -6,6 +6,7 @@
  */
 
 import { list } from '@vercel/blob';
+import { isSupportedImageFormat } from '@/lib/utils';
 
 /**
  * Get all images for a specific project from Vercel Blob
@@ -30,6 +31,7 @@ export async function getProjectImages(slug: string): Promise<string[]> {
     // Filter blobs that match the pattern: slug-number
     const projectBlobs = blobs.filter((blob) => {
       const filename = blob.pathname.split('/').pop() || '';
+      if (!isSupportedImageFormat(filename)) return false;
       const nameWithoutExt = filename.replace(/\.[^/.]+$/, ''); // Remove extension
       return nameWithoutExt.startsWith(`${slug}-`);
     });
@@ -74,6 +76,7 @@ export async function getAllProjectImages(): Promise<Record<string, string[]>> {
 
     blobs.forEach((blob) => {
       const filename = blob.pathname.split('/').pop() || '';
+      if (!isSupportedImageFormat(filename)) return;
       const nameWithoutExt = filename.replace(/\.[^/.]+$/, ''); // Remove extension
 
       // Extract project slug from pattern: slug-number

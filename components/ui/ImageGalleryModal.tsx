@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { getImageExtension } from '@/lib/utils';
 
 interface ImageGalleryModalProps {
   isOpen: boolean;
@@ -125,12 +126,13 @@ const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({
 
   // Optimize image loading based on format
   const getImageQuality = (url: string): number => {
-    const ext = url.toLowerCase().split('.').pop();
+    const ext = getImageExtension(url);
     // WebP supports better compression, so we can use higher quality
     if (ext === 'webp') return 95;
     // JPEG/JPG are already compressed, use moderate quality
     if (ext === 'jpg' || ext === 'jpeg') return 90;
     // PNG are lossless, quality doesn't apply but Next.js may still optimize
+    if (ext === 'png') return 90;
     return 90;
   };
 
