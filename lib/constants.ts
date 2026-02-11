@@ -7,6 +7,8 @@
  * @deprecated - Import directly from './config.ts' instead
  */
 
+import { ANIMATION } from './config';
+
 export {
   SITE_CONFIG,
   NAVIGATION_LINKS,
