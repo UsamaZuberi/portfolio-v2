@@ -13,7 +13,7 @@ import { isSupportedImageFormat } from '@/lib/utils';
  * Images are named with convention: slug-1, slug-2, etc.
  * Example: 7-star-training-1, 7-star-training-2, ehj-and-sj-consultancy-1
  *
- * @param slug - The project slug (from data.js)
+ * @param slug - The project slug (from the portfolio data)
  * @returns Array of image URLs from the blob storage, sorted by number
  *
  * @example

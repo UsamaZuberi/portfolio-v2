@@ -2,18 +2,17 @@
  * Custom Hook: usePortfolioData
  *
  * Fetches the portfolio data from the API with SWR caching.
- * Falls back to local data to avoid UI flicker.
+ * Returns null until the API provides data.
  */
 
 'use client';
 
 import useSWR from 'swr';
-import portfolioData from '@/data';
 import type { PortfolioDataStructure } from '@/types';
 
 interface PortfolioApiResponse {
   data: PortfolioDataStructure;
-  source: 'blob' | 'local';
+  source: 'blob' | 'missing' | 'error';
 }
 
 const fetcher = async (url: string): Promise<PortfolioDataStructure> => {
@@ -29,12 +28,10 @@ const fetcher = async (url: string): Promise<PortfolioDataStructure> => {
 };
 
 export function usePortfolioData() {
-  const localPortfolioData = portfolioData as PortfolioDataStructure;
   const { data, error, isLoading, isValidating, mutate } = useSWR<PortfolioDataStructure>(
     '/api/portfolio-data',
     fetcher,
     {
-      fallbackData: localPortfolioData,
       keepPreviousData: true,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
@@ -43,7 +40,7 @@ export function usePortfolioData() {
   );
 
   return {
-    data: data ?? localPortfolioData,
+    data: data ?? null,
     loading: isLoading && !data,
     refreshing: isValidating,
     error: error?.message || null,

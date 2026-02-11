@@ -25,6 +25,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import ImageGalleryModal from '@/components/ui/ImageGalleryModal';
 import ProjectCard from '@/components/ui/ProjectCard';
 import DecorativeBackground from '@/components/ui/DecorativeBackground';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 import { useScrollToSection } from '@/lib/hooks/useInteractions';
 import { useProjectImages } from '@/lib/hooks/useProjectImages';
@@ -41,21 +42,23 @@ const PortfolioSection: React.FC = () => {
   // Fetch images from Vercel Blob
   const { images: blobImages } = useProjectImages();
 
-  // Use blob images as primary source, fallback to data.js only if blob not available
+  const projects = portfolioData?.projects ?? [];
+
+  // Use blob images as primary source, fallback to project images in portfolio data
   const projectsWithBlobImages = useMemo(() => {
-    return portfolioData.projects
+    return projects
       .slice() // Create new array to avoid mutation
       .reverse() // Show most recent projects first
       .map((project) => {
         const blobProjectImages = blobImages[project.slug];
-        // Prioritize blob images - only use data.js images if no blob images exist
+        // Prioritize blob images - only use portfolio data images if no blob images exist
         return {
           ...project,
           images:
             blobProjectImages && blobProjectImages.length > 0 ? blobProjectImages : project.images,
         };
       });
-  }, [blobImages, portfolioData.projects]);
+  }, [blobImages, projects]);
 
   // Filter projects into featured and complete list
   const featuredProjects = projectsWithBlobImages.filter((p) => p.isFeatured);
@@ -86,6 +89,16 @@ const PortfolioSection: React.FC = () => {
   const handleContactClick = useCallback(() => {
     scrollToSection('#contact');
   }, [scrollToSection]);
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="portfolio"
+        label="Loading portfolio"
+        className="relative overflow-hidden bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
+      />
+    );
+  }
 
   return (
     <section

@@ -13,6 +13,17 @@ export const revalidate = 60;
 export async function GET() {
   const { data, source } = await getPortfolioData();
 
+  if (!data) {
+    const status = source === 'error' ? 500 : 503;
+    return NextResponse.json(
+      {
+        error: 'Portfolio data is not available yet.',
+        source,
+      },
+      { status }
+    );
+  }
+
   return NextResponse.json(
     {
       data,

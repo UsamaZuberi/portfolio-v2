@@ -23,10 +23,21 @@
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const ExperienceSection: React.FC = () => {
   const { data: portfolioData } = usePortfolioData();
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="experience"
+        label="Loading experience"
+        className="bg-gradient-to-br from-gray-50 to-white px-4 py-20 dark:from-gray-900 dark:to-gray-800 sm:px-6 lg:px-8"
+      />
+    );
+  }
   const experiences = portfolioData.experience;
 
   return (

@@ -31,10 +31,21 @@ n * - Full semantic HTML and ARIA labels
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const EducationSection: React.FC = () => {
   const { data: portfolioData } = usePortfolioData();
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="education"
+        label="Loading education"
+        className="bg-white px-4 py-20 dark:bg-gray-900 sm:px-6 lg:px-8"
+      />
+    );
+  }
   const education = portfolioData.education;
   const continuousLearning = portfolioData.continuousLearning;
 

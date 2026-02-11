@@ -20,6 +20,7 @@
 import React, { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { TRANSITIONS } from '@/lib/constants';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 type FilterType = 'all' | 'education' | 'experience';
@@ -28,6 +29,16 @@ const InteractiveTimeline: React.FC = () => {
   const [filter, setFilter] = useState<FilterType>('all');
 
   const { data: portfolioData } = usePortfolioData();
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="timeline"
+        label="Loading timeline"
+        className="bg-gray-50 py-20 dark:bg-gray-900"
+      />
+    );
+  }
 
   // Transform data into timeline items
   const timelineItems = [

@@ -22,9 +22,15 @@ Open http://localhost:3000.
 
 ## Where to Update Content
 
-- **Main content**: Edit [data.js](data.js)
+- **Main content**: Update the portfolio JSON stored in Vercel Blob
 - **Sections**: Update files in [components/sections](components/sections)
 - **UI components**: Reusable components in [components/ui](components/ui)
+
+### Portfolio Data (Blob JSON)
+
+1. Create a JSON file that matches the `PortfolioDataStructure` shape.
+2. Upload it to Vercel Blob (public access).
+3. Set `NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL` in `.env.local` to the public URL.
 
 ## Images
 
@@ -32,7 +38,7 @@ Open http://localhost:3000.
 
 1. Add `portfolio_v2_images_READ_WRITE_TOKEN` to `.env.local`
 2. Upload images named `{project-slug}-{number}.ext`
-3. The slug must match `data.js`
+3. The slug must match the portfolio JSON `slug`
 
 #### Setup
 
@@ -95,7 +101,7 @@ console.log(blob.url);
 - API: `/api/projects/images` returns all images grouped by slug.
 - API: `/api/projects/[projectId]/images` returns images for a single project.
 - Hook: `useProjectImages()` caches and dedupes requests.
-- Fallback: if blob is not configured or empty, the UI uses `data.js` images.
+- If blob is not configured or empty, the UI shows loading placeholders.
 
 #### Troubleshooting
 

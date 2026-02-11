@@ -129,7 +129,7 @@ export interface LoadingState {
 
 /**
  * Portfolio Data Types
- * These types match the data.js structure
+ * These types match the portfolio JSON structure
  */
 
 export interface HeroData {

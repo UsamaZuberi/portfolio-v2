@@ -40,6 +40,9 @@ Create a `.env.local` file in the root directory:
 # Vercel Blob Storage (for project images)
 portfolio_v2_images_READ_WRITE_TOKEN=your-vercel-blob-token
 
+# Portfolio data JSON (required)
+NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL=https://<your-id>.public.blob.vercel-storage.com/portfolio-data.json
+
 # Optional: use a custom API base URL (defaults to /api)
 # NEXT_PUBLIC_API_URL=https://your-api.example.com
 ```
@@ -100,10 +103,8 @@ portfolio-v2/
 
 ### Update Personal Information
 
-1. **Hero Section**: Edit components/sections/HeroSection.tsx
-2. **Portfolio Items**: Update the projects array in data.js
-3. **Contact Info**: Modify the contact object in data.js
-4. **Social Links**: Update socialLinks in the contact section of data.js
+1. **Content Source**: Update the JSON stored in Vercel Blob
+2. **Sections**: Update components in components/sections if you change layout
 
 ### Add Project Images to Vercel Blob
 
@@ -113,7 +114,7 @@ The portfolio uses Vercel Blob storage for project screenshots. To add images:
    - Go to Storage → Blob → portfolio-v2-images
    - Upload images with naming convention: `{project-slug}-{number}.ext`
    - Examples: `7-star-training-1.png`, `pixtool-1.png`, `ehj-and-sj-consultancy-1.png`
-   - The slug must match the `slug` field in [data.js](data.js)
+   - The slug must match the `slug` field in your portfolio JSON
 
 2. **Via Vercel CLI**:
 
@@ -131,7 +132,6 @@ vercel blob upload ./pixtool-1.png --token=your-token
 
 3. **Automatic Integration**:
    - Images are automatically fetched from Vercel Blob
-   - Falls back to local images from [data.js](data.js) if blob is not configured
 
 ### Customize Styling
 

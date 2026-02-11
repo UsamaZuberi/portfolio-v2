@@ -29,12 +29,12 @@ import { useForm, ValidationError } from '@formspree/react';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 import DecorativeBackground from '@/components/ui/DecorativeBackground';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 import type { ContactFormData, ContactFormErrors } from '@/types';
 
 const ContactSection: React.FC = () => {
   const { data: portfolioData } = usePortfolioData();
-  const contactData = portfolioData.contact;
 
   // Formspree hook
   const [formspreeState, handleFormspreeSubmit] = useForm('xojwjzvz');
@@ -123,6 +123,18 @@ const ContactSection: React.FC = () => {
     // Submit to Formspree - the hook handles async submission internally
     handleFormspreeSubmit(e);
   };
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="contact"
+        label="Loading contact"
+        className="relative overflow-hidden bg-white px-3 py-16 dark:bg-gray-800 sm:px-4 sm:py-20 lg:px-8"
+      />
+    );
+  }
+
+  const contactData = portfolioData.contact;
 
   return (
     <section

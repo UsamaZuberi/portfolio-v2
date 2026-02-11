@@ -21,6 +21,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import ResumePreviewModal from '@/components/ui/ResumePreviewModal';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const HeroSection: React.FC = () => {
@@ -30,8 +31,6 @@ const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   const { data: portfolioData } = usePortfolioData();
-  const heroData = portfolioData.hero;
-  const resumeUrl = heroData.resumeLink;
 
   /**
    * Effect: Track mouse position for interactive glow effect
@@ -73,6 +72,19 @@ const HeroSection: React.FC = () => {
       }
     };
   }, []);
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="hero"
+        label="Loading hero"
+        className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-secondary-50 px-4 pb-24 pt-20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 sm:px-6 sm:pb-32 lg:px-8 lg:pb-40"
+      />
+    );
+  }
+
+  const heroData = portfolioData.hero;
+  const resumeUrl = heroData.resumeLink;
 
   // const handleDownloadResume = () => {
   //   const link = document.createElement('a');

@@ -19,6 +19,23 @@ const Footer: React.FC = () => {
   ];
 
   const { data: portfolioData } = usePortfolioData();
+
+  if (!portfolioData) {
+    return (
+      <footer
+        className="relative overflow-hidden border-t border-gray-800 bg-gray-900 py-8 text-white dark:border-gray-800 dark:bg-gray-950"
+        role="contentinfo"
+        aria-busy="true"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex min-h-[120px] items-center justify-center">
+            <div className="h-6 w-6 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+            <span className="sr-only">Loading footer</span>
+          </div>
+        </div>
+      </footer>
+    );
+  }
   const socialLinks = portfolioData.contact.socialLinks;
 
   const getSocialIcon = (icon: string) => {

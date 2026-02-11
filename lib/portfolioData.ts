@@ -1,26 +1,22 @@
 /**
  * Portfolio data loader
  *
- * Loads data from a Vercel Blob JSON file when configured and falls back to local data.
+ * Loads data from a Vercel Blob JSON file when configured.
  */
-
-import portfolioData from '@/data';
 import type { PortfolioDataStructure } from '@/types';
 
 const DATA_REVALIDATE_SECONDS = 60;
 
-export type PortfolioDataSource = 'blob' | 'local';
-
-const localPortfolioData = portfolioData as PortfolioDataStructure;
+export type PortfolioDataSource = 'blob' | 'missing' | 'error';
 
 export async function getPortfolioData(): Promise<{
-  data: PortfolioDataStructure;
+  data: PortfolioDataStructure | null;
   source: PortfolioDataSource;
 }> {
-  const dataUrl = process.env.PORTFOLIO_DATA_BLOB_URL;
+  const dataUrl = process.env.NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL;
 
   if (!dataUrl) {
-    return { data: localPortfolioData, source: 'local' };
+    return { data: null, source: 'missing' };
   }
 
   try {
@@ -29,13 +25,26 @@ export async function getPortfolioData(): Promise<{
     });
 
     if (!response.ok) {
-      return { data: localPortfolioData, source: 'local' };
+      return { data: null, source: 'missing' };
     }
 
-    const data = (await response.json()) as PortfolioDataStructure;
-    return { data, source: 'blob' };
+    const contentType = response.headers.get('content-type') || '';
+
+    if (contentType.includes('application/json')) {
+      const data = (await response.json()) as PortfolioDataStructure;
+      return { data, source: 'blob' };
+    }
+
+    const text = await response.text();
+    try {
+      const data = JSON.parse(text) as PortfolioDataStructure;
+      return { data, source: 'blob' };
+    } catch (parseError) {
+      console.error('Portfolio data is not valid JSON.', { contentType, parseError });
+      return { data: null, source: 'error' };
+    }
   } catch (error) {
     console.error('Failed to load portfolio data from blob:', error);
-    return { data: localPortfolioData, source: 'local' };
+    return { data: null, source: 'error' };
   }
 }

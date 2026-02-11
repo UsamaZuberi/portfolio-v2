@@ -21,6 +21,7 @@
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 /**
@@ -36,6 +37,16 @@ interface SkillCategory {
 
 const SkillsSection: React.FC = () => {
   const { data: portfolioData } = usePortfolioData();
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="skills"
+        label="Loading skills"
+        className="relative overflow-hidden bg-white px-4 py-20 dark:bg-gray-800 sm:px-6 lg:px-8"
+      />
+    );
+  }
   const skillCategories = portfolioData.skills.categories as SkillCategory[];
 
   const highlights = [

@@ -19,10 +19,21 @@ import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import TestimonialCard from '@/components/ui/TestimonialCard';
 import DecorativeBackground from '@/components/ui/DecorativeBackground';
+import SectionLoading from '@/components/ui/SectionLoading';
 import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const TestimonialsSection: React.FC = () => {
   const { data: portfolioData } = usePortfolioData();
+
+  if (!portfolioData) {
+    return (
+      <SectionLoading
+        id="testimonials"
+        label="Loading testimonials"
+        className="relative overflow-hidden bg-gray-50 py-20 dark:bg-gray-900"
+      />
+    );
+  }
 
   const testimonials = [
     ...(portfolioData.testimonials as Array<{

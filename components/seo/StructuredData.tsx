@@ -3,6 +3,9 @@ import { getPortfolioData } from '@/lib/portfolioData';
 
 const StructuredData = async () => {
   const { data } = await getPortfolioData();
+  if (!data) {
+    return null;
+  }
   const { hero, contact, skills, experience, education, projects } = data;
 
   // Person/ProfilePage Schema
