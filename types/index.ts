@@ -220,6 +220,7 @@ export interface ContactData {
   email: string;
   location: string;
   responseTime: string;
+  previousPortfolio?: string;
   socialLinks: Array<{
     name: string;
     url: string;
