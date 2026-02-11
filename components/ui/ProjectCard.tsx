@@ -123,10 +123,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Gallery Badge - Shows available images in gallery */}
         {project.images && project.images.length > 0 && (
           <div
-            className={`absolute z-20 ${styles.badgeSpacing} flex items-center ${styles.badgeGap} border-1 rounded-lg border-primary-300 bg-white px-2 py-1 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-primary-600 dark:bg-gray-900`}
+            className={`absolute z-20 ${styles.badgeSpacing} flex items-center ${styles.badgeGap} rounded-lg bg-white px-2 py-1 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-300/40 dark:bg-gradient-to-br dark:from-slate-700 dark:to-slate-900 dark:hover:shadow-slate-700/40`}
           >
             <svg
-              className={`${styles.badgeSize} text-primary-600 dark:text-primary-400`}
+              className={`${styles.badgeSize} text-primary-600 transition-transform duration-300 hover:-translate-y-0.5 hover:translate-x-0.5 dark:text-white`}
               fill="none"
               stroke="currentColor"
               strokeWidth={2}
@@ -138,7 +138,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span className="m ml-1 text-xs font-semibold text-gray-900 dark:text-gray-100">
+            <span className="m text-xs font-semibold text-gray-900 dark:text-white">
               {project.images.length}
             </span>
           </div>
@@ -149,26 +149,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={
-              'absolute left-4 top-4 z-20 inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-white/95 px-2 py-1 text-xs font-semibold text-emerald-700 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-emerald-700 dark:bg-gray-900/90 dark:text-emerald-300'
-            }
+            className="group absolute right-4 top-4 z-20 inline-flex items-center justify-center rounded-lg bg-white p-2 text-primary-600 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-300/40 dark:bg-gradient-to-br dark:from-slate-700 dark:to-slate-900 dark:text-white dark:hover:shadow-slate-700/40"
             aria-label={`Preview ${project.title} in a new tab`}
           >
             <svg
-              className={`${styles.badgeSize} text-emerald-600 dark:text-emerald-300`}
+              className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               fill="none"
               stroke="currentColor"
-              strokeWidth={2}
+              strokeWidth={2.5}
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M13 7h6m0 0v6m0-6L10 20m-6-6v-4a2 2 0 012-2h4"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
               />
             </svg>
-            Live Preview
           </Link>
         )}
       </div>
