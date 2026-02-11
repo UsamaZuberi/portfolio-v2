@@ -4,13 +4,16 @@ A modern, fully responsive portfolio website built with Next.js 15, TypeScript, 
 
 ## 🚀 Features
 
-- ⚡ **Next.js 15** with App Router
-- 🎨 **Tailwind CSS** styling with dark mode
-- 📘 **TypeScript** for type safety
-- 🧭 **Reusable UI** components and sections
-- 🖼️ **Project galleries** with modal viewer
+- ⚡ **Next.js 15** with App Router & React 19
+- 🎨 **Tailwind CSS** with dark mode and theme persistence
+- 📘 **TypeScript** for full type safety
+- 🧭 **Reusable UI** components and section-based architecture
+- 🖼️ **Project galleries** with lightbox modal viewer
 - 📄 **Resume preview** modal
-- 📱 **Social share** and contact form
+- 🔗 **Live preview links** for projects (optional `allowLinkPreview` flag)
+- 📱 **Contact form** with Formspree integration
+- 🔙 **Previous portfolio** link in contact section
+- 🎬 **Staggered animations** on scroll
 
 ## 📋 Prerequisites
 
@@ -113,7 +116,7 @@ The portfolio uses Vercel Blob storage for project screenshots. To add images:
 1. **Via Vercel Dashboard**:
    - Go to Storage → Blob → portfolio-v2-images
    - Upload images with naming convention: `{project-slug}-{number}.ext`
-   - Examples: `7-star-training-1.png`, `pixtool-1.png`, `ehj-and-sj-consultancy-1.png`
+   - Examples: `project-A-1.png`, `project-B-1.png`, `project-C-1.png`
    - The slug must match the `slug` field in your portfolio JSON
 
 2. **Via Vercel CLI**:

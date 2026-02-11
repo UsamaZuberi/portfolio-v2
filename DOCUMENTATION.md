@@ -22,15 +22,20 @@ Open http://localhost:3000.
 
 ## Where to Update Content
 
-- **Main content**: Update the portfolio JSON stored in Vercel Blob
+- **Main content**: Update the portfolio JSON in Vercel Blob or local data.js
 - **Sections**: Update files in [components/sections](components/sections)
 - **UI components**: Reusable components in [components/ui](components/ui)
 
-### Portfolio Data (Blob JSON)
+### Portfolio Data (JSON Structure)
 
-1. Create a JSON file that matches the `PortfolioDataStructure` shape.
-2. Upload it to Vercel Blob (public access).
-3. Set `NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL` in `.env.local` to the public URL.
+1. Create a JSON file matching `PortfolioDataStructure` type (see [types/index.ts](types/index.ts))
+2. Upload to Vercel Blob (public access) OR use local [data.js](data.js)
+3. Set `NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL` in `.env.local` to the public Blob URL
+
+#### Featured Fields
+
+- `projects[].allowLinkPreview: boolean` — Show "Live Preview" badge linking to project
+- `contact.previousPortfolio: string` — Link to your old portfolio (displays in contact section)
 
 ## Images
 
