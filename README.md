@@ -14,13 +14,14 @@ A modern, fully responsive portfolio website built with Next.js 15, TypeScript, 
 - 📱 **Contact form** with Formspree integration
 - 🔙 **Previous portfolio** link in contact section
 - 🎬 **Staggered animations** on scroll
+- 📸 **Vercel Blob** integration for project images
 
 ## 📋 Prerequisites
 
 - Node.js 20.16 or higher
-- Yarn 4.0 or higher (recommended package manager)
+- Yarn 4.0 or higher (recommended)
 
-## 🛠️ Installation
+## 🛠️ Installation & Setup
 
 1. Clone the repository:
 
@@ -35,9 +36,7 @@ cd portfolio-v2
 yarn install
 ```
 
-3. Set up environment variables:
-
-Create a `.env.local` file in the root directory:
+3. Create `.env.local` file in root directory:
 
 ```bash
 # Vercel Blob Storage (for project images)
@@ -46,24 +45,23 @@ portfolio_v2_images_READ_WRITE_TOKEN=your-vercel-blob-token
 # Portfolio data JSON (required)
 NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL=https://<your-id>.public.blob.vercel-storage.com/portfolio-data.json
 
-# Optional: use a custom API base URL (defaults to /api)
+# Optional: custom API base URL (defaults to /api)
 # NEXT_PUBLIC_API_URL=https://your-api.example.com
 ```
 
-To get your Vercel Blob token:
+4. Get your Vercel Blob token:
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Navigate to Storage → Blob
+   - Create a blob store named `portfolio-v2-images`
+   - Copy the token to `.env.local`
 
-- Go to your Vercel dashboard
-- Navigate to Storage → Blob
-- Create a new blob store named `portfolio-v2-images`
-- Copy the token and add it to `.env.local`
-
-4. Run the development server:
+5. Run development server:
 
 ```bash
 yarn dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000)
 
 ## 📁 Project Structure
 
@@ -71,116 +69,242 @@ yarn dev
 portfolio-v2/
 ├── app/                      # Next.js app directory
 │   ├── api/                  # API routes
+│   │   ├── projects/         # Project image APIs
 │   │   └── contact/          # Contact form API
 │   ├── globals.css           # Global styles
 │   ├── layout.tsx            # Root layout
 │   └── page.tsx              # Home page
 ├── components/               # React components
-│   ├── layout/               # Layout components
+│   ├── layout/               # Layout wrappers
 │   │   ├── Header.tsx
 │   │   └── Footer.tsx
 │   ├── sections/             # Page sections
 │   │   ├── HeroSection.tsx
 │   │   ├── PortfolioSection.tsx
-│   │   └── ContactSection.tsx
-│   └── ui/                   # Reusable UI components
-│       ├── Button.tsx
-│       ├── PortfolioCard.tsx
-│       ├── SectionHeading.tsx
-│       └── ScrollToTop.tsx
+│   │   ├── ContactSection.tsx
+│   │   └── ...more sections
+│   ├── ui/                   # Reusable UI components
+│   │   ├── ProjectCard.tsx   # Project display cards
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   └── ...more components
+│   └── providers/            # Context providers
+│       └── ThemeProvider.tsx
 ├── lib/                      # Utility functions
+│   ├── api.ts                # HTTP request utilities
+│   ├── config.ts             # Configuration constants
+│   ├── constants.ts          # App constants
 │   ├── utils.ts              # Helper functions
-│   └── constants.ts          # App constants
+│   ├── hooks/                # Custom React hooks
+│   │   ├── useApi.ts
+│   │   ├── useProjectImages.ts
+│   │   └── useInteractions.ts
+│   └── services.ts           # Business logic
 ├── types/                    # TypeScript type definitions
 │   └── index.ts
 ├── public/                   # Static assets
 │   ├── images/               # Images & placeholders
-│   └── resume/                   # Resume files
+│   └── resume/               # Resume files
 ├── next.config.ts            # Next.js configuration
-├── tailwind.config.ts        # Tailwind CSS configuration
-├── tsconfig.json             # TypeScript configuration
-└── package.json              # Dependencies and scripts
+├── tailwind.config.ts        # Tailwind styling
+├── tsconfig.json             # TypeScript config
+└── package.json              # Dependencies
 ```
 
-## 🎨 Customization
+## 📝 How to Use & Customize
 
-### Update Personal Information
+### Update Portfolio Content
 
-1. **Content Source**: Update the JSON stored in Vercel Blob
-2. **Sections**: Update components in components/sections if you change layout
+Portfolio data comes from two sources:
 
-### Add Project Images to Vercel Blob
+**Option 1: Vercel Blob (Recommended)**
 
-The portfolio uses Vercel Blob storage for project screenshots. To add images:
+1. Create a JSON file matching the `PortfolioDataStructure` type
+2. Upload to Vercel Blob with public access
+3. Set `NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL` in `.env.local`
 
-1. **Via Vercel Dashboard**:
-   - Go to Storage → Blob → portfolio-v2-images
-   - Upload images with naming convention: `{project-slug}-{number}.ext`
-   - Examples: `project-A-1.png`, `project-B-1.png`, `project-C-1.png`
-   - The slug must match the `slug` field in your portfolio JSON
+**Option 2: Local Data**
 
-2. **Via Vercel CLI**:
+- Edit [data.js](data.js) directly in the project
+
+### Adding Project Images
+
+Images use the naming convention: `{project-slug}-{number}.{ext}`
+
+Examples: `7-star-training-1.png`, `pixtool-1.png`, `project-name-2.jpg`
+
+**Via Vercel Dashboard:**
+
+1. Go to Storage → Blob → `portfolio-v2-images`
+2. Upload images using the naming convention
+3. The slug must match your portfolio JSON `slug` field
+
+**Via Vercel CLI:**
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login to Vercel
+npm install -g vercel
 vercel login
-
-# Upload images with proper naming
-vercel blob upload ./7-star-training-1.png --token=your-token
-vercel blob upload ./pixtool-1.png --token=your-token
+vercel blob upload ./my-project-1.png --token=your-token
 ```
 
-3. **Automatic Integration**:
-   - Images are automatically fetched from Vercel Blob
+**Programmatically:**
+
+```javascript
+import { put } from '@vercel/blob';
+
+const blob = await put('project-name-1.png', file, {
+  access: 'public',
+  token: process.env.portfolio_v2_images_READ_WRITE_TOKEN,
+});
+```
+
+**How It Works:**
+
+- API routes automatically fetch images grouped by project slug
+- Images are cached and deduplicated via `useProjectImages()` hook
+- Loading placeholders shown if Blob is unconfigured
+
+**Troubleshooting Images:**
+
+- Token missing/invalid? Check `.env.local`
+- Images not loading? Verify naming: `{slug}-{number}.ext`
+- Test API: Visit `http://localhost:3000/api/projects/images`
 
 ### Customize Styling
 
-- **Colors**: Edit tailwind.config.ts to change the color scheme
-- **Fonts**: Modify font imports in app/layout.tsx
-- **Animations**: Add custom animations in app/globals.css
+**Theme Colors**
 
-### Local Images (Optional)
+- Edit [tailwind.config.ts](tailwind.config.ts) to change primary/secondary/accent colors
+- Theme is persisted to localStorage automatically
 
-- Profile image: replace `/images/placeholder-profile.svg`
-- Project logos: replace `/images/placeholder-project.svg` or add new files
-- Update paths in `components/sections/HeroSection.tsx` and `components/sections/PortfolioSection.tsx`
+**Fonts**
 
-## 🔧 Available Scripts
+- Modify font imports in [app/layout.tsx](app/layout.tsx)
+- Uses system variables defined in Tailwind config
 
-- `yarn dev` - Start development server
-- `yarn build` - Build for production
-- `yarn start` - Start production server
-- `yarn lint` - Run ESLint
-- `yarn type-check` - Run TypeScript type checking
-- `yarn format` - Format code with Prettier
+**Animations**
+
+- Add custom animations in [app/globals.css](app/globals.css)
+- Cards have staggered fade-in animations on load
+
+### Using Local Images (Optional)
+
+Replace the default placeholder images:
+
+- Profile image: `/public/images/placeholder-profile.svg`
+- Project logos: `/public/images/placeholder-project.svg`
+
+Then update references in:
+
+- [components/sections/HeroSection.tsx](components/sections/HeroSection.tsx)
+- [components/sections/PortfolioSection.tsx](components/sections/PortfolioSection.tsx)
+
+### Special Portfolio Fields
+
+**`allowLinkPreview` (optional)**
+
+- Add to project object: `allowLinkPreview: true`
+- Shows "Live Preview" button on project cards
+- Opens project link in new tab
+
+**`previousPortfolio` (optional)**
+
+- Add to contact object: `previousPortfolio: "https://old-portfolio.com"`
+- Displays as a card in the Contact section
+- Links to your previous portfolio website
+
+## 🎨 Theme & Dark Mode
+
+- Theme preference stored in localStorage
+- Toggle button in Header automatically switches light/dark modes
+- All components have dark mode support via Tailwind classes (`dark:`)
+- Provider located in [components/providers/ThemeProvider.tsx](components/providers/ThemeProvider.tsx)
+
+## 🔧 API & Utilities
+
+**Fetch Utilities** ([lib/api.ts](lib/api.ts))
+
+- Pre-configured HTTP client with timeout handling
+- Default base URL: `/api` (use `NEXT_PUBLIC_API_URL` to override)
+- Supports GET, POST, PUT, PATCH, DELETE operations
+- Built-in error handling and type safety
+
+**Hooks** ([lib/hooks/](lib/hooks/))
+
+- `usePortfolioData()` - Fetch portfolio data with SWR caching
+- `useProjectImages()` - Fetch & cache project images
+- `useInteractions()` - Track user interactions
+- `useApi()` - Generic API hook with loading/error states
+
+## 📦 Available Scripts
+
+| Script            | Purpose                              |
+| ----------------- | ------------------------------------ |
+| `yarn dev`        | Start development server (port 3000) |
+| `yarn build`      | Create optimized production build    |
+| `yarn start`      | Run production server                |
+| `yarn lint`       | Run ESLint checks                    |
+| `yarn type-check` | Run TypeScript type checking         |
+| `yarn format`     | Format code (if Prettier configured) |
 
 ## 🌐 Deployment
 
-### Vercel (Recommended)
+### Vercel (Recommended - One Click)
 
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com)
-3. Vercel will automatically detect Next.js and deploy
+1. Push code to GitHub
+2. Import repository on [Vercel](https://vercel.com)
+3. Vercel auto-detects Next.js and deploys
+4. Environment variables automatically synced
 
 ### Other Platforms
 
-Build the project:
+1. Build project:
 
 ```bash
 yarn build
 ```
 
-Then deploy the .next folder to your hosting provider.
+2. Deploy the `.next` folder to your hosting provider
 
-## 📝 License
+3. Ensure environment variables are set on the platform
 
-This project is licensed under the MIT License.
+### Environment Variables for Production
+
+Set these on your hosting platform:
+
+- `portfolio_v2_images_READ_WRITE_TOKEN` - Vercel Blob token
+- `NEXT_PUBLIC_PORTFOLIO_DATA_BLOB_URL` - Portfolio data Blob URL
+- `NEXT_PUBLIC_API_URL` (optional) - Custom API URL
+
+## 🐛 Troubleshooting
+
+| Issue                    | Solution                                                          |
+| ------------------------ | ----------------------------------------------------------------- |
+| **Type errors**          | Run `yarn type-check` to find issues                              |
+| **Images not loading**   | Check naming: `{slug}-{number}.ext`, verify token in `.env.local` |
+| **Blob not configured**  | Set `portfolio_v2_images_READ_WRITE_TOKEN` in `.env.local`        |
+| **Styles not updating**  | Restart dev server with `yarn dev`                                |
+| **API errors**           | Check base URL, verify routes exist in `/api` directory           |
+| **Theme not persisting** | Check localStorage in browser dev tools                           |
+
+## 📚 Key Files Reference
+
+- **Types**: [types/index.ts](types/index.ts) - All TypeScript interfaces
+- **Config**: [lib/config.ts](lib/config.ts) - API endpoints, constants
+- **Constants**: [lib/constants.ts](lib/constants.ts) - Reusable constants
+- **Services**: [lib/services.ts](lib/services.ts) - Business logic
+- **Theme**: [components/providers/ThemeProvider.tsx](components/providers/ThemeProvider.tsx) - Dark mode
+
+## 📄 License
+
+MIT License - feel free to use this portfolio template!
 
 ## 👤 Author
 
 **Muhammad Usama Zuberi**
+
+---
+
+**Last Updated:** February 11, 2026
 
 - GitHub: [@usamazuberi](https://github.com/usamazuberi)

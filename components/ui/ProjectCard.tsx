@@ -32,6 +32,46 @@ import Link from 'next/link';
 import { ProjectItem } from '@/types';
 import { TRANSITIONS } from '@/lib/constants';
 
+// Add styles for loading animations
+const loadingStyles = `
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .shimmer {
+    animation: shimmer 2s infinite;
+  }
+  .pulse-glow {
+    animation: pulse-glow 2.5s ease-in-out infinite;
+  }
+  .badge-enter {
+    animation: fade-in-up 0.5s ease-out;
+  }
+`;
+
+if (typeof document !== 'undefined') {
+  const styleEl = document.createElement('style');
+  styleEl.textContent = loadingStyles;
+  if (!document.head.querySelector('style[data-project-card]')) {
+    styleEl.setAttribute('data-project-card', 'true');
+    document.head.appendChild(styleEl);
+  }
+}
+
 /**
  * Props interface for ProjectCard component
  */
@@ -104,9 +144,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       {/* Image Container - Now shows project title instead */}
       <div
         onClick={() => onViewGallery(project)}
-        className={`relative ${styles.height} flex cursor-pointer items-center justify-center overflow-hidden`}
+        className={`relative ${styles.height} flex cursor-pointer items-center justify-center overflow-hidden pulse-glow`}
         style={{ backgroundImage: baseGradient }}
       >
+        {/* Shimmer effect during load */}
+        <div className="absolute inset-0 shimmer bg-gradient-to-r from-transparent via-white to-transparent opacity-10" />
+
         {/* Gradient overlay */}
         <div className="absolute inset-0 opacity-0 transition-all duration-300 group-hover:bg-black group-hover:opacity-20" />
 
@@ -123,7 +166,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Gallery Badge - Shows available images in gallery */}
         {project.images && project.images.length > 0 && (
           <div
-            className={`absolute z-20 ${styles.badgeSpacing} flex items-center ${styles.badgeGap} rounded-lg bg-white px-2 py-1 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-300/40 dark:bg-gradient-to-br dark:from-slate-700 dark:to-slate-900 dark:hover:shadow-slate-700/40`}
+            className={`absolute z-20 ${styles.badgeSpacing} flex items-center ${styles.badgeGap} rounded-lg bg-white px-2 py-1 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-300/40 dark:bg-gradient-to-br dark:from-slate-700 dark:to-slate-900 dark:hover:shadow-slate-700/40 badge-enter`}
+            style={{ animationDelay: '0.2s' }}
           >
             <svg
               className={`${styles.badgeSize} text-primary-600 transition-transform duration-300 hover:-translate-y-0.5 hover:translate-x-0.5 dark:text-white`}
@@ -149,7 +193,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group absolute right-4 top-4 z-20 inline-flex items-center justify-center rounded-lg bg-white p-2 text-primary-600 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-300/40 dark:bg-gradient-to-br dark:from-slate-700 dark:to-slate-900 dark:text-white dark:hover:shadow-slate-700/40"
+            className="group absolute right-4 top-4 z-20 inline-flex items-center justify-center rounded-lg bg-white p-2 text-primary-600 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-300/40 dark:bg-gradient-to-br dark:from-slate-700 dark:to-slate-900 dark:text-white dark:hover:shadow-slate-700/40 badge-enter"
+            style={{ animationDelay: '0.35s' }}
             aria-label={`Preview ${project.title} in a new tab`}
           >
             <svg
@@ -194,7 +239,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             return (
               <span
                 key={i}
-                className={`rounded-full bg-gradient-to-r ${colors[i % colors.length]} ${styles.skillPadding} text-xs font-medium ring-1 ring-transparent transition-all hover:scale-105`}
+                className={`rounded-full bg-gradient-to-r ${colors[i % colors.length]} ${styles.skillPadding} text-xs font-medium ring-1 ring-transparent transition-all hover:scale-105 badge-enter`}
+                style={{ animationDelay: `${0.5 + i * 0.1}s` }}
               >
                 {skill}
               </span>
@@ -202,7 +248,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           })}
           {project.usedSkills.length > styles.skillDisplayCount && (
             <span
-              className={`rounded-full bg-gradient-to-r from-gray-100 to-gray-50 ${styles.skillPadding} text-xs font-medium text-gray-700 ring-1 ring-gray-200 transition-all hover:scale-105 dark:from-gray-700 dark:to-gray-600 dark:text-gray-300 dark:ring-gray-600`}
+              className={`rounded-full bg-gradient-to-r from-gray-100 to-gray-50 ${styles.skillPadding} text-xs font-medium text-gray-700 ring-1 ring-gray-200 transition-all hover:scale-105 dark:from-gray-700 dark:to-gray-600 dark:text-gray-300 dark:ring-gray-600 badge-enter`}
+              style={{ animationDelay: `${0.5 + styles.skillDisplayCount * 0.1}s` }}
             >
               +{project.usedSkills.length - styles.skillDisplayCount}
             </span>
