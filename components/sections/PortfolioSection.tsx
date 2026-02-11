@@ -25,7 +25,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import ImageGalleryModal from '@/components/ui/ImageGalleryModal';
 import ProjectCard from '@/components/ui/ProjectCard';
 import DecorativeBackground from '@/components/ui/DecorativeBackground';
-import { portfolioData } from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 import { useScrollToSection } from '@/lib/hooks/useInteractions';
 import { useProjectImages } from '@/lib/hooks/useProjectImages';
 import { ProjectItem } from '@/types';
@@ -36,8 +36,10 @@ const PortfolioSection: React.FC = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const scrollToSection = useScrollToSection();
 
+  const { data: portfolioData } = usePortfolioData();
+
   // Fetch images from Vercel Blob
-  const { images: blobImages, loading: blobLoading } = useProjectImages();
+  const { images: blobImages } = useProjectImages();
 
   // Use blob images as primary source, fallback to data.js only if blob not available
   const projectsWithBlobImages = useMemo(() => {
@@ -53,7 +55,7 @@ const PortfolioSection: React.FC = () => {
             blobProjectImages && blobProjectImages.length > 0 ? blobProjectImages : project.images,
         };
       });
-  }, [blobImages]);
+  }, [blobImages, portfolioData.projects]);
 
   // Filter projects into featured and complete list
   const featuredProjects = projectsWithBlobImages.filter((p) => p.isFeatured);

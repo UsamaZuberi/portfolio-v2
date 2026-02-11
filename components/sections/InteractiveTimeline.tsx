@@ -20,12 +20,14 @@
 import React, { useState } from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { TRANSITIONS } from '@/lib/constants';
-import portfolioData from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 type FilterType = 'all' | 'education' | 'experience';
 
 const InteractiveTimeline: React.FC = () => {
   const [filter, setFilter] = useState<FilterType>('all');
+
+  const { data: portfolioData } = usePortfolioData();
 
   // Transform data into timeline items
   const timelineItems = [

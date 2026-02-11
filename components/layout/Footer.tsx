@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import type { NavLink } from '@/types';
 import GitHubRepoWidget from '@/components/ui/GitHubRepoWidget';
-import { portfolioData } from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -16,6 +18,7 @@ const Footer: React.FC = () => {
     { label: 'Contact', href: '#contact', ariaLabel: 'Navigate to contact section' },
   ];
 
+  const { data: portfolioData } = usePortfolioData();
   const socialLinks = portfolioData.contact.socialLinks;
 
   const getSocialIcon = (icon: string) => {

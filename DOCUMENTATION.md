@@ -34,7 +34,74 @@ Open http://localhost:3000.
 2. Upload images named `{project-slug}-{number}.ext`
 3. The slug must match `data.js`
 
-See [BLOB_SETUP.md](BLOB_SETUP.md) for full setup.
+#### Setup
+
+Add this to `.env.local`:
+
+```bash
+portfolio_v2_images_READ_WRITE_TOKEN=your-vercel-blob-token
+```
+
+Get the token from Vercel:
+
+1. Go to https://vercel.com/dashboard
+2. Storage -> Blob
+3. Create a blob store named `portfolio-v2-images`
+4. Copy the token into `.env.local`
+
+#### Naming Convention
+
+```
+{project-slug}-{number}.{extension}
+```
+
+Examples:
+
+- `7-star-training-1.png`
+- `pixtool-1.png`
+- `ehj-and-sj-consultancy-2.jpg`
+
+#### Uploading Images
+
+Dashboard:
+
+1. Storage -> Blob -> `portfolio-v2-images`
+2. Upload images using the naming convention above
+
+CLI:
+
+```bash
+npm install -g vercel
+vercel login
+vercel link
+vercel blob upload ./pixtool-1.png --token=$portfolio_v2_images_READ_WRITE_TOKEN
+```
+
+Programmatic:
+
+```javascript
+import { put } from '@vercel/blob';
+
+const blob = await put('pixtool-1.png', file, {
+  access: 'public',
+  token: process.env.portfolio_v2_images_READ_WRITE_TOKEN,
+});
+
+console.log(blob.url);
+```
+
+#### How It Works
+
+- API: `/api/projects/images` returns all images grouped by slug.
+- API: `/api/projects/[projectId]/images` returns images for a single project.
+- Hook: `useProjectImages()` caches and dedupes requests.
+- Fallback: if blob is not configured or empty, the UI uses `data.js` images.
+
+#### Troubleshooting
+
+- Token missing or invalid -> check `.env.local`.
+- Images not loading -> verify filenames match `{project-slug}-{number}`.
+- API check -> open `http://localhost:3000/api/projects/images`.
 
 ### Local Images (Optional)
 
@@ -67,4 +134,4 @@ See [BLOB_SETUP.md](BLOB_SETUP.md) for full setup.
 - **Blob images missing**: verify token and image naming
 - **Styles not updating**: restart dev server
 
-Last updated: February 1, 2026
+Last updated: February 11, 2026

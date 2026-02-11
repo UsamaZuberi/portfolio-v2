@@ -23,9 +23,10 @@
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { portfolioData } from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const ExperienceSection: React.FC = () => {
+  const { data: portfolioData } = usePortfolioData();
   const experiences = portfolioData.experience;
 
   return (

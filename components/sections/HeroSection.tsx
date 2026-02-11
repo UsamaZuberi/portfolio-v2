@@ -21,7 +21,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import ResumePreviewModal from '@/components/ui/ResumePreviewModal';
-import { portfolioData } from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const HeroSection: React.FC = () => {
   const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
@@ -29,6 +29,7 @@ const HeroSection: React.FC = () => {
   const [isMouseInside, setIsMouseInside] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  const { data: portfolioData } = usePortfolioData();
   const heroData = portfolioData.hero;
   const resumeUrl = heroData.resumeLink;
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import { portfolioData } from '@/data';
+import { getPortfolioData } from '@/lib/portfolioData';
 
-const StructuredData: React.FC = () => {
-  const { hero, contact, skills, experience, education, projects } = portfolioData;
+const StructuredData = async () => {
+  const { data } = await getPortfolioData();
+  const { hero, contact, skills, experience, education, projects } = data;
 
   // Person/ProfilePage Schema
   const personSchema = {

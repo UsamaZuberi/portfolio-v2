@@ -969,6 +969,27 @@ export const portfolioData = {
       testimonial:
         "I highly recommend Usama Zuberi. I've worked with him on the same team, and he's an excellent Senior Software Engineer, especially on frontend work. He completes tasks quickly, delivers high-quality results, and often goes beyond what's expected. Usama is reliable, easy to work with, communicates clearly, and is a real team player. Any team would be lucky to have him.",
     },
+    {
+      id: 11,
+      name: 'Muhammad Nameer',
+      role: 'Software Engineer',
+      company: 'Hashcore',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      gender: 'male',
+      testimonial:
+        'I have worked with Usama on multiple products as part of the same team. He has a brilliant mindset toward development and consistently demonstrates exceptional skills in team collaboration, rapid delivery, and problem-solving through effective debugging. I highly recommend Usama for any development role.',
+    },
+    {
+      id: 12,
+      name: 'Shahzaib Habib',
+      role: 'CTO',
+      company: 'Hashcore',
+      image: '/images/placeholder-profile.svg',
+      rating: 5,
+      gender: 'male',
+      testimonial: ''
+    },
   ],
 };
 

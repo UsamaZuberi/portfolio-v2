@@ -19,9 +19,11 @@ import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import TestimonialCard from '@/components/ui/TestimonialCard';
 import DecorativeBackground from '@/components/ui/DecorativeBackground';
-import portfolioData from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 const TestimonialsSection: React.FC = () => {
+  const { data: portfolioData } = usePortfolioData();
+
   const testimonials = [
     ...(portfolioData.testimonials as Array<{
       id: number;

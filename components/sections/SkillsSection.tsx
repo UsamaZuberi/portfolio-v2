@@ -21,7 +21,7 @@
 
 import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { portfolioData } from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 
 /**
  * Type for skill category with styling properties
@@ -35,6 +35,7 @@ interface SkillCategory {
 }
 
 const SkillsSection: React.FC = () => {
+  const { data: portfolioData } = usePortfolioData();
   const skillCategories = portfolioData.skills.categories as SkillCategory[];
 
   const highlights = [

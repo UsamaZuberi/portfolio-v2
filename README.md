@@ -132,7 +132,6 @@ vercel blob upload ./pixtool-1.png --token=your-token
 3. **Automatic Integration**:
    - Images are automatically fetched from Vercel Blob
    - Falls back to local images from [data.js](data.js) if blob is not configured
-   - See [BLOB_SETUP.md](BLOB_SETUP.md) or [BLOB_QUICK_START.md](BLOB_QUICK_START.md)
 
 ### Customize Styling
 

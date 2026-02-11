@@ -29,10 +29,11 @@ import { useForm, ValidationError } from '@formspree/react';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
 import DecorativeBackground from '@/components/ui/DecorativeBackground';
-import { portfolioData } from '@/data';
+import { usePortfolioData } from '@/lib/hooks/usePortfolioData';
 import type { ContactFormData, ContactFormErrors } from '@/types';
 
 const ContactSection: React.FC = () => {
+  const { data: portfolioData } = usePortfolioData();
   const contactData = portfolioData.contact;
 
   // Formspree hook
