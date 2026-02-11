@@ -189,6 +189,8 @@ export interface EducationItem {
   startDate: string;
   endDate: string;
   status: 'in-progress' | 'completed' | 'dropped' | 'freeze';
+  gpa?: string;
+  gpaScale?: string;
   summary: string[];
 }
 
