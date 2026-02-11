@@ -28,6 +28,7 @@
 'use client';
 
 import React, { memo } from 'react';
+import Link from 'next/link';
 import { ProjectItem } from '@/types';
 import { TRANSITIONS } from '@/lib/constants';
 
@@ -134,6 +135,34 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               {project.images.length}
             </span>
           </div>
+        )}
+
+        {project.allowLinkPreview && project.link && (
+          <Link
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={
+              'absolute z-20 left-4 top-4 inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-white/95 px-2 py-1 text-xs font-semibold text-emerald-700 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-emerald-700 dark:bg-gray-900/90 dark:text-emerald-300'
+            }
+            aria-label={`Preview ${project.title} in a new tab`}
+          >
+            <svg
+              className={badgeSize + ' text-emerald-600 dark:text-emerald-300'}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13 7h6m0 0v6m0-6L10 20m-6-6v-4a2 2 0 012-2h4"
+              />
+            </svg>
+            Live Preview
+          </Link>
         )}
       </div>
 

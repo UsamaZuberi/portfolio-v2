@@ -213,6 +213,7 @@ export interface ProjectItem {
   usedSkills: string[];
   isFeatured: boolean;
   link: string;
+  allowLinkPreview?: boolean;
 }
 
 export interface ContactData {
