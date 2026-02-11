@@ -67,6 +67,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const skillPadding = isFeatured ? 'px-3 py-1' : 'px-2 py-0.5';
   const skillGap = isFeatured ? 'gap-2' : 'gap-1.5';
   const skillDisplayCount = isFeatured ? 4 : 3;
+  const dominantColors = ['#06b6d4', '#ec4899', '#14b8a6', '#f59e0b'];
+  const dominantColor = dominantColors[index % dominantColors.length];
+  const baseGradient = `linear-gradient(135deg, ${dominantColor} 0%, ${dominantColor} 45%, #7c3aed  70%, #1e3a8a 100%)`;
 
   return (
     <div
@@ -83,8 +86,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         className={
           'relative ' +
           heightClass +
-          ' flex cursor-pointer items-center justify-center overflow-hidden bg-gradient-to-br from-primary-600 via-secondary-600 to-accent-600 dark:from-primary-700 dark:via-secondary-700 dark:to-accent-700'
+          ' flex cursor-pointer items-center justify-center overflow-hidden'
         }
+        style={{ backgroundImage: baseGradient }}
       >
         {/* Gradient overlay */}
         <div className="absolute inset-0 opacity-0 transition-all duration-300 group-hover:bg-black group-hover:opacity-20" />
@@ -143,7 +147,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             className={
-              'absolute z-20 left-4 top-4 inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-white/95 px-2 py-1 text-xs font-semibold text-emerald-700 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-emerald-700 dark:bg-gray-900/90 dark:text-emerald-300'
+              'absolute left-4 top-4 z-20 inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-white/95 px-2 py-1 text-xs font-semibold text-emerald-700 shadow-md backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-lg dark:border-emerald-700 dark:bg-gray-900/90 dark:text-emerald-300'
             }
             aria-label={`Preview ${project.title} in a new tab`}
           >
